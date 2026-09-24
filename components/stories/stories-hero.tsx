@@ -1,37 +1,52 @@
 'use client'
 
+import Reveal from '@/components/motion/reveal'
+
 export default function StoriesHero() {
   return (
     <section className="relative w-full overflow-hidden bg-background pt-12 md:pt-24">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-accent opacity-5 blur-3xl"></div>
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-accent opacity-5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-24 space-y-6">
-          <div className="space-y-4">
-            <div className="inline-block px-3 py-1 bg-muted rounded-full text-sm font-light text-muted-foreground">
-              Real-world Impact
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground">
-              <span className="block text-balance">
-                Stories of preservation
-              </span>
-              <span className="block text-balance mt-2">
-                in action.
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl font-light leading-relaxed">
-              Discover how organizations worldwide are using TopoStitch to preserve knowledge, protect cultural heritage, and build lasting records.
-            </p>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6 py-16 md:py-24">
+          <div className="max-w-3xl space-y-4">
+            <Reveal>
+              <div className="inline-block rounded-full bg-muted px-3 py-1 text-sm font-light text-muted-foreground">
+                Field notes & use cases
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.07}>
+              <h1 className="text-4xl font-light tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                <span className="block text-balance">
+                  Stories of preservation
+                </span>
+                <span className="mt-2 block text-balance">
+                  in action.
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <p className="max-w-2xl text-lg font-light leading-relaxed text-muted-foreground md:text-xl">
+                Follow the real objects, places, capture experiments, and pilot opportunities
+                helping shape how TopoStitch preserves context from capture through publishing.
+              </p>
+            </Reveal>
           </div>
 
-          {/* Placeholder story count */}
-          <div className="pt-8">
-            <p className="text-sm font-light text-muted-foreground">
-              Showcasing early preservation initiatives · More stories coming
-            </p>
-          </div>
+          <Reveal delay={0.2}>
+            <div className="pt-8">
+              <p className="text-sm font-light text-muted-foreground">
+                Early-stage fieldwork and product exploration · More stories as real projects develop
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

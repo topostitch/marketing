@@ -21,11 +21,18 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-2" aria-label="TopoStitch home">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center" aria-hidden="true">
-              <span className="text-white font-medium text-sm">T</span>
-            </div>
-            <span className="text-lg font-medium text-foreground">TopoStitch</span>
-          </Link>
+  	    <picture>
+    	      <source
+     	        srcSet="/brand/topostitch-mark-light.svg"
+      	        media="(prefers-color-scheme: dark)"
+   	      />
+    	      <img
+       	        src="/brand/topostitch-mark-dark.svg"
+      		alt="TopoStitch"
+      		className="h-8 w-auto"
+    	      />
+  	     </picture>
+	  </Link>
 
           <nav className="hidden md:flex items-center space-x-7" aria-label="Primary navigation">
             {navLinks.map((link) => (

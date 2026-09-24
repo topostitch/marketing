@@ -1,11 +1,13 @@
 'use client'
 
+import Reveal from '@/components/motion/learn-reveal'
+
 export default function LearningPaths() {
   const paths = [
     {
       id: 1,
       role: 'Curators & Archivists',
-      description: 'Master preservation workflows, metadata standards, and collection management strategies.',
+      description: 'Planned focus: preservation workflows, metadata standards, and collection management strategies.',
       modules: [
         'Preservation fundamentals',
         'Metadata best practices',
@@ -16,7 +18,7 @@ export default function LearningPaths() {
     {
       id: 2,
       role: 'Researchers & Scholars',
-      description: 'Learn how to document research, maintain data integrity, and build knowledge graphs.',
+      description: 'Planned focus: research documentation, data integrity, and connections between related knowledge.',
       modules: [
         'Research documentation',
         'Data preservation strategies',
@@ -27,7 +29,7 @@ export default function LearningPaths() {
     {
       id: 3,
       role: 'Developers & Technologists',
-      description: 'Build preservation infrastructure, integrate systems, and design for scalability.',
+      description: 'Planned focus: preservation infrastructure, system integration, and scalability.',
       modules: [
         'API and integration patterns',
         'Architecture for longevity',
@@ -38,7 +40,7 @@ export default function LearningPaths() {
     {
       id: 4,
       role: 'Project Leaders',
-      description: 'Plan preservation initiatives, coordinate teams, and measure impact.',
+      description: 'Planned focus: preservation planning, team coordination, resource allocation, and impact measurement.',
       modules: [
         'Project planning and scope',
         'Team coordination',
@@ -49,41 +51,56 @@ export default function LearningPaths() {
   ]
 
   return (
-    <section className="w-full bg-background border-b border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-20 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4 text-balance">
-              Learning paths by role
-            </h2>
-            <p className="text-muted-foreground font-light">
-              Curated sequences tailored to your role and preservation goals.
-            </p>
-          </div>
+    <section className="w-full border-b border-border bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-12 py-16 md:py-20">
+          <Reveal>
+            <div>
+              <h2 className="mb-4 text-balance text-2xl font-light text-foreground md:text-3xl">
+                Planned learning paths by role
+              </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {paths.map((path) => (
-              <div key={path.id} className="p-6 border border-border rounded-lg space-y-4 hover:border-accent transition-colors">
-                <h3 className="text-lg font-light text-foreground">
-                  {path.role}
-                </h3>
-                <p className="text-base text-muted-foreground font-light leading-relaxed">
-                  {path.description}
-                </p>
-                <div className="space-y-2 pt-4 border-t border-border">
-                  <div className="text-xs font-light text-muted-foreground uppercase tracking-wide">
-                    Modules
+              <p className="font-light text-muted-foreground">
+                These planned sequences show the topics TopoStitch Learn is intended to cover for different roles.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {paths.map((path, index) => (
+              <Reveal
+                key={path.id}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={(index % 2) * 0.08}
+              >
+                <div className="h-full space-y-4 rounded-lg border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent">
+                  <h3 className="text-lg font-light text-foreground">
+                    {path.role}
+                  </h3>
+
+                  <p className="text-base font-light leading-relaxed text-muted-foreground">
+                    {path.description}
+                  </p>
+
+                  <div className="space-y-2 border-t border-border pt-4">
+                    <div className="text-xs font-light uppercase tracking-wide text-muted-foreground">
+                      Modules
+                    </div>
+
+                    <ul className="space-y-2">
+                      {path.modules.map((module, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center gap-2 text-sm font-light text-foreground"
+                        >
+                          <span className="text-accent">→</span>
+                          {module}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-2">
-                    {path.modules.map((module, idx) => (
-                      <li key={idx} className="text-sm font-light text-foreground flex items-center gap-2">
-                        <span className="text-accent">→</span>
-                        {module}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

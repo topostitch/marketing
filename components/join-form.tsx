@@ -38,7 +38,7 @@ export default function JoinForm() {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || "Unable to send message.");
+        throw new Error(result.error || "We couldn't send your message. Please try again or email hello@topostitch.dev.");
       }
 
       form.reset();
@@ -49,7 +49,7 @@ export default function JoinForm() {
         message:
           error instanceof Error
             ? error.message
-            : "Unable to send your message.",
+            : "We couldn't send your message. Please try again or email hello@topostitch.dev.",
       });
     }
   }
@@ -189,13 +189,20 @@ export default function JoinForm() {
                 What are you hoping to document or preserve?
               </label>
 
+              <p
+                id="contact-message-help"
+                className="mb-3 text-sm leading-relaxed text-muted-foreground"
+              >
+                Tell us about the object, collection, place, or workflow—and what you want to make easier.
+              </p>
+
               <textarea
                 id="contact-message"
                 name="message"
                 required
                 rows={6}
+                aria-describedby="contact-message-help"
                 className="w-full resize-y rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-foreground focus:ring-2 focus:ring-ring"
-                placeholder="Tell us a little about the object, collection, place, or workflow you're working with."
               />
             </div>
 
@@ -206,13 +213,13 @@ export default function JoinForm() {
             >
               {status.state === "submitting"
                 ? "Sending…"
-                : "Start a conversation"}
+                : "Send my message"}
             </button>
 
             <div aria-live="polite" className="min-h-6">
               {status.state === "success" && (
                 <p className="text-sm text-foreground">
-                  Thanks — your message was sent. We'll get back to you soon.
+                  Thanks — we received your message. We'll reply by email.
                 </p>
               )}
 

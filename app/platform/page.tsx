@@ -1,3 +1,4 @@
+import PlatformProof from '@/components/platform/platform-proof'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import PlatformHero from '@/components/platform/platform-hero'
@@ -6,6 +7,7 @@ import PlatformArchitecture from '@/components/platform/platform-architecture'
 import PlatformIntegrations from '@/components/platform/platform-integrations'
 import PlatformSecurity from '@/components/platform/platform-security'
 import PlatformCTA from '@/components/platform/platform-cta'
+import PlatformDiscovery from '@/components/platform/platform-discovery'
 
 export const metadata = {
   title: 'Platform',
@@ -19,7 +21,9 @@ export default function PlatformPage() {
       <main id="main-content" className="w-full pt-16">
         <PlatformHero />
         <PlatformCapabilities />
-        <PlatformArchitecture />
+	<PlatformProof />
+	<PlatformDiscovery />
+	<PlatformArchitecture />
         <PlatformIntegrations />
         <PlatformSecurity />
         <PlatformCTA />
