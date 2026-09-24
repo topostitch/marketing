@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Reveal from '@/components/motion/reveal'
 
 export default function PlatformIntegrations() {
   const categories = [
@@ -9,31 +10,68 @@ export default function PlatformIntegrations() {
   ]
 
   return (
-    <section className="w-full py-16 md:py-24 bg-muted/30 border-y border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full border-y border-border bg-muted/30 py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-10">
-          <div className="space-y-4 max-w-3xl">
-            <p className="text-sm font-medium tracking-wide text-muted-foreground">Interoperability</p>
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground text-balance">Fit into the tools institutions already depend on.</h2>
-            <p className="text-lg text-muted-foreground font-light">TopoStitch is being designed as connective infrastructure. Specific integrations will be prioritized through pilot work rather than advertised before they exist.</p>
-          </div>
+          <Reveal>
+            <div className="max-w-3xl space-y-4">
+              <p className="text-sm font-medium tracking-wide text-muted-foreground">
+                Interoperability
+              </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {categories.map((item) => (
-              <div key={item.title} className="rounded-xl border border-border bg-background p-6">
-                <h3 className="text-lg font-medium text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </div>
+              <h2 className="text-balance text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                Fit into the tools institutions already depend on.
+              </h2>
+
+              <p className="text-lg font-light text-muted-foreground">
+                TopoStitch is being designed as connective infrastructure. Specific
+                integrations will be prioritized through pilot work rather than advertised
+                before they exist.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {categories.map((item, index) => (
+              <Reveal
+                key={item.title}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={(index % 2) * 0.08}
+              >
+                <div className="h-full rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1">
+                  <h3 className="text-lg font-medium text-foreground">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
 
-          <div className="rounded-xl border border-border bg-background p-6 md:p-8 flex flex-col md:flex-row gap-5 md:items-center md:justify-between">
-            <div className="max-w-2xl">
-              <h3 className="font-medium text-foreground">Have an existing CMS, DAM, collection system, or capture workflow?</h3>
-              <p className="mt-2 text-sm text-muted-foreground">That is exactly the kind of integration requirement the pilot program should surface early.</p>
+          <Reveal delay={0.08}>
+            <div className="flex flex-col gap-5 rounded-xl border border-border bg-background p-6 md:flex-row md:items-center md:justify-between md:p-8">
+              <div className="max-w-2xl">
+                <h3 className="font-medium text-foreground">
+                  Have an existing CMS, DAM, collection system, or capture workflow?
+                </h3>
+
+                <p className="mt-2 text-sm text-muted-foreground">
+                  That is exactly the kind of integration requirement the pilot program
+                  should surface early.
+                </p>
+              </div>
+
+              <Link
+                href="/#contact"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted"
+              >
+                Discuss your workflow
+              </Link>
             </div>
-            <Link href="/#contact" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors">Discuss your workflow</Link>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

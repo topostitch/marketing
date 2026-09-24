@@ -1,3 +1,5 @@
+import Reveal from '@/components/motion/learn-reveal'
+
 export default function CorePrinciples() {
   const principles = [
     {
@@ -22,38 +24,51 @@ export default function CorePrinciples() {
       id: 4,
       icon: '✓',
       title: 'Integrity through verification',
-      description: 'Maintain chains of custody, version histories, and provenance records to ensure knowledge authenticity.',
+      description: 'Preserve provenance, source references, and change history so future users have evidence for evaluating where a record came from and how it changed.',
     },
   ]
 
   return (
-    <section id="principles" className="w-full bg-background border-b border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-20 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4 text-balance">
-              Core principles
-            </h2>
-            <p className="text-muted-foreground font-light">
-              Foundational concepts that guide all knowledge preservation work.
-            </p>
-          </div>
+    <section id="principles" className="w-full border-b border-border bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-12 py-16 md:py-20">
+          <Reveal>
+            <div>
+              <h2 className="mb-4 text-balance text-2xl font-light text-foreground md:text-3xl">
+                Core principles
+              </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {principles.map((principle) => (
-              <div key={principle.id} className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="text-3xl flex-shrink-0">{principle.icon}</div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-light text-foreground">
-                      {principle.title}
-                    </h3>
-                    <p className="text-base text-muted-foreground font-light leading-relaxed">
-                      {principle.description}
-                    </p>
+              <p className="font-light text-muted-foreground">
+                Principles that guide how TopoStitch approaches preservation work.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {principles.map((principle, index) => (
+              <Reveal
+                key={principle.id}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={(index % 2) * 0.08}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 text-3xl">
+                      {principle.icon}
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-light text-foreground">
+                        {principle.title}
+                      </h3>
+
+                      <p className="text-base font-light leading-relaxed text-muted-foreground">
+                        {principle.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

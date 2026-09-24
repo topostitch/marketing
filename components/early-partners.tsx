@@ -4,22 +4,22 @@ export default function EarlyPartners() {
   const needs = [
     {
       description:
-        'Preserve the knowledge behind an artifact, place, or process before it disappears into disconnected files, temporary projects, or individual memory.',
+        'Pilot projects explore how to keep the knowledge behind an artifact, place, or process from becoming separated across files, temporary projects, and individual memory.',
       label: 'Knowledge preservation',
     },
     {
       description:
-        'Create trusted content once, then reuse it across exhibitions, websites, self-guided experiences, research, education, AR, and future formats.',
+        'The product direction is to let one connected record support multiple outputs over time. Public records work today; broader reuse across embeds, exhibitions, education, AR, and other experiences is still being developed.',
       label: 'One record, many experiences',
     },
     {
       description:
-        'Let staff, researchers, students, and communities contribute while authorized reviewers control what becomes part of the trusted record.',
+        'Role-based contribution and review workflows are part of the roadmap. Pilot work will help define how organizations need contributions, review, and publishing permissions to work.',
       label: 'Governed contributions',
     },
     {
       description:
-        'Keep grant-funded research, interpretation, and digital assets useful after the exhibit closes, the class ends, or the original team moves on.',
+        'Pilot work is intended to test whether connected records can help research, interpretation, and digital assets remain useful after a project, exhibit, class, or original team changes.',
       label: 'Durable project outcomes',
     },
   ]

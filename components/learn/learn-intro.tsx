@@ -1,39 +1,63 @@
+import Reveal from '@/components/motion/learn-reveal'
+
 export default function LearnIntro() {
+  const items = [
+    {
+      label: 'Guides',
+      description: 'Planned practical walkthroughs for common preservation workflows',
+    },
+    {
+      label: 'Principles',
+      description: 'Core concepts that guide preservation work',
+    },
+    {
+      label: 'Pathways',
+      description: 'Planned learning sequences organized by role and goal',
+    },
+  ]
+
   return (
-    <section className="w-full bg-background border-b border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-20 space-y-6">
+    <section className="w-full border-b border-border bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6 py-16 md:py-20">
           <div className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-6 text-balance">
-              Knowledge preservation is both art and science.
-            </h2>
-            <p className="text-lg text-muted-foreground font-light leading-relaxed mb-4">
-              Effective knowledge preservation requires understanding principles, applying proven methods, and thinking deeply about what endures. Whether you're documenting cultural heritage, safeguarding scientific data, or building institutional memory, this learning hub provides frameworks and practical guidance.
-            </p>
-            <p className="text-lg text-muted-foreground font-light leading-relaxed">
-              From foundational concepts to advanced implementation strategies, explore how to build preservation initiatives that last.
-            </p>
+            <Reveal>
+              <h2 className="mb-6 text-balance text-2xl font-light text-foreground md:text-3xl">
+                Knowledge preservation is both art and science.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <p className="mb-4 text-lg font-light leading-relaxed text-muted-foreground">
+                Preservation work raises practical questions about context, longevity, access, and what needs to remain understandable over time. As TopoStitch Learn develops, this library will collect frameworks and practical guidance for cultural heritage, research, collections, and institutional documentation.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <p className="text-lg font-light leading-relaxed text-muted-foreground">
+                From foundational concepts to practical implementation questions, the library is being built around preservation work that needs to remain useful over time.
+              </p>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
-            <div className="space-y-2">
-              <div className="text-sm font-light text-muted-foreground uppercase tracking-wide">Guides</div>
-              <p className="text-base font-light text-foreground">
-                Practical walkthroughs for common preservation patterns
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="text-sm font-light text-muted-foreground uppercase tracking-wide">Principles</div>
-              <p className="text-base font-light text-foreground">
-                Core concepts that guide preservation work
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="text-sm font-light text-muted-foreground uppercase tracking-wide">Pathways</div>
-              <p className="text-base font-light text-foreground">
-                Curated learning sequences by role and goal
-              </p>
-            </div>
+          <div className="grid grid-cols-1 gap-8 pt-8 sm:grid-cols-3">
+            {items.map((item, index) => (
+              <Reveal
+                key={item.label}
+                direction="up"
+                delay={index * 0.08}
+              >
+                <div className="space-y-2">
+                  <div className="text-sm font-light uppercase tracking-wide text-muted-foreground">
+                    {item.label}
+                  </div>
+
+                  <p className="text-base font-light text-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>

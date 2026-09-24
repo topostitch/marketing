@@ -1,102 +1,120 @@
 'use client'
 
-import { ImageIcon, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
+import Reveal from '@/components/motion/reveal'
+
+const examples = [
+  {
+    category: 'Museums & Historic Sites',
+    title: 'A self-guided experience that goes beyond audio',
+    description:
+      "TopoStitch is exploring how 3D presentation, spatial interpretation, source material, and record context can support future self-guided experiences.",
+    action: 'See the concept',
+    image: '/product/spatial-annotation-presentation.webp',
+    imageAlt:
+      'TopoStitch 3D presentation editor showing the Zero Mile Stone with spatial labels anchored directly to features on the 3D model.',
+  },
+  {
+    category: 'Collections',
+    title: 'An artifact that remains accessible beyond the exhibit',
+    description:
+      'The current object-record work explores how provenance, interpretation, media, and publication context can remain connected to a digital representation beyond a single project.',
+    action: 'See the record',
+    image: '/product/vintage_pocket_watch_provenance_history.webp',
+    imageAlt:
+      'TopoStitch object history for a Vintage Pocket Watch showing publication provenance and saved record changes.',
+  },
+  {
+    category: 'Research & Education',
+    title: 'A research workspace grounded in the physical object',
+    description:
+      'Current record and location workflows explore how evidence, observations, interpretation, and spatial context can stay connected to the objects and places being studied.',
+    action: 'See the concept',
+    image: '/product/zero-mile-stone-location-context.webp',
+    imageAlt:
+      'TopoStitch location and context record for the Zero Mile Stone showing its mapped physical location and associated place information.',
+  },
+  {
+    category: 'Preservation & Fieldwork',
+    title: 'A record that preserves how the object was created',
+    description:
+      'TopoStitch is being developed to keep more of the capture and processing history connected to the resulting digital representation. The full reconstruction-history workflow is still evolving.',
+    action: 'See the workflow',
+    image: '/product/standard_object_reconstruction_workflow.webp',
+    imageAlt:
+      'TopoStitch reconstruction workflow showing connected processing steps for validating, reconstructing, optimizing, and preparing a 3D object.',
+  },
+]
 
 export default function Examples() {
-  const examples = [
-    {
-      category: 'Museums & Historic Sites',
-      title: 'A self-guided experience that goes beyond audio',
-      description:
-        "Visitors explore an artifact or historic place through audio, images, video, documents, 3D, and spatial annotations—all published from the institution's trusted knowledge record.",
-      primary: 'Explore the experience',
-    },
-    {
-      category: 'Collections',
-      title: 'An artifact that remains accessible beyond the exhibit',
-      description:
-        'Publish a 3D artifact online with its provenance, interpretation, media, and related records—then reuse that same content in exhibitions, classrooms, and future experiences.',
-      primary: 'View the artifact',
-    },
-    {
-      category: 'Research & Education',
-      title: 'A research workspace grounded in the physical object',
-      description:
-        'Researchers and students can attach evidence, questions, interpretations, and media directly to the objects and places they study while preserving authorship and context.',
-      primary: 'Explore the workspace',
-    },
-    {
-      category: 'Preservation & Fieldwork',
-      title: 'An archaeological site where context is everything',
-      description:
-        'Preserve where discoveries were made, how objects relate, what changed over time, and the evidence behind each interpretation in one durable spatial record.',
-      primary: 'Explore the site record',
-    },
-  ]
-
   return (
-    <section className="w-full py-16 md:py-24 lg:py-32 bg-background border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-          <span className="text-sm font-medium tracking-wide text-muted-foreground">Examples</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground text-balance leading-tight">
-            See one record become many experiences
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-            Explore how the same trusted knowledge can support public interpretation, online access, research,
-            education, and fieldwork.
-          </p>
+    <section className="w-full border-t border-border bg-background py-16 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <Reveal>
+            <span className="text-sm font-medium tracking-wide text-muted-foreground">
+              Examples
+            </span>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <h2 className="text-balance text-3xl font-medium leading-tight text-foreground md:text-4xl">
+              See one record become many experiences
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <p className="text-base font-light leading-relaxed text-muted-foreground md:text-lg">
+              The same connected record can support interpretation, collections access,
+              research, education, preservation, and future publishing.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Alternating editorial rows */}
-        <div className="mt-16 space-y-16 md:space-y-24">
-          {examples.map((example, index) => {
-            const imageFirst = index % 2 === 0
-            return (
-              <div
-                key={example.title}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-              >
-                {/* Media */}
-                <div className={`w-full aspect-[4/3] bg-muted rounded-lg flex items-center justify-center ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <ImageIcon className="w-14 h-14 text-muted-foreground/40" aria-hidden="true" />
-                  <span className="sr-only">Example media placeholder</span>
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {examples.map((example, index) => (
+            <Reveal
+              key={example.title}
+              direction={index % 2 === 0 ? 'left' : 'right'}
+              delay={(index % 2) * 0.08}
+            >
+              <article className="group h-full overflow-hidden rounded-2xl border border-border bg-muted/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="overflow-hidden border-b border-border bg-background">
+                  <Image
+                    src={example.image}
+                    alt={example.imageAlt}
+                    width={1600}
+                    height={1000}
+                    className="h-auto w-full transition-transform duration-700 group-hover:scale-[1.015]"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                  />
                 </div>
 
-                {/* Copy */}
-                <div className={`space-y-4 ${imageFirst ? 'lg:order-2' : 'lg:order-1'}`}>
-                  <span className="text-sm font-medium tracking-wide text-muted-foreground">
+                <div className="p-6 md:p-7">
+                  <span className="inline-flex rounded-md bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground">
                     {example.category}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-medium text-foreground text-balance leading-tight">
+
+                  <h3 className="mt-4 text-balance text-xl font-medium leading-tight text-foreground md:text-2xl">
                     {example.title}
                   </h3>
-                  <p className="text-base text-muted-foreground leading-relaxed font-light">
+
+                  <p className="mt-3 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
                     {example.description}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center pt-2">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="px-6 py-6 text-base border-muted-foreground text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 cursor-pointer"
-                    >
-                      {example.primary}
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="lg"
-                      className="px-4 py-6 text-base text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 cursor-pointer inline-flex items-center gap-2"
-                    >
-                      Read the story
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
+
+                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    {example.action}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import Reveal from '@/components/motion/learn-reveal'
+
 export default function GuidesAndArticles() {
   const guides = [
     { title: 'How to photograph an object for photogrammetry', description: 'A practical capture checklist covering coverage, overlap, lighting, reflections, and common failure points.', category: 'Capture', status: 'Planned guide' },
@@ -9,25 +11,52 @@ export default function GuidesAndArticles() {
   ]
 
   return (
-    <section id="guides" className="w-full bg-background border-b border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-20 space-y-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-medium tracking-wide text-muted-foreground">Practical learning library</p>
-            <h2 className="mt-3 text-2xl md:text-3xl font-medium text-foreground text-balance">Teach the workflow, not just the software.</h2>
-            <p className="mt-4 text-muted-foreground font-light leading-relaxed">TopoStitch Learn is being shaped around the questions people ask before, during, and after physical-to-digital capture. The first guides are still being prepared.</p>
-          </div>
+    <section id="guides" className="w-full border-b border-border bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-10 py-16 md:py-20">
+          <Reveal>
+            <div className="max-w-3xl">
+              <p className="text-sm font-medium tracking-wide text-muted-foreground">
+                Practical learning library
+              </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {guides.map((guide) => (
-              <article key={guide.title} className="p-6 border border-border rounded-xl bg-muted/25">
-                <div className="flex items-start justify-between gap-3 mb-4">
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{guide.category}</span>
-                  <span className="text-xs text-muted-foreground">{guide.status}</span>
-                </div>
-                <h3 className="text-lg font-medium text-foreground mb-2">{guide.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{guide.description}</p>
-              </article>
+              <h2 className="mt-3 text-balance text-2xl font-medium text-foreground md:text-3xl">
+                Teach the workflow, not just the software.
+              </h2>
+
+              <p className="mt-4 font-light leading-relaxed text-muted-foreground">
+                TopoStitch Learn is being shaped around the questions people ask before, during, and after physical-to-digital capture. The first guides are still being prepared.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {guides.map((guide, index) => (
+              <Reveal
+                key={guide.title}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={(index % 2) * 0.08}
+              >
+                <article className="h-full rounded-xl border border-border bg-muted/25 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-muted-foreground/50">
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      {guide.category}
+                    </span>
+
+                    <span className="text-xs text-muted-foreground">
+                      {guide.status}
+                    </span>
+                  </div>
+
+                  <h3 className="mb-2 text-lg font-medium text-foreground">
+                    {guide.title}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {guide.description}
+                  </p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

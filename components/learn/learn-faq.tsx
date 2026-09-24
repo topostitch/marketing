@@ -1,80 +1,120 @@
 'use client'
 
 import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { ChevronDown } from 'lucide-react'
 
 export default function LearnFAQ() {
-  const [expanded, setExpanded] = useState<number | null>(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const reduceMotion = useReducedMotion()
 
   const faqs = [
     {
-      id: 1,
       question: 'What does knowledge preservation actually mean?',
-      answer: 'Knowledge preservation involves capturing, organizing, maintaining, and providing access to information in ways that ensure it remains understandable and usable by future users. It goes beyond simple storage to include context, relationships, and authenticity verification.',
+      answer:
+        'Knowledge preservation involves capturing, organizing, maintaining, and providing access to information in ways that ensure it remains understandable and usable by future users. It goes beyond simple storage to include context, relationships, and authenticity verification.',
     },
     {
-      id: 2,
       question: 'How long can preserved knowledge actually last?',
-      answer: 'With thoughtful design, preservation infrastructure can ensure knowledge survives for decades or centuries. This requires attention to format stability, metadata preservation, organizational continuity, and technology migration strategies.',
+      answer:
+        'No digital system can guarantee that knowledge will remain usable for decades or centuries. Longevity depends on format choices, metadata, organizational continuity, migration planning, documentation, and ongoing stewardship.',
     },
     {
-      id: 3,
       question: 'Do I need specialized technical skills to use TopoStitch?',
-      answer: 'TopoStitch is designed to serve organizations with varying technical capabilities. Some features work out-of-the-box, while others benefit from integration with your existing systems. Our guides cover both approaches.',
+      answer:
+        'TopoStitch is being designed for people with different levels of technical experience. The current product is still early, and some workflows require more technical knowledge than the long-term product is intended to require. The Learn library will document those workflows as it develops.',
     },
     {
-      id: 4,
       question: 'How do I start a preservation project?',
-      answer: 'Start by identifying what knowledge matters most to your organization or community, understand its current state, and plan how you want to make it accessible. Our learning paths by role provide step-by-step guidance.',
+      answer:
+        'Start by identifying what needs to be documented, what context would be difficult to reconstruct later, who needs access, and what source material already exists. Role-based learning paths are planned but are not yet a complete step-by-step curriculum.',
     },
     {
-      id: 5,
       question: 'What happens if formats change or technology becomes obsolete?',
-      answer: 'We design preservation systems with format evolution in mind. This includes maintaining conversion pathways, documenting technical specifications, and building systems that can adapt as technology changes.',
+      answer:
+        'TopoStitch is being designed with format evolution and portability in mind. Long-term migration and conversion workflows are still being developed, so the product does not yet guarantee automatic preservation across future formats.',
     },
   ]
 
   return (
-    <section className="w-full bg-background border-b border-border">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-20 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4 text-balance">
-              Frequently asked questions
-            </h2>
-            <p className="text-muted-foreground font-light">
-              Common questions about knowledge preservation and learning with TopoStitch.
-            </p>
-          </div>
+    <section className="w-full border-b border-border bg-background py-16 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center space-y-4 text-center">
+          <h2 className="text-balance text-3xl font-medium leading-tight text-foreground md:text-4xl">
+            FAQs
+          </h2>
 
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="border border-border rounded-lg overflow-hidden hover:border-accent transition-colors"
-              >
+          <p className="text-base font-light leading-relaxed text-muted-foreground md:text-lg">
+            Common questions about knowledge preservation and learning with TopoStitch.
+          </p>
+        </div>
+
+        <div className="mt-12 divide-y divide-border border-t border-border">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index
+
+            return (
+              <div key={faq.question}>
                 <button
-                  onClick={() => setExpanded(expanded === faq.id ? null : faq.id)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-muted transition-colors"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-left"
+                  aria-expanded={isOpen}
                 >
-                  <span className="font-light text-foreground pr-4">{faq.question}</span>
-                  <span
-                    className={`flex-shrink-0 text-accent transition-transform ${
-                      expanded === faq.id ? 'rotate-180' : ''
-                    }`}
-                  >
-                    ↓
+                  <span className="text-base font-medium text-foreground md:text-lg">
+                    {faq.question}
                   </span>
+
+                  <motion.span
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }
+                    }
+                    className="flex shrink-0"
+                  >
+                    <ChevronDown
+                      className="h-5 w-5 text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                  </motion.span>
                 </button>
-                {expanded === faq.id && (
-                  <div className="px-6 py-4 bg-muted border-t border-border">
-                    <p className="text-base text-muted-foreground font-light leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={
+                        reduceMotion
+                          ? { opacity: 0 }
+                          : { height: 0, opacity: 0 }
+                      }
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : {
+                              height: {
+                                duration: 0.42,
+                                ease: [0.22, 1, 0.36, 1],
+                              },
+                              opacity: {
+                                duration: 0.28,
+                                ease: 'easeOut',
+                              },
+                            }
+                      }
+                      className="overflow-hidden"
+                    >
+                      <p className="pb-6 text-base font-light leading-relaxed text-muted-foreground">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

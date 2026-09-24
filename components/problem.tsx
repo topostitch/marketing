@@ -1,7 +1,8 @@
 'use client'
 
-import { ImageIcon, MapPin, Users, TrendingUp, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { MapPin, Users, TrendingUp, ArrowRight } from 'lucide-react'
+import Reveal from '@/components/motion/reveal'
 
 export default function Problem() {
   const points = [
@@ -26,59 +27,113 @@ export default function Problem() {
   ]
 
   return (
-    <section className="w-full py-16 md:py-24 lg:py-32 bg-background border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-          <span className="text-sm font-medium tracking-wide text-muted-foreground">Problem</span>
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground text-balance leading-tight">
-            Knowledge disappears long before the objects do
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-            Objects may endure for centuries while the knowledge around them becomes scattered across files,
-            systems, people, and one-off projects. When experts leave or projects end, institutions are often
-            forced to reconstruct context from fragments.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-2">
-            <Button
-              size="lg"
-              className="px-8 py-6 text-base bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-all duration-300 cursor-pointer"
-            >
-              Explore the platform
-            </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              className="px-6 py-6 text-base text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 cursor-pointer inline-flex items-center gap-2"
-            >
-              See real use cases
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </div>
+    <section className="w-full border-t border-border bg-background py-16 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-3xl flex-col items-center space-y-6 text-center">
+          <Reveal>
+            <span className="text-sm font-medium tracking-wide text-muted-foreground">
+              Problem
+            </span>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <h2 className="text-balance text-3xl font-medium leading-tight text-foreground md:text-4xl">
+              Knowledge disappears long before the objects do
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <p className="text-base font-light leading-relaxed text-muted-foreground md:text-lg">
+              Objects may endure for centuries while the knowledge around them becomes scattered
+              across files, systems, people, and one-off projects. When experts leave or projects
+              end, institutions are often forced to reconstruct context from fragments.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row">
+              <Link
+                href="/platform"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-8 py-3 text-base text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
+              >
+                Explore the platform
+              </Link>
+
+              <Link
+                href="/stories"
+                className="inline-flex min-h-12 items-center gap-2 rounded-lg px-6 py-3 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+              >
+                See use cases
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Content: media + points */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Media placeholder */}
-          <div className="w-full aspect-square bg-muted rounded-lg flex items-center justify-center">
-            <ImageIcon className="w-16 h-16 text-muted-foreground/40" aria-hidden="true" />
-            <span className="sr-only">Illustration placeholder</span>
-          </div>
+        <div className="mt-16 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <Reveal direction="left">
+            <div className="relative min-h-[440px] overflow-hidden rounded-2xl border border-border bg-muted/20 p-6 sm:p-10">
+              <div className="absolute left-6 top-8 rounded-full border border-border bg-background px-4 py-2 text-sm text-muted-foreground sm:left-10">
+                Files
+              </div>
 
-          {/* Points */}
-          <div className="space-y-8">
-            {points.map((point) => {
-              const Icon = point.icon
-              return (
-                <div key={point.title} className="space-y-2 border-b border-border pb-6 last:border-b-0 last:pb-0">
-                  <div className="flex items-center gap-3">
-                    <Icon className="w-5 h-5 text-accent flex-shrink-0" aria-hidden="true" />
-                    <h3 className="text-xl font-medium text-foreground">{point.title}</h3>
-                  </div>
-                  <p className="text-base text-muted-foreground leading-relaxed font-light">
-                    {point.description}
+              <div className="absolute right-6 top-16 rounded-full border border-border bg-background px-4 py-2 text-sm text-muted-foreground sm:right-10">
+                People
+              </div>
+
+              <div className="absolute bottom-16 left-8 rounded-full border border-border bg-background px-4 py-2 text-sm text-muted-foreground sm:left-14">
+                Projects
+              </div>
+
+              <div className="absolute bottom-8 right-8 rounded-full border border-border bg-background px-4 py-2 text-sm text-muted-foreground sm:right-14">
+                Systems
+              </div>
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-52 rounded-2xl border border-border bg-background p-6 text-center shadow-sm">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    Physical object
+                  </p>
+
+                  <p className="mt-3 text-xl font-medium text-foreground">
+                    Still here
+                  </p>
+
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    But the knowledge around it is drifting apart.
                   </p>
                 </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="space-y-8">
+            {points.map((point, index) => {
+              const Icon = point.icon
+
+              return (
+                <Reveal
+                  key={point.title}
+                  direction="right"
+                  delay={index * 0.08}
+                >
+                  <div className="space-y-2 border-b border-border pb-6 last:border-b-0 last:pb-0">
+                    <div className="flex items-center gap-3">
+                      <Icon
+                        className="h-5 w-5 flex-shrink-0 text-accent"
+                        aria-hidden="true"
+                      />
+
+                      <h3 className="text-xl font-medium text-foreground">
+                        {point.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-base font-light leading-relaxed text-muted-foreground">
+                      {point.description}
+                    </p>
+                  </div>
+                </Reveal>
               )
             })}
           </div>
