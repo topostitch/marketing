@@ -32,7 +32,7 @@ export default function Hero() {
 
           <Reveal delay={0.14}>
             <p className="max-w-3xl text-base font-light leading-relaxed text-muted-foreground md:text-xl">
-              TopoStitch helps museums, historic sites, researchers, and organizations turn photos,
+              TopoStitch is being built to help museums, collections, archives, and historic sites turn photos,
               video, 3D captures, documents, and metadata into structured digital records that can
               be understood, traced, and shared.
             </p>

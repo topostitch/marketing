@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: 'TopoStitch | Digital records for physical objects and places',
     template: '%s | TopoStitch',
   },
-  description: 'TopoStitch is an early-stage platform for connecting capture sources, 3D representations, metadata, provenance, spatial context, and publishing around physical objects and places.',
+  description: 'TopoStitch is building persistent contextual records for physical cultural objects and places, connecting representations with provenance, interpretation, and institutional knowledge.',
   applicationName: 'TopoStitch',
   openGraph: {
     type: 'website',
@@ -50,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg">
           Skip to main content
         </a>
+        <noscript><style>{`.scroll-reveal { opacity: 1 !important; transform: none !important; }`}</style></noscript>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

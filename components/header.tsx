@@ -14,6 +14,7 @@ export default function Header() {
     { label: 'Platform', href: '/platform' },
     { label: 'Stories', href: '/stories' },
     { label: 'Learn', href: '/learn' },
+    { label: 'About', href: '/about' },
   ]
 
   return (
@@ -34,7 +35,7 @@ export default function Header() {
   	     </picture>
 	  </Link>
 
-          <nav className="hidden md:flex items-center space-x-7" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center space-x-5" aria-label="Primary navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.label}

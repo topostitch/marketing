@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10 mb-12">
           <div className="space-y-4 max-w-xl">
             <Link href="/" className="text-xl font-medium text-foreground">TopoStitch</Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">Digital records for physical objects and places. TopoStitch is an early-stage platform for connecting capture sources, 3D representations, metadata, provenance, processing history, and publishing.</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">Persistent contextual records for physical cultural objects and places. TopoStitch is early-stage, building a working product and validating cultural heritage as its first market.</p>
             <a href="mailto:hello@topostitch.dev" className="inline-block text-sm text-foreground underline underline-offset-4 hover:text-accent transition-colors">hello@topostitch.dev</a>
           </div>
 
@@ -16,6 +16,7 @@ export default function Footer() {
               <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Explore</p>
               <Link href="/platform" className="block text-sm text-muted-foreground hover:text-foreground">Platform</Link>
               <Link href="/stories" className="block text-sm text-muted-foreground hover:text-foreground">Stories</Link>
+              <Link href="/about" className="block text-sm text-muted-foreground hover:text-foreground">About</Link>
               <Link href="/learn" className="block text-sm text-muted-foreground hover:text-foreground">Learn</Link>
             </div>
             <div className="space-y-3">
@@ -26,6 +27,7 @@ export default function Footer() {
           </nav>
         </div>
 
+        <p className="mb-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">TopoStitch LLC is an LGBTQ+-, Filipino American-, and veteran-owned technology company based in Richmond, Virginia.</p>
         <div className="border-t border-border pt-7 flex flex-col md:flex-row justify-between gap-3">
           <p className="text-xs text-muted-foreground">© 2026 TopoStitch LLC. All rights reserved.</p>
           <p className="text-xs text-muted-foreground">Early-stage product · Richmond, Virginia</p>

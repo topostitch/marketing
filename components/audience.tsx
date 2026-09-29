@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import Reveal from '@/components/motion/reveal'
 
 const audiences = [
@@ -16,7 +16,7 @@ const audiences = [
       'Create durable digital records that remain useful beyond an exhibition, project, or individual staff member.',
   },
   {
-    title: 'Universities & researchers',
+    title: 'University collections & archaeological programs',
     description:
       'Connect physical evidence, observations, imagery, and 3D representations to the research built around them.',
   },
@@ -26,7 +26,7 @@ const audiences = [
       'Document places and objects in context so future work begins with what is already known instead of starting over.',
   },
   {
-    title: 'Public institutions',
+    title: 'Public-sector heritage organizations',
     description:
       'Make important physical records easier to preserve, discover, share, and reuse across teams and audiences.',
   },
@@ -48,28 +48,24 @@ export default function Audience() {
               </h2>
 
               <p className="text-base font-light leading-relaxed text-muted-foreground md:text-lg">
-                TopoStitch is being built for organizations responsible for physical objects,
+                TopoStitch is validating cultural heritage as its first market: organizations responsible for cultural objects,
                 places, collections, and the knowledge attached to them. The goal is to keep
                 that context connected so it can be trusted, reused, and passed forward.
               </p>
 
               <div className="flex flex-col items-start gap-4 pt-2 sm:flex-row sm:items-center">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="cursor-pointer rounded-lg border-muted-foreground px-8 py-6 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+                <Link href="/stories"
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg border border-muted-foreground px-4 py-2 text-sm text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
                 >
                   See use cases
-                </Button>
+                </Link>
 
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-6 py-6 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+                <Link href="/#contact"
+                  className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
                 >
                   Discuss a pilot
                   <ArrowRight className="h-4 w-4" />
-                </Button>
+                </Link>
               </div>
             </div>
           </Reveal>

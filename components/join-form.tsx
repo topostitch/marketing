@@ -57,12 +57,12 @@ export default function JoinForm() {
   return (
     <section
       id="contact"
-      className="w-full border-t border-border bg-background py-16 md:py-24 lg:py-32"
+      className="scroll-mt-20 w-full border-t border-border bg-background py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:gap-20">
         <div>
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            Pilot conversations
+            Pilot and workflow conversations
           </p>
 
           <h2 className="text-balance text-3xl font-medium leading-tight text-foreground md:text-4xl">
@@ -193,7 +193,7 @@ export default function JoinForm() {
                 id="contact-message-help"
                 className="mb-3 text-sm leading-relaxed text-muted-foreground"
               >
-                Tell us about the object, collection, place, or workflow—and what you want to make easier.
+                Share your current workflow or tell us about a possible pilot. Where does context become fragmented, and what would you want to make easier?
               </p>
 
               <textarea

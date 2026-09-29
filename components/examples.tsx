@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import Reveal from '@/components/motion/reveal'
 
@@ -104,13 +105,13 @@ export default function Examples() {
                     {example.description}
                   </p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                  <Link href="/platform" aria-label={`${example.action}: ${example.title}`} className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-foreground">
                     {example.action}
                     <ArrowRight
                       className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                       aria-hidden="true"
                     />
-                  </div>
+                  </Link>
                 </div>
               </article>
             </Reveal>

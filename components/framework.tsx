@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import Reveal from '@/components/motion/reveal'
 
 const outputs = [
@@ -31,9 +31,9 @@ export default function Framework() {
                       TopoStitch record
                     </p>
 
-                    <h3 className="mt-3 text-2xl font-medium text-foreground">
+                    <p className="mt-3 text-2xl font-medium text-foreground">
                       One connected source of truth
-                    </h3>
+                    </p>
 
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       Evidence, metadata, provenance, spatial context, interpretation,
@@ -81,30 +81,26 @@ export default function Framework() {
                 </h2>
 
                 <p className="text-base font-light leading-relaxed text-muted-foreground md:text-lg">
-                  TopoStitch connects knowledge directly to the objects and places it
-                  describes. Institutions can preserve sources, interpretations, media,
+                  TopoStitch is designed to connect knowledge directly to the objects and places it
+                  describes. The aim is to preserve sources, interpretations, media,
                   and spatial context once, then review and publish that knowledge
                   wherever it is needed.
                 </p>
               </div>
 
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="cursor-pointer rounded-lg border-muted-foreground px-8 py-6 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+                <Link href="/platform"
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg border border-muted-foreground px-4 py-2 text-sm text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
                 >
                   Explore the platform
-                </Button>
+                </Link>
 
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-6 py-6 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+                <Link href="/learn"
+                  className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
                 >
                   Read the guides
                   <ArrowRight className="h-4 w-4" />
-                </Button>
+                </Link>
               </div>
 
               <Reveal delay={0.18}>

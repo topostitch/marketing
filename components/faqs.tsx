@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ChevronDown } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function Faqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
@@ -18,7 +18,7 @@ export default function Faqs() {
     {
       question: 'Who is TopoStitch designed for?',
       answer:
-        'TopoStitch is being developed with museums, historic sites, universities, preservation teams, and public institutions. While those are our initial focus, the platform is designed for any organization that needs to preserve and share trusted knowledge connected to real-world assets.',
+        'TopoStitch is validating cultural heritage as its first market, including museums, collections, archives, historic sites, preservation organizations, archaeological programs, and universities with cultural collections. We’re especially interested in learning from collections managers, museum registrars, conservators, and digital asset managers.',
     },
     {
       question: 'How is this different from a CMS or digital asset manager?',
@@ -134,13 +134,11 @@ export default function Faqs() {
             </p>
           </div>
 
-          <Button
-            variant="outline"
-            size="lg"
-            className="cursor-pointer rounded-lg border-muted-foreground px-8 py-6 text-base text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
+          <Link href="/#contact"
+            className="inline-flex min-h-10 items-center justify-center rounded-lg border border-muted-foreground px-4 py-2 text-sm text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/50"
           >
             Discuss a pilot
-          </Button>
+          </Link>
         </div>
       </div>
     </section>
