@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/motion/reveal";
 import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "./commerce-validation.module.css";
 
@@ -39,48 +40,61 @@ export default function HomePage() {
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.eyebrow}>For people who make real things</div>
+        <Reveal delay={0}>
+          <div className={styles.eyebrow}>For people who make real things</div>
+        </Reveal>
 
-        <h1>
-          Capture once.
-          <br />
-          Create anything.
-          <br />
-          <span>Sell everywhere.</span>
-        </h1>
+        <Reveal delay={0.06}>
+          <h1>
+            Capture once.
+            <br />
+            Create anything.
+            <br />
+            <span>Sell everywhere.</span>
+          </h1>
+        </Reveal>
 
-        <p className={styles.heroCopy}>
-          Turn one physical product into the content you need to sell it online.
-          Start with photos, video, a scan, an existing 3D model, or the product
-          itself.
-        </p>
+        <Reveal delay={0.14}>
+          <p className={styles.heroCopy}>
+            Turn one physical product into the content you need to sell it online.
+            Start with photos, video, a scan, an existing 3D model, or the product
+            itself.
+          </p>
+        </Reveal>
 
-        <div className={styles.heroActions}>
+        <Reveal delay={0.2}>
+          <div className={styles.heroActions}>
           <a className={styles.primaryButton} href="#early-access">
             Join early access
           </a>
           <a className={styles.secondaryButton} href="#studio">
             Have us digitize a product
           </a>
-        </div>
+          </div>
+        </Reveal>
 
-        <p className={styles.microcopy}>
+        <Reveal delay={0.26}>
+          <p className={styles.microcopy}>
           TopoStitch is in early development. We&apos;re working directly with
           makers and small product brands.
-        </p>
+          </p>
+        </Reveal>
 
-        <div className={styles.productStage} aria-hidden="true">
+        <Reveal delay={0.32} amount={0.18}>
+          <div className={styles.productStage} aria-hidden="true">
           <div className={styles.productObject}>
             <div className={styles.productTop} />
             <div className={styles.productBody} />
           </div>
 
           <div className={styles.stageLabel}>your product</div>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       <section className={styles.outputsSection}>
-        <div className={styles.sectionIntro}>
+        <Reveal amount={0.2}>
+          <div className={styles.sectionIntro}>
           <div>
             <p className={styles.kicker}>One product. More ways to sell it.</p>
             <h2>Stop starting from scratch for every new piece of content.</h2>
@@ -91,17 +105,20 @@ export default function HomePage() {
             your product that can become many different sales and marketing
             assets.
           </p>
-        </div>
+          </div>
+        </Reveal>
 
         <div className={styles.outputGrid}>
           {outputs.map((output, index) => (
-            <article className={styles.outputCard} key={output}>
+            <Reveal key={output} delay={index * 0.05} amount={0.15}>
+              <article className={styles.outputCard}>
               <span className={styles.outputNumber}>
                 {String(index + 1).padStart(2, "0")}
               </span>
               <div className={styles.outputPlaceholder} />
-              <h3>{output}</h3>
-            </article>
+                <h3>{output}</h3>
+              </article>
+            </Reveal>
           ))}
         </div>
 
@@ -112,13 +129,16 @@ export default function HomePage() {
       </section>
 
       <section className={styles.pathsSection} id="studio">
-        <div className={styles.sectionHeading}>
-          <p className={styles.kicker}>Start your way</p>
-          <h2>You don&apos;t need to become a 3D expert.</h2>
-        </div>
+        <Reveal>
+          <div className={styles.sectionHeading}>
+            <p className={styles.kicker}>Start your way</p>
+            <h2>You don&apos;t need to become a 3D expert.</h2>
+          </div>
+        </Reveal>
 
         <div className={styles.pathGrid}>
-          <article className={styles.pathCard}>
+          <Reveal amount={0.2}>
+            <article className={styles.pathCard}>
             <span className={styles.pathTag}>DIY</span>
             <h3>Create it yourself</h3>
             <p>
@@ -132,10 +152,12 @@ export default function HomePage() {
               <li>Create new outputs without starting over</li>
             </ul>
 
-            <a href="#early-access">Join early access →</a>
-          </article>
+              <a href="#early-access">Join early access →</a>
+            </article>
+          </Reveal>
 
-          <article className={`${styles.pathCard} ${styles.studioCard}`}>
+          <Reveal delay={0.08} amount={0.2}>
+            <article className={`${styles.pathCard} ${styles.studioCard}`}>
             <span className={styles.pathTag}>TopoStitch Studio</span>
             <h3>Have us do it for you</h3>
             <p>
@@ -149,48 +171,57 @@ export default function HomePage() {
               <li>You get a reusable digital product</li>
             </ul>
 
-            <a href="#early-access">Apply for a pilot →</a>
-          </article>
+              <a href="#early-access">Apply for a pilot →</a>
+            </article>
+          </Reveal>
         </div>
       </section>
 
       <section className={styles.howSection} id="how-it-works">
-        <div className={styles.sectionHeading}>
-          <p className={styles.kicker}>How it works</p>
-          <h2>Capture. Create. Sell.</h2>
-        </div>
+        <Reveal>
+          <div className={styles.sectionHeading}>
+            <p className={styles.kicker}>How it works</p>
+            <h2>Capture. Create. Sell.</h2>
+          </div>
+        </Reveal>
 
         <div className={styles.steps}>
-          <article>
-            <span>01</span>
+          <Reveal amount={0.2}>
+            <article>
+              <span>01</span>
             <h3>Capture</h3>
             <p>
               Start with photos, phone video, scans, an existing model, or send
               us the physical product.
-            </p>
-          </article>
+              </p>
+            </article>
+          </Reveal>
 
           <div className={styles.stepArrow}>→</div>
 
-          <article>
-            <span>02</span>
+          <Reveal delay={0.08} amount={0.2}>
+            <article>
+              <span>02</span>
             <h3>Create</h3>
             <p>
               Turn your source into a reusable digital product and create new
               product content from it.
-            </p>
-          </article>
+              </p>
+            </article>
+          </Reveal>
 
           <div className={styles.stepArrow}>→</div>
 
-          <article>
-            <span>03</span>
+          <Reveal delay={0.16} amount={0.2}>
+            <article>
+              <span>03</span>
             <h3>Sell</h3>
             <p>
               Use those outputs wherever customers discover and shop for your
               products.
-            </p>
-          </article>
+              </p>
+            </article>
+          </Reveal>
         </div>
       </section>
 
@@ -208,7 +239,8 @@ export default function HomePage() {
       </section>
 
       <section className={styles.earlyAccess} id="early-access">
-        <div className={styles.earlyCopy}>
+        <Reveal>
+          <div className={styles.earlyCopy}>
           <p className={styles.kicker}>Help us build TopoStitch</p>
           <h2>Bring us one product.</h2>
           <p>
@@ -222,9 +254,12 @@ export default function HomePage() {
             <br />
             No 3D expertise required.
           </p>
-        </div>
+          </div>
+        </Reveal>
 
-        <MvpLeadForm />
+        <Reveal delay={0.08}>
+          <MvpLeadForm />
+        </Reveal>
       </section>
 
       <footer className={styles.footer}>
