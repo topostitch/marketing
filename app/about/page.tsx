@@ -44,7 +44,7 @@ export default function AboutPage() {
         </details>
       </header>
 
-      <section className={styles.hero}>
+      <section className={styles.aboutHero}>
         <Reveal>
           <p className={styles.eyebrow}>About TopoStitch</p>
         </Reveal>

@@ -5,12 +5,42 @@ import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "./commerce-validation.module.css";
 
 const outputs = [
-  "Product imagery",
-  "Lifestyle scenes",
-  "Interactive 3D",
-  "AR experiences",
-  "Social content",
-  "Advertising assets",
+  {
+    title: "Product image",
+    description: "Clean, consistent, photo-ready images for your store.",
+    image: "/cup.webp",
+    alt: "Speckled ceramic mug photographed on a clean neutral background.",
+  },
+  {
+    title: "Lifestyle",
+    description: "Beautiful scenes that show the product in context.",
+    image: "/shoe.webp",
+    alt: "Neutral sneaker styled in a warm lifestyle scene.",
+  },
+  {
+    title: "Cutout",
+    description: "Transparent-background assets for catalogs and ads.",
+    image: "/purse.webp",
+    alt: "Caramel leather handbag isolated as a product cutout.",
+  },
+  {
+    title: "3D model",
+    description: "Interactive 3D models for web and ecommerce.",
+    image: "/chair.webp",
+    alt: "Mid-century lounge chair shown as a 3D product representation.",
+  },
+  {
+    title: "AR",
+    description: "Let customers see products in their own space.",
+    image: "/AR.webp",
+    alt: "Phone showing an augmented reality plant placed in a living room.",
+  },
+  {
+    title: "Social & ads",
+    description: "Create campaign-ready content for social and advertising.",
+    image: "/socialAds.webp",
+    alt: "Skincare serum presented as polished social advertising creative.",
+  },
 ];
 
 const audiences = [
@@ -64,54 +94,123 @@ export default function HomePage() {
       </header>
 
       <section className={styles.hero}>
-        <Reveal delay={0}>
-          <div className={styles.eyebrow}>For people who make real things</div>
-        </Reveal>
+        <div className={styles.heroCopyColumn}>
+          <Reveal delay={0}>
+            <div className={styles.eyebrow}>
+              For people who make real things
+            </div>
+          </Reveal>
 
-        <Reveal delay={0.06}>
-          <h1>
-            Capture once.
-            <br />
-            Create anything.
-            <br />
-            <span>Sell everywhere.</span>
-          </h1>
-        </Reveal>
+          <Reveal delay={0.06}>
+            <h1>
+              Capture once.
+              <br />
+              Create anything.
+              <br />
+              <span>Sell everywhere.</span>
+            </h1>
+          </Reveal>
 
-        <Reveal delay={0.14}>
-          <p className={styles.heroCopy}>
-            Turn one physical product into the content you need to sell it
-            online. Start with photos, video, a scan, an existing 3D model, or
-            the product itself.
-          </p>
-        </Reveal>
+          <Reveal delay={0.14}>
+            <p className={styles.heroCopy}>
+              Turn one physical product into the content you need to sell it
+              online. Start with photos, video, a scan, an existing 3D model,
+              or the product itself.
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.2}>
-          <div className={styles.heroActions}>
-            <a className={styles.primaryButton} href="#early-access">
-              Join early access
-            </a>
-            <a className={styles.secondaryButton} href="#studio">
-              Have us digitize a product
-            </a>
+          <Reveal delay={0.2}>
+            <div className={styles.heroActions}>
+              <a className={styles.primaryButton} href="#early-access">
+                Join early access
+              </a>
+
+              <a className={styles.secondaryButton} href="#studio">
+                Have us digitize a product
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.26}>
+            <p className={styles.microcopy}>
+              TopoStitch is in early development. We&apos;re working directly
+              with makers and small product brands.
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal
+          className={styles.heroVisual}
+          delay={0.12}
+          amount={0.08}
+          direction="right"
+        >
+          <div className={styles.heroGraphic}>
+            <Image
+              src="/hero_graphic.webp"
+              alt="A physical product transformed into ecommerce imagery, lifestyle photography, interactive 3D, AR, and social content."
+              width={1600}
+              height={1200}
+              priority
+              className={styles.heroGraphicImage}
+            />
           </div>
         </Reveal>
+      </section>
 
-        <Reveal delay={0.26}>
-          <p className={styles.microcopy}>
-            TopoStitch is in early development. We&apos;re working directly with
-            makers and small product brands.
+      <section className={styles.destinationStrip} aria-label="Built for product sellers">
+        <Reveal amount={0.15}>
+          <p className={styles.destinationEyebrow}>
+            Built for makers, brands, and sellers
           </p>
-        </Reveal>
 
-        <Reveal delay={0.32} amount={0.18}>
-          <div className={styles.productStage} aria-hidden="true">
-            <div className={styles.productObject}>
-              <div className={styles.productTop} />
-              <div className={styles.productBody} />
+          <div className={styles.destinationList}>
+            <div className={styles.destinationLogo}>
+              <Image
+                src="/brands/etsy.svg"
+                alt="Etsy"
+                width={84}
+                height={40}
+              />
             </div>
 
-            <div className={styles.stageLabel}>your product</div>
+            <div className={styles.destinationLogo}>
+              <Image
+                src="/brands/shopify.svg"
+                alt="Shopify"
+                width={96}
+                height={40}
+              />
+            </div>
+
+            <div className={styles.destinationLogo}>
+              <Image
+                src="/brands/amazon.svg"
+                alt="Amazon"
+                width={100}
+                height={40}
+              />
+            </div>
+
+            <div className={styles.destinationLogo}>
+              <Image
+                src="/brands/instagram.svg"
+                alt="Instagram"
+                width={42}
+                height={42}
+              />
+            </div>
+
+            <div className={styles.destinationLogo}>
+              <Image
+                src="/brands/tiktok.svg"
+                alt="TikTok"
+                width={42}
+                height={42}
+              />
+            </div>
+
+            <span className={styles.destinationMore}>+ more</span>
           </div>
         </Reveal>
       </section>
@@ -138,13 +237,26 @@ export default function HomePage() {
 
         <div className={styles.outputGrid}>
           {outputs.map((output, index) => (
-            <Reveal key={output} delay={index * 0.05} amount={0.15}>
+            <Reveal key={output.title} delay={index * 0.05} amount={0.15}>
               <article className={styles.outputCard}>
-                <span className={styles.outputNumber}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div className={styles.outputPlaceholder} />
-                <h3>{output}</h3>
+                <div className={styles.outputImageWrap}>
+                  <Image
+                    src={output.image}
+                    alt={output.alt}
+                    width={800}
+                    height={800}
+                    className={styles.outputImage}
+                  />
+                </div>
+
+                <div className={styles.outputContent}>
+                  <span className={styles.outputNumber}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <h3>{output.title}</h3>
+                  <p>{output.description}</p>
+                </div>
               </article>
             </Reveal>
           ))}
@@ -167,7 +279,7 @@ export default function HomePage() {
         <div className={styles.pathGrid}>
           <Reveal amount={0.2}>
             <article className={styles.pathCard}>
-              <span className={styles.pathTag}>DIY</span>
+              <span className={styles.pathTag}>Use it yourself</span>
               <h3>Create it yourself</h3>
               <p>
                 Already have photos, video, scans, or a 3D model? Bring what you
@@ -186,7 +298,7 @@ export default function HomePage() {
 
           <Reveal delay={0.08} amount={0.2}>
             <article className={`${styles.pathCard} ${styles.studioCard}`}>
-              <span className={styles.pathTag}>TopoStitch Studio</span>
+              <span className={styles.pathTag}>Done for you</span>
               <h3>Have us do it for you</h3>
               <p>
                 Send us your physical product and we&apos;ll handle the capture,
