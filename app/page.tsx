@@ -1,43 +1,241 @@
-import RecordContext from '@/components/record-context'
-import Stewardship from '@/components/stewardship'
-import Founder from '@/components/founder'
-import FounderExperience from '@/components/founder-experience'
-import StartupVirginia from '@/components/startup-virginia'
-import CustomerDiscovery from '@/components/customer-discovery'
-import Header from '@/components/header'
-import Hero from '@/components/hero'
-import Problem from '@/components/problem'
-import Framework from '@/components/framework'
-import Audience from '@/components/audience'
-import Examples from '@/components/examples'
-import EarlyPartners from '@/components/early-partners'
-import CTA from '@/components/cta'
-import Faqs from '@/components/faqs'
-import JoinForm from '@/components/join-form'
-import Footer from '@/components/footer'
+import Link from "next/link";
+import MvpLeadForm from "@/components/mvp-lead-form";
+import styles from "./commerce-validation.module.css";
 
-export default function Page() {
+const outputs = [
+  "Product imagery",
+  "Lifestyle scenes",
+  "Interactive 3D",
+  "AR experiences",
+  "Social content",
+  "Advertising assets",
+];
+
+const audiences = [
+  "Independent makers",
+  "Shopify brands",
+  "Etsy sellers",
+  "Product designers",
+  "Artists & ceramicists",
+  "Small manufacturers",
+];
+
+export default function HomePage() {
   return (
-    <>
-      <Header />
-      <main id="main-content" className="w-full pt-16">
-        <Hero />
-        <Examples />
-        <Problem />
-        <RecordContext />
-        <Framework />
-        <Audience />
-        <Stewardship />
-        <Founder />
-        <FounderExperience />
-        <StartupVirginia />
-        <CustomerDiscovery />
-        <EarlyPartners />
-        <CTA />
-        <Faqs />
-        <JoinForm />
-      </main>
-      <Footer />
-    </>
-  )
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <Link href="/" className={styles.brand}>
+          TopoStitch
+        </Link>
+
+        <nav className={styles.nav} aria-label="Main navigation">
+          <a href="#how-it-works">How it works</a>
+          <a href="#studio">Studio</a>
+          <Link href="/about">About</Link>
+          <a className={styles.navCta} href="#early-access">
+            Join early access
+          </a>
+        </nav>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.eyebrow}>For people who make real things</div>
+
+        <h1>
+          Capture once.
+          <br />
+          Create anything.
+          <br />
+          <span>Sell everywhere.</span>
+        </h1>
+
+        <p className={styles.heroCopy}>
+          Turn one physical product into the content you need to sell it online.
+          Start with photos, video, a scan, an existing 3D model, or the product
+          itself.
+        </p>
+
+        <div className={styles.heroActions}>
+          <a className={styles.primaryButton} href="#early-access">
+            Join early access
+          </a>
+          <a className={styles.secondaryButton} href="#studio">
+            Have us digitize a product
+          </a>
+        </div>
+
+        <p className={styles.microcopy}>
+          TopoStitch is in early development. We&apos;re working directly with
+          makers and small product brands.
+        </p>
+
+        <div className={styles.productStage} aria-hidden="true">
+          <div className={styles.productObject}>
+            <div className={styles.productTop} />
+            <div className={styles.productBody} />
+          </div>
+
+          <div className={styles.stageLabel}>your product</div>
+        </div>
+      </section>
+
+      <section className={styles.outputsSection}>
+        <div className={styles.sectionIntro}>
+          <div>
+            <p className={styles.kicker}>One product. More ways to sell it.</p>
+            <h2>Stop starting from scratch for every new piece of content.</h2>
+          </div>
+
+          <p>
+            TopoStitch is being built around one reusable digital version of
+            your product that can become many different sales and marketing
+            assets.
+          </p>
+        </div>
+
+        <div className={styles.outputGrid}>
+          {outputs.map((output, index) => (
+            <article className={styles.outputCard} key={output}>
+              <span className={styles.outputNumber}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className={styles.outputPlaceholder} />
+              <h3>{output}</h3>
+            </article>
+          ))}
+        </div>
+
+        <p className={styles.futureNote}>
+          We&apos;re starting with the highest-value product and ecommerce
+          workflows first. More formats, including video, come later.
+        </p>
+      </section>
+
+      <section className={styles.pathsSection} id="studio">
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>Start your way</p>
+          <h2>You don&apos;t need to become a 3D expert.</h2>
+        </div>
+
+        <div className={styles.pathGrid}>
+          <article className={styles.pathCard}>
+            <span className={styles.pathTag}>DIY</span>
+            <h3>Create it yourself</h3>
+            <p>
+              Already have photos, video, scans, or a 3D model? Bring what you
+              have and turn it into a reusable digital product.
+            </p>
+
+            <ul>
+              <li>Start with assets you already have</li>
+              <li>Keep control of your product content</li>
+              <li>Create new outputs without starting over</li>
+            </ul>
+
+            <a href="#early-access">Join early access →</a>
+          </article>
+
+          <article className={`${styles.pathCard} ${styles.studioCard}`}>
+            <span className={styles.pathTag}>TopoStitch Studio</span>
+            <h3>Have us do it for you</h3>
+            <p>
+              Send us your physical product and we&apos;ll handle the capture,
+              processing, optimization, and setup.
+            </p>
+
+            <ul>
+              <li>You send the product</li>
+              <li>We digitize and prepare it</li>
+              <li>You get a reusable digital product</li>
+            </ul>
+
+            <a href="#early-access">Apply for a pilot →</a>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.howSection} id="how-it-works">
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>How it works</p>
+          <h2>Capture. Create. Sell.</h2>
+        </div>
+
+        <div className={styles.steps}>
+          <article>
+            <span>01</span>
+            <h3>Capture</h3>
+            <p>
+              Start with photos, phone video, scans, an existing model, or send
+              us the physical product.
+            </p>
+          </article>
+
+          <div className={styles.stepArrow}>→</div>
+
+          <article>
+            <span>02</span>
+            <h3>Create</h3>
+            <p>
+              Turn your source into a reusable digital product and create new
+              product content from it.
+            </p>
+          </article>
+
+          <div className={styles.stepArrow}>→</div>
+
+          <article>
+            <span>03</span>
+            <h3>Sell</h3>
+            <p>
+              Use those outputs wherever customers discover and shop for your
+              products.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.audienceSection}>
+        <div>
+          <p className={styles.kicker}>Built for physical-product creators</p>
+          <h2>If you sell something people can hold, we want to hear from you.</h2>
+        </div>
+
+        <div className={styles.audienceGrid}>
+          {audiences.map((audience) => (
+            <span key={audience}>{audience}</span>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.earlyAccess} id="early-access">
+        <div className={styles.earlyCopy}>
+          <p className={styles.kicker}>Help us build TopoStitch</p>
+          <h2>Bring us one product.</h2>
+          <p>
+            We&apos;re working with a small number of makers and emerging
+            brands to learn what makes creating and reusing product content
+            genuinely easier.
+          </p>
+
+          <p>
+            No polished workflow required.
+            <br />
+            No 3D expertise required.
+          </p>
+        </div>
+
+        <MvpLeadForm />
+      </section>
+
+      <footer className={styles.footer}>
+        <Link href="/" className={styles.brand}>
+          TopoStitch
+        </Link>
+
+        <p>Capture once. Create anything. Sell everywhere.</p>
+
+        <Link href="/about">About</Link>
+      </footer>
+    </main>
+  );
 }
