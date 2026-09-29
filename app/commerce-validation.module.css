@@ -594,24 +594,14 @@
   }
 }
 
-.brandLogo {
-  display: block;
-  width: 156px;
-  height: auto;
-}
 
-.footer .brandLogo {
-  width: 138px;
-}
+
+.footer 
 
 @media (max-width: 560px) {
-  .brandLogo {
-    width: 138px;
-  }
+  
 
-  .footer .brandLogo {
-    width: 126px;
-  }
+  .footer 
 }
 
 .identitySection {
@@ -720,4 +710,17 @@
   .identityLabel {
     margin-bottom: 40px;
   }
+}
+
+
+.brandMark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.footer .brandMark {
+  width: 32px;
+  height: 32px;
 }

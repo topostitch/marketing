@@ -9,12 +9,11 @@ export default function AboutPage() {
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="TopoStitch home">
           <Image
-            src="/brand/topostitch-logo-dark.svg"
+            src="/brand/topostitch-mark-dark.svg"
             alt="TopoStitch"
-            width={156}
-            height={32}
-            priority
-            className={styles.brandLogo}
+            width={36}
+            height={36}
+            className={styles.brandMark}
           />
         </Link>
 
@@ -285,12 +284,11 @@ export default function AboutPage() {
       <footer className={styles.footer}>
         <Link href="/" className={styles.brand} aria-label="TopoStitch home">
           <Image
-            src="/brand/topostitch-logo-dark.svg"
+            src="/brand/topostitch-mark-dark.svg"
             alt="TopoStitch"
-            width={156}
-            height={32}
-            priority
-            className={styles.brandLogo}
+            width={36}
+            height={36}
+            className={styles.brandMark}
           />
         </Link>
 
