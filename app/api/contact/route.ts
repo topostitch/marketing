@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -22,9 +20,9 @@ export async function POST(request: Request) {
     const message = String(body.message ?? "").trim();
     const website = String(body.website ?? "").trim();
 
-   if (website) {
-     return NextResponse.json({ success: true });
-   }
+    if (website) {
+      return NextResponse.json({ success: true });
+    }
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -40,15 +38,24 @@ export async function POST(request: Request) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL;
     const from = process.env.CONTACT_FROM_EMAIL;
 
-    if (!to || !from || !process.env.RESEND_API_KEY) {
+    if (!apiKey || !to || !from) {
+      console.error("Contact email is not configured.", {
+        hasResendApiKey: Boolean(apiKey),
+        hasContactToEmail: Boolean(to),
+        hasContactFromEmail: Boolean(from),
+      });
+
       return NextResponse.json(
         { error: "Contact email is not configured." },
         { status: 500 }
       );
     }
+
+    const resend = new Resend(apiKey);
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
@@ -80,6 +87,8 @@ export async function POST(request: Request) {
     });
 
     if (error) {
+      console.error("Resend failed to send contact email.", error);
+
       return NextResponse.json(
         { error: "We couldn't send your message. Please try again." },
         { status: 500 }
@@ -87,7 +96,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    console.error("Contact form request failed.", error);
+
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }
