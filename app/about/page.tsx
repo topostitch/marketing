@@ -18,13 +18,30 @@ export default function AboutPage() {
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
-          <Link href="/#how-it-works">How it works</Link>
-          <Link href="/#studio">Studio</Link>
-          <Link href="/about">About</Link>
+          <a href="/#how-it-works">How it works</a>
+          <a href="/#studio">Studio</a>
+          <a href="/about">About</a>
           <Link className={styles.navCta} href="/#early-access">
             Join early access
           </Link>
         </nav>
+
+        <details className={styles.mobileNav}>
+          <summary className={styles.mobileNavTrigger} aria-label="Open navigation">
+            <span />
+            <span />
+            <span />
+          </summary>
+
+          <div className={styles.mobileNavPanel}>
+            <a href="/#how-it-works">How it works</a>
+            <a href="/#studio">Studio</a>
+            <a href="/about">About</a>
+            <a className={styles.mobileNavCta} href="/#early-access">
+              Join early access
+            </a>
+          </div>
+        </details>
       </header>
 
       <section className={styles.hero}>
