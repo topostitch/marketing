@@ -202,18 +202,29 @@ export default function AboutPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.06} amount={0.2}>
+          <Reveal delay={0.05} amount={0.2}>
             <div className={styles.identityCard}>
               <span className={styles.identityLabel}>Minority-owned</span>
               <p>
-                We&apos;re building TopoStitch as an independent company with
-                a perspective shaped by multidisciplinary and
-                underrepresented founder experience.
+                TopoStitch is a minority-owned independent company shaped by
+                multidisciplinary experience across design, technology, and
+                entrepreneurship.
               </p>
             </div>
           </Reveal>
 
-          <Reveal delay={0.12} amount={0.2}>
+          <Reveal delay={0.1} amount={0.2}>
+            <div className={styles.identityCard}>
+              <span className={styles.identityLabel}>LGBTQ+ owned</span>
+              <p>
+                TopoStitch is LGBTQ+ owned and founder-led, with a commitment
+                to building a company that reflects a broader range of people,
+                perspectives, and creative communities.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15} amount={0.2}>
             <div className={styles.identityCard}>
               <span className={styles.identityLabel}>Founder-led</span>
               <p>
@@ -224,7 +235,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.18} amount={0.2}>
+          <Reveal delay={0.2} amount={0.2}>
             <div className={styles.identityCard}>
               <span className={styles.identityLabel}>
                 Startup Virginia Idea Factory
