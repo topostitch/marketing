@@ -11,8 +11,8 @@ export default function AboutPage() {
           <Image
             src="/brand/topostitch-mark-dark.svg"
             alt="TopoStitch"
-            width={36}
-            height={36}
+            width={200}
+            height={64}
             className={styles.brandMark}
           />
         </Link>
@@ -286,8 +286,8 @@ export default function AboutPage() {
           <Image
             src="/brand/topostitch-mark-dark.svg"
             alt="TopoStitch"
-            width={36}
-            height={36}
+            width={200}
+            height={64}
             className={styles.brandMark}
           />
         </Link>
