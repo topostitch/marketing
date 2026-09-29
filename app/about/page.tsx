@@ -1,45 +1,193 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import Reveal from '@/components/motion/reveal'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Stewardship from '@/components/stewardship'
-import StartupVirginia from '@/components/startup-virginia'
-import CustomerDiscovery from '@/components/customer-discovery'
-
-export const metadata: Metadata = {
-  title: 'About — Why TopoStitch exists',
-  description: 'Jacob Galito’s path from product design and cultural-heritage AR to persistent contextual records for physical objects and places.',
-}
+import Link from "next/link";
+import styles from "../commerce-validation.module.css";
 
 export default function AboutPage() {
-  return <><Header /><main id="main-content" className="pt-16">
-    <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-      <Reveal><p className="text-sm font-medium text-muted-foreground">About TopoStitch</p></Reveal>
-      <Reveal delay={0.08}><h1 className="mt-5 text-balance text-4xl font-medium leading-tight md:text-5xl">Why TopoStitch exists</h1></Reveal>
-      <Reveal delay={0.16}><p className="mt-7 text-xl leading-relaxed text-muted-foreground">TopoStitch preserves the knowledge surrounding physical cultural heritage, not merely the files used to represent it. That mission grew from a recurring problem in the work of founder Jacob Galito.</p></Reveal>
-      <div className="mt-12 space-y-12">
-        <section className="space-y-5"><Reveal><h2 className="text-2xl font-medium md:text-3xl">A career connecting digital experiences to physical things</h2></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Across nearly two decades of product design, 3D, immersive technology, and spatial computing, Jacob has built digital experiences around real objects and environments. His work spans AR and VR products, enterprise and industrial applications, defense, training, museums, and cultural heritage.</p></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Before starting TopoStitch, he co-founded immersive technology company Ario and served as its Creative Director. He was a co-inventor on Ario’s patented platform. Building a startup and bringing spatial tools into professional workflows shaped his understanding of the distance between a compelling demonstration and a system that people can use over time.</p></Reveal></section>
-        <section className="space-y-5"><Reveal><h2 className="text-2xl font-medium md:text-3xl">Cultural heritage made the context tangible</h2></Reveal><Reveal><h3 className="text-xl font-medium">Old Dominion University’s Barry Art Museum</h3></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">During the mask-mandate period, cultural institutions were exploring new ways to connect audiences with physical collections and spaces through digital experiences. Jacob created an augmented reality experience for the Barry Art Museum, bringing his spatial-design practice into that setting.</p></Reveal><Reveal><h3 className="text-xl font-medium">White House Historical Association</h3></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Jacob also created two augmented reality experiences for the White House Historical Association. These projects connected historic places and objects with interpretation and digital storytelling. The spatial representation was one part of the experience; the history and knowledge around it gave it meaning.</p></Reveal><Reveal><p className="text-sm leading-relaxed text-muted-foreground">These projects belong to Jacob’s prior professional experience and are not TopoStitch institutional partnerships.</p></Reveal></section>
-        <section className="space-y-5"><Reveal><h2 className="text-2xl font-medium md:text-3xl">Experience beyond the exhibition</h2></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Jacob’s prior professional and Ario work included projects connected to Dominion Energy, BAE Systems, the U.S. Air Force, the U.S. Army, and Huntington Ingalls Industries. Those settings brought enterprise workflows, operational constraints, and the needs of different contributors into view.</p></Reveal><Reveal><ul className="space-y-3 rounded-xl border border-border bg-muted/20 p-6"><li>NATO Innovation Challenge — 1st Place</li><li>Verizon 5G Challenge — 1st Place</li></ul></Reveal><Reveal><p className="text-sm leading-relaxed text-muted-foreground">These recognitions relate to Jacob’s prior Ario experience. The organizations above are not presented as TopoStitch customers.</p></Reveal></section>
-        <section aria-labelledby="lived-experience-title" className="space-y-5">
-          <Reveal><h2 id="lived-experience-title" className="text-2xl font-medium md:text-3xl">Built from lived experience</h2></Reveal>
-          <Reveal><p className="leading-relaxed text-muted-foreground">TopoStitch is an LGBTQ+-, Filipino American-, and veteran-owned technology company based in Richmond, Virginia.</p></Reveal>
-          <Reveal><p className="leading-relaxed text-muted-foreground">Founder Jacob Galito served for 12 years in the U.S. Navy, including eight years on active duty, before continuing his career across product design, immersive technology, 3D, AR/VR, and spatial computing.</p></Reveal>
-          <Reveal><p className="leading-relaxed text-muted-foreground">His work with the Barry Art Museum and the White House Historical Association, alongside co-founding Ario, serving as its Creative Director, and becoming a co-inventor on its patented platform, brings that lived experience into his approach to building technology.</p></Reveal>
-          <Reveal><p className="leading-relaxed text-muted-foreground">Military service, entrepreneurship, design, and cultural-heritage work inform how TopoStitch approaches stewardship, accessibility, and continuity of institutional knowledge. The aim is to preserve context around physical objects and places so knowledge can be understood, shared, and carried forward.</p></Reveal>
-        </section>
-        <section className="space-y-5"><Reveal><h2 className="text-2xl font-medium md:text-3xl">The recurring gap between capture and continuity</h2></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Capture and presentation technology continued to improve. Yet models lived in one place, metadata somewhere else. Source imagery, annotations, revisions, location data, and institutional knowledge could become separated across folders, platforms, teams, and projects.</p></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">The resulting digital asset could be visually rich while its surrounding record remained fragmented. A new project or staff transition could make that knowledge harder to find and understand.</p></Reveal><Reveal><blockquote className="border-l-2 border-accent pl-6 text-xl leading-relaxed">What if the digital representation were not the end product, but part of a persistent record of the physical thing itself?</blockquote></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">That question became the foundation for TopoStitch. We’re building around the identity of an object or place, connecting representations to evidence, provenance, location, relationships, interpretation, and history. Photographs, video, reports, condition records, capture details, and publishing or access information all belong in that broader product direction.</p></Reveal></section>
-        <section className="space-y-5"><Reveal><h2 className="text-2xl font-medium md:text-3xl">A focused mission, an open learning process</h2></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Our mission is to preserve real-world knowledge for future generations. Cultural heritage is the first market we’re validating: museums, collections, archives, historic sites, preservation organizations, archaeological programs, universities with cultural collections, and related public-sector and nonprofit heritage organizations.</p></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">TopoStitch is early-stage, in customer discovery, and building a working product. We’re investigating which gaps matter most to the professionals who steward these records. Their workflows will help determine what we build and how we evaluate it.</p></Reveal><Reveal><p className="leading-relaxed text-muted-foreground">Long-term stewardship means designing for continuity through new projects, technologies, platforms, staff transitions, and generations. Our sustainability philosophy centers on cultural memory, durable digital records, and reuse of existing documentation. It is an approach we’re developing and validating with the field.</p></Reveal><Link href="/platform" className="inline-flex min-h-11 items-center font-medium underline underline-offset-4">Explore the product direction →</Link></section>
-      </div>
-    </section>
-    <Reveal amount={0.08}><Stewardship /></Reveal>
-    <Reveal amount={0.08}><StartupVirginia /></Reveal>
-    <Reveal amount={0.08}><CustomerDiscovery /></Reveal>
-    <div aria-label="Company details" className="border-t border-border py-6">
-      <Reveal><ul className="mx-auto flex max-w-6xl flex-wrap gap-x-6 gap-y-2 px-4 text-sm text-muted-foreground sm:px-6 lg:px-8">
-        <li>Richmond, Virginia</li><li>Veteran-owned</li><li>Filipino American-owned</li><li>LGBTQ+-owned</li>
-      </ul></Reveal>
-    </div>
-  </main><Footer /></>
+  return (
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <Link href="/" className={styles.brand}>
+          TopoStitch
+        </Link>
+
+        <nav className={styles.nav} aria-label="Main navigation">
+          <Link href="/#how-it-works">How it works</Link>
+          <Link href="/#studio">Studio</Link>
+          <Link href="/about">About</Link>
+          <Link className={styles.navCta} href="/#early-access">
+            Join early access
+          </Link>
+        </nav>
+      </header>
+
+      <section className={styles.hero}>
+        <p className={styles.eyebrow}>About TopoStitch</p>
+
+        <h1>
+          Built for people
+          <br />
+          who make
+          <br />
+          <span>real things.</span>
+        </h1>
+
+        <p className={styles.heroCopy}>
+          TopoStitch is exploring a simpler way for makers and product brands
+          to turn one physical product into reusable digital content for
+          ecommerce, marketing, 3D, AR, and more.
+        </p>
+      </section>
+
+      <section className={styles.outputsSection}>
+        <div className={styles.sectionIntro}>
+          <div>
+            <p className={styles.kicker}>Why we&apos;re building it</p>
+            <h2>
+              Creating product content shouldn&apos;t mean starting over every
+              time.
+            </h2>
+          </div>
+
+          <p>
+            A new product photo, campaign, marketplace, background, or format
+            often means another round of production work. TopoStitch is being
+            built around a different idea: create one reusable digital version
+            of a product, then keep creating from it.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.pathsSection}>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>The founder</p>
+          <h2>Built from years of product, 3D, and immersive work.</h2>
+        </div>
+
+        <div className={styles.pathGrid}>
+          <article className={styles.pathCard}>
+            <span className={styles.pathTag}>Jacob Galito</span>
+
+            <h3>Designer. Builder. Founder.</h3>
+
+            <p>
+              Jacob&apos;s background spans product design, 3D, immersive
+              technology, digital experiences, and software development.
+            </p>
+
+            <p>
+              Before TopoStitch, he co-founded Ario, an augmented reality
+              company where he served as Creative Director and helped build
+              products for enterprise and government customers.
+            </p>
+
+            <p>
+              He was also a co-inventor on Ario&apos;s patented platform and
+              has worked across interactive product experiences, spatial
+              computing, ecommerce, and emerging technology.
+            </p>
+          </article>
+
+          <article className={`${styles.pathCard} ${styles.studioCard}`}>
+            <span className={styles.pathTag}>What changed</span>
+
+            <h3>From building 3D tools to solving a product problem.</h3>
+
+            <p>
+              TopoStitch started from the technology side: making physical
+              capture, 3D processing, and publishing easier.
+            </p>
+
+            <p>
+              The bigger opportunity became clearer over time. The model
+              itself isn&apos;t the end product. It&apos;s the foundation for
+              everything a brand can create from a physical product.
+            </p>
+
+            <p>
+              That&apos;s why we&apos;re now focused on helping small brands
+              and independent makers turn physical products into reusable
+              digital assets and content.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.howSection}>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>Where we are now</p>
+          <h2>Early by design.</h2>
+        </div>
+
+        <div className={styles.steps}>
+          <article>
+            <span>01</span>
+            <h3>Build</h3>
+            <p>
+              We&apos;re building the core workflow for turning physical
+              products into reusable digital product assets.
+            </p>
+          </article>
+
+          <div className={styles.stepArrow}>→</div>
+
+          <article>
+            <span>02</span>
+            <h3>Test</h3>
+            <p>
+              We&apos;re working with makers and small brands to understand
+              which outcomes are actually worth paying for.
+            </p>
+          </article>
+
+          <div className={styles.stepArrow}>→</div>
+
+          <article>
+            <span>03</span>
+            <h3>Learn</h3>
+            <p>
+              The goal is not to pretend the product is finished. It&apos;s to
+              build the right thing with real customers.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.earlyAccess}>
+        <div className={styles.earlyCopy}>
+          <p className={styles.kicker}>Work with us</p>
+
+          <h2>Have a product worth testing?</h2>
+
+          <p>
+            If you make or sell physical products and want better ways to
+            create product imagery, 3D experiences, AR, or reusable marketing
+            content, we&apos;d like to hear from you.
+          </p>
+        </div>
+
+        <div className={styles.pathCard}>
+          <span className={styles.pathTag}>Early access</span>
+
+          <h3>Help shape what TopoStitch becomes.</h3>
+
+          <p>
+            We&apos;re looking for a small number of makers and product brands
+            who are willing to test the workflow with real products and real
+            business needs.
+          </p>
+
+          <Link href="/#early-access">Join early access →</Link>
+        </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <Link href="/" className={styles.brand}>
+          TopoStitch
+        </Link>
+
+        <p>Capture once. Create anything. Sell everywhere.</p>
+
+        <Link href="/">Home</Link>
+      </footer>
+    </main>
+  );
 }
