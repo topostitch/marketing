@@ -2,42 +2,60 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 export const metadata: Metadata = {
-  metadataBase: new URL('https://topostitch.dev'),
+  metadataBase: new URL('https://www.topostitch.dev'),
+
   title: {
-    default: 'TopoStitch | Digital records for physical objects and places',
+    default: 'TopoStitch — One product. More ways to sell it.',
     template: '%s | TopoStitch',
   },
-  description: 'TopoStitch is building persistent contextual records for physical cultural objects and places, connecting representations with provenance, interpretation, and institutional knowledge.',
+
+  description:
+    'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+
   applicationName: 'TopoStitch',
+
   openGraph: {
     type: 'website',
     siteName: 'TopoStitch',
-    title: 'TopoStitch | Digital records for physical objects and places',
-    description: 'Connect capture data, metadata, spatial context, and published representations around physical objects and places.',
-    url: 'https://topostitch.dev',
+    title: 'TopoStitch — One product. More ways to sell it.',
+    description:
+      'Turn one physical product into reusable content for ecommerce, 3D, AR, social, ads, and more.',
+    url: 'https://www.topostitch.dev',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TopoStitch — One product. More ways to sell it.',
+      },
+    ],
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'TopoStitch | Digital records for physical objects and places',
-    description: 'Preserve context around physical objects and places with structured digital records.',
+    title: 'TopoStitch — One product. More ways to sell it.',
+    description:
+      'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+    images: ['/og-image.png'],
   },
+
   icons: {
     icon: [
       {
-        url: '/brand/topostitch-logo-dark.svg',
+        url: '/brand/topostitch-mark-dark.svg',
         media: '(prefers-color-scheme: light)',
         type: 'image/svg+xml',
       },
       {
-        url: '/brand/topostitch-logo-light.svg',
+        url: '/brand/topostitch-mark-light.svg',
         media: '(prefers-color-scheme: dark)',
         type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
   },
-
 }
+
 export const viewport: Viewport = {
   colorScheme: 'light',
   themeColor: [{ media: '(prefers-color-scheme: light)', color: '#fafaf8' }],
