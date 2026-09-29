@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
 import styles from "../commerce-validation.module.css";
@@ -6,8 +7,15 @@ export default function AboutPage() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <Link href="/" className={styles.brand}>
-          TopoStitch
+        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
+          <Image
+            src="/brand/topostitch-logo-dark.svg"
+            alt="TopoStitch"
+            width={156}
+            height={32}
+            priority
+            className={styles.brandLogo}
+          />
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
@@ -174,6 +182,63 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className={styles.identitySection}>
+        <Reveal>
+          <div className={styles.sectionHeading}>
+            <p className={styles.kicker}>Who we are</p>
+            <h2>Independent by design.</h2>
+          </div>
+        </Reveal>
+
+        <div className={styles.identityGrid}>
+          <Reveal amount={0.2}>
+            <div className={styles.identityCard}>
+              <span className={styles.identityLabel}>Veteran-owned</span>
+              <p>
+                TopoStitch is founded and led by a U.S. Navy veteran with a
+                background spanning design, media, technology, and immersive
+                product development.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.06} amount={0.2}>
+            <div className={styles.identityCard}>
+              <span className={styles.identityLabel}>Minority-owned</span>
+              <p>
+                We&apos;re building TopoStitch as an independent company with
+                a perspective shaped by multidisciplinary and
+                underrepresented founder experience.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12} amount={0.2}>
+            <div className={styles.identityCard}>
+              <span className={styles.identityLabel}>Founder-led</span>
+              <p>
+                Product decisions, customer discovery, and early pilots are
+                being shaped directly by the founder and the people testing
+                TopoStitch with real products.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.18} amount={0.2}>
+            <div className={styles.identityCard}>
+              <span className={styles.identityLabel}>
+                Startup Virginia Idea Factory
+              </span>
+              <p>
+                TopoStitch participated in Startup Virginia&apos;s Idea Factory,
+                helping sharpen the venture through customer discovery,
+                positioning, and early-stage business validation.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className={styles.earlyAccess}>
         <Reveal>
           <div className={styles.earlyCopy}>
@@ -207,8 +272,15 @@ export default function AboutPage() {
       </section>
 
       <footer className={styles.footer}>
-        <Link href="/" className={styles.brand}>
-          TopoStitch
+        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
+          <Image
+            src="/brand/topostitch-logo-dark.svg"
+            alt="TopoStitch"
+            width={156}
+            height={32}
+            priority
+            className={styles.brandLogo}
+          />
         </Link>
 
         <p>Capture once. Create anything. Sell everywhere.</p>

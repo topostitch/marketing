@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
 import MvpLeadForm from "@/components/mvp-lead-form";
@@ -25,8 +26,15 @@ export default function HomePage() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <Link href="/" className={styles.brand}>
-          TopoStitch
+        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
+          <Image
+            src="/brand/topostitch-logo-dark.svg"
+            alt="TopoStitch"
+            width={156}
+            height={32}
+            priority
+            className={styles.brandLogo}
+          />
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
@@ -263,8 +271,15 @@ export default function HomePage() {
       </section>
 
       <footer className={styles.footer}>
-        <Link href="/" className={styles.brand}>
-          TopoStitch
+        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
+          <Image
+            src="/brand/topostitch-logo-dark.svg"
+            alt="TopoStitch"
+            width={156}
+            height={32}
+            priority
+            className={styles.brandLogo}
+          />
         </Link>
 
         <p>Capture once. Create anything. Sell everywhere.</p>

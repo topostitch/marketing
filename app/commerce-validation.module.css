@@ -593,3 +593,77 @@
     order: 3;
   }
 }
+
+.brandLogo {
+  display: block;
+  width: 156px;
+  height: auto;
+}
+
+.footer .brandLogo {
+  width: 138px;
+}
+
+@media (max-width: 560px) {
+  .brandLogo {
+    width: 138px;
+  }
+
+  .footer .brandLogo {
+    width: 126px;
+  }
+}
+
+.identitySection {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 110px 0;
+  border-top: 1px solid var(--line);
+}
+
+.identityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.identityCard {
+  min-height: 220px;
+  padding: 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.identityLabel {
+  display: inline-block;
+  margin-bottom: 62px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.identityCard p {
+  max-width: 470px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .identitySection {
+    width: min(100% - 28px, 1180px);
+    padding: 78px 0;
+  }
+
+  .identityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .identityLabel {
+    margin-bottom: 40px;
+  }
+}
