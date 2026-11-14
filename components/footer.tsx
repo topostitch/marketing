@@ -17,11 +17,15 @@ export default function Footer() {
               <Link href="/platform" className="block text-sm text-muted-foreground hover:text-foreground">Platform</Link>
               <Link href="/stories" className="block text-sm text-muted-foreground hover:text-foreground">Stories</Link>
               <Link href="/learn" className="block text-sm text-muted-foreground hover:text-foreground">Learn</Link>
+              <Link href="/services/custom-services" className="block text-sm text-muted-foreground hover:text-foreground">Custom Services &amp; Training</Link>
             </div>
             <div className="space-y-3">
               <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Connect</p>
               <Link href="/#contact" className="block text-sm text-muted-foreground hover:text-foreground">Discuss a pilot</Link>
               <a href="mailto:hello@topostitch.dev" className="block text-sm text-muted-foreground hover:text-foreground">Contact</a>
+              <Link href="/shipping" className="block text-sm text-muted-foreground hover:text-foreground">Shipping</Link>
+              <Link href="/refunds" className="block text-sm text-muted-foreground hover:text-foreground">Refunds &amp; cancellations</Link>
+              <Link href="/terms" className="block text-sm text-muted-foreground hover:text-foreground">Terms of service</Link>
             </div>
           </nav>
         </div>
