@@ -138,6 +138,7 @@ export default function JoinForm() {
                 name="name"
                 type="text"
                 autoComplete="name"
+                data-lpignore="true"
                 required
                 className="min-h-12 w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-foreground focus:ring-2 focus:ring-ring"
               />
@@ -156,6 +157,7 @@ export default function JoinForm() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                data-lpignore="true"
                 required
                 className="min-h-12 w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-foreground focus:ring-2 focus:ring-ring"
               />
