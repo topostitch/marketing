@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
+  },
+  async redirects() {
+    return ["/platform", "/stories", "/learn"].map(source => ({ source, destination: "/", permanent: true }));
   },
   images: {
     unoptimized: true,
@@ -9,3 +12,4 @@ const nextConfig = {
 }
 
 export default nextConfig
+

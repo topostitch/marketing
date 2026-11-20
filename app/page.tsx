@@ -1,60 +1,35 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
+import CommerceProof from "@/components/commerce-proof";
+import CommerceFaqs from "@/components/commerce-faqs";
 import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "./commerce-validation.module.css";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://www.topostitch.dev/#organization", name: "TopoStitch", url: "https://www.topostitch.dev", email: "hello@topostitch.dev" },
+    { "@type": "Service", name: "Product 3D preparation and creation", provider: { "@id": "https://www.topostitch.dev/#organization" }, serviceType: "3D product asset preparation and done-for-you production for ecommerce merchants", url: "https://www.topostitch.dev/#studio", description: "Product eligibility and scope are reviewed before payment. Existing-model preparation, product model creation, and custom workflow assistance." },
+  ],
+};
+
 const outputs = [
-  {
-    title: "Product image",
-    description: "Clean, consistent, photo-ready images for your store.",
-    image: "/cup.webp",
-    alt: "Speckled ceramic mug photographed on a clean neutral background.",
-  },
-  {
-    title: "Lifestyle",
-    description: "Beautiful scenes that show the product in context.",
-    image: "/shoe.webp",
-    alt: "Neutral sneaker styled in a warm lifestyle scene.",
-  },
-  {
-    title: "Cutout",
-    description: "Transparent-background assets for catalogs and ads.",
-    image: "/purse.webp",
-    alt: "Caramel leather handbag isolated as a product cutout.",
-  },
-  {
-    title: "3D model",
-    description: "Interactive 3D models for web and ecommerce.",
-    image: "/chair.webp",
-    alt: "Mid-century lounge chair shown as a 3D product representation.",
-  },
-  {
-    title: "AR",
-    description: "Let customers see products in their own space.",
-    image: "/AR.webp",
-    alt: "Phone showing an augmented reality plant placed in a living room.",
-  },
-  {
-    title: "Social & ads",
-    description: "Create campaign-ready content for social and advertising.",
-    image: "/socialAds.webp",
-    alt: "Skincare serum presented as polished social advertising creative.",
-  },
+  { title: "Interactive product 3D", description: "Let shoppers rotate and inspect the product from different angles.", image: "/chair.webp", alt: "Illustration of an interactive 3D chair model." },
+  { title: "Product context with AR", description: "Prepare suitable products for supported augmented reality experiences.", image: "/AR.webp", alt: "Illustration of a product placed in a room using augmented reality." },
 ];
 
-const audiences = [
-  "Independent makers",
-  "Shopify brands",
-  "Etsy sellers",
-  "Product designers",
-  "Artists & ceramicists",
-  "Small manufacturers",
-];
+const audiences = ["Amazon merchants", "Shopify merchants", "Brands already using 3D", "Brands planning their first 3D launch"];
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
+    <main id="main-content" className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="TopoStitch home">
           <Image
@@ -68,10 +43,11 @@ export default function HomePage() {
 
         <nav className={styles.nav} aria-label="Main navigation">
           <a href="/#how-it-works">How it works</a>
-          <a href="/#studio">Studio</a>
+          <a href="/#studio">Pilot pricing</a>
+          <a href="/#why-3d">Why 3D</a>
           <a href="/about">About</a>
           <Link className={styles.navCta} href="/#early-access">
-            Join early access
+            Start a product pilot
           </Link>
         </nav>
 
@@ -84,10 +60,11 @@ export default function HomePage() {
 
           <div className={styles.mobileNavPanel}>
             <a href="/#how-it-works">How it works</a>
-            <a href="/#studio">Studio</a>
+            <a href="/#studio">Pilot pricing</a>
+          <a href="/#why-3d">Why 3D</a>
             <a href="/about">About</a>
             <a className={styles.mobileNavCta} href="/#early-access">
-              Join early access
+              Start a product pilot
             </a>
           </div>
         </details>
@@ -97,44 +74,42 @@ export default function HomePage() {
         <div className={styles.heroCopyColumn}>
           <Reveal delay={0}>
             <div className={styles.eyebrow}>
-              For people who make real things
+              For Amazon and Shopify merchants
             </div>
           </Reveal>
 
           <Reveal delay={0.06}>
             <h1>
-              Capture once.
+              Product 3D.
               <br />
-              Create anything.
-              <br />
-              <span>Sell everywhere.</span>
+              <span>For Amazon
+              <br />and Shopify.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.14}>
             <p className={styles.heroCopy}>
-              Turn one physical product into the content you need to sell it
-              online. Start with photos, video, a scan, an existing 3D model,
-              or the product itself.
+              Create or prepare product models with a clear scope, quality review,
+              and files for your intended destination. Bring an existing model
+              or start with one product and suitable imagery.
             </p>
           </Reveal>
 
           <Reveal delay={0.2}>
             <div className={styles.heroActions}>
               <a className={styles.primaryButton} href="#early-access">
-                Join early access
+                Start a product pilot
               </a>
 
               <a className={styles.secondaryButton} href="#studio">
-                Have us digitize a product
+                See pilot pricing
               </a>
             </div>
           </Reveal>
 
           <Reveal delay={0.26}>
             <p className={styles.microcopy}>
-              TopoStitch is in early development. We&apos;re working directly
-              with makers and small product brands.
+              Founder-led paid pilots. Product eligibility and final price confirmed before payment.
             </p>
           </Reveal>
         </div>
@@ -158,62 +133,16 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className={styles.destinationStrip} aria-label="Built for product sellers">
-        <Reveal amount={0.15}>
-          <p className={styles.destinationEyebrow}>
-            Built for makers, brands, and sellers
-          </p>
-
-          <div className={styles.destinationList}>
-            <div className={styles.destinationLogo}>
-              <Image
-                src="/brands/etsy.svg"
-                alt="Etsy"
-                width={84}
-                height={40}
-              />
-            </div>
-
-            <div className={styles.destinationLogo}>
-              <Image
-                src="/brands/shopify.svg"
-                alt="Shopify"
-                width={96}
-                height={40}
-              />
-            </div>
-
-            <div className={styles.destinationLogo}>
-              <Image
-                src="/brands/amazon.svg"
-                alt="Amazon"
-                width={100}
-                height={40}
-              />
-            </div>
-
-            <div className={styles.destinationLogo}>
-              <Image
-                src="/brands/instagram.svg"
-                alt="Instagram"
-                width={42}
-                height={42}
-              />
-            </div>
-
-            <div className={styles.destinationLogo}>
-              <Image
-                src="/brands/tiktok.svg"
-                alt="TikTok"
-                width={42}
-                height={42}
-              />
-            </div>
-
-            <span className={styles.destinationMore}>+ more</span>
-          </div>
-        </Reveal>
+      <section className={styles.destinationStrip} aria-label="Initial merchant audience">
+        <p className={styles.destinationEyebrow}>Starting with Amazon and Shopify merchants</p>
+        <div className={styles.destinationList}>
+          <Image src="/brands/amazon.svg" alt="Amazon" width={100} height={40} />
+          <Image src="/brands/shopify.svg" alt="Shopify" width={96} height={40} />
+        </div>
+        <p className={styles.evidenceNote}>Independent service. Platform names identify intended destinations, not endorsements.</p>
       </section>
+
+      <CommerceProof />
 
       <section className={styles.outputsSection}>
         <Reveal amount={0.2}>
@@ -223,14 +152,13 @@ export default function HomePage() {
                 One product. More ways to sell it.
               </p>
               <h2>
-                Stop starting from scratch for every new piece of content.
+                Help shoppers understand what they are buying.
               </h2>
             </div>
 
             <p>
-              TopoStitch is being built around one reusable digital version of
-              your product that can become many different sales and marketing
-              assets.
+              Start with a reusable product model and one intended destination.
+              These illustrations show the kinds of experiences a suitable asset can support.
             </p>
           </div>
         </Reveal>
@@ -263,65 +191,47 @@ export default function HomePage() {
         </div>
 
         <p className={styles.futureNote}>
-          We&apos;re starting with the highest-value product and ecommerce
-          workflows first. More formats, including video, come later.
+          Illustrative examples, not customer projects. Each pilot has its own agreed deliverables.
         </p>
       </section>
 
       <section className={styles.pathsSection} id="studio">
-        <Reveal>
-          <div className={styles.sectionHeading}>
-            <p className={styles.kicker}>Start your way</p>
-            <h2>You don&apos;t need to become a 3D expert.</h2>
-          </div>
-        </Reveal>
-
-        <div className={styles.pathGrid}>
-          <Reveal amount={0.2}>
-            <article className={styles.pathCard}>
-              <span className={styles.pathTag}>Use it yourself</span>
-              <h3>Create it yourself</h3>
-              <p>
-                Already have photos, video, scans, or a 3D model? Bring what you
-                have and turn it into a reusable digital product.
-              </p>
-
-              <ul>
-                <li>Start with assets you already have</li>
-                <li>Keep control of your product content</li>
-                <li>Create new outputs without starting over</li>
-              </ul>
-
-              <a href="#early-access">Join early access →</a>
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.08} amount={0.2}>
-            <article className={`${styles.pathCard} ${styles.studioCard}`}>
-              <span className={styles.pathTag}>Done for you</span>
-              <h3>Have us do it for you</h3>
-              <p>
-                Send us your physical product and we&apos;ll handle the capture,
-                processing, optimization, and setup.
-              </p>
-
-              <ul>
-                <li>You send the product</li>
-                <li>We digitize and prepare it</li>
-                <li>You get a reusable digital product</li>
-              </ul>
-
-              <a href="#early-access">Apply for a pilot →</a>
-            </article>
-          </Reveal>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>Pilot pricing · USD</p>
+          <h2>Start with one product.</h2>
+          <p>Choose the help you need. We review your product and source material before asking you to pay.</p>
         </div>
+        <div className={styles.pricingGrid}>
+          <article className={styles.pathCard}>
+            <span className={styles.pathTag}>Existing asset</span><h3>Basic</h3>
+            <p className={styles.price}>From $149 <span>/ product</span></p>
+            <p>Prepare one suitable existing 3D model for its next use.</p>
+            <ul><li>Source model review</li><li>Optimization and agreed file conversion</li><li>Delivery with a handoff checklist</li></ul>
+            <a href="?offer=basic#early-access" data-offer="basic">Request Basic</a>
+          </article>
+          <article className={`${styles.pathCard} ${styles.studioCard}`}>
+            <span className={styles.pathTag}>Done for you</span><h3>E-commerce Ready</h3>
+            <p className={styles.price}>From $299 <span>/ product</span></p>
+            <p>Create one eligible product model from suitable imagery.</p>
+            <ul><li>Image coverage and feasibility review</li><li>Model creation, QA, and optimization</li><li>Files for one agreed commerce destination</li></ul>
+            <a href="?offer=ecommerce#early-access" data-offer="ecommerce">Request E-commerce Ready</a>
+          </article>
+          <article className={styles.pathCard}>
+            <span className={styles.pathTag}>Work with your team</span><h3>Guided or custom</h3>
+            <p className={styles.price}>Let&apos;s scope it</p>
+            <p>Help for projects that need more than one standard asset.</p>
+            <ul><li>Guided capture and workflow consulting</li><li>Catalogs, variants, or implementation</li><li>Agency and integration partnerships</li></ul>
+            <a href="?offer=custom#early-access" data-offer="custom">Discuss your project</a>
+          </article>
+        </div>
+        <p className={styles.evidenceNote}>Starting prices apply to eligible products and suitable source material. Final scope, revisions, turnaround, and price are confirmed before payment. Capture, shipping, complex modeling, variants, and store implementation are quoted separately. No payment is taken through this inquiry form.</p>
       </section>
 
       <section className={styles.howSection} id="how-it-works">
         <Reveal>
           <div className={styles.sectionHeading}>
             <p className={styles.kicker}>How it works</p>
-            <h2>Capture. Create. Sell.</h2>
+            <h2>Review. Prepare. Deliver.</h2>
           </div>
         </Reveal>
 
@@ -329,10 +239,9 @@ export default function HomePage() {
           <Reveal amount={0.2}>
             <article>
               <span>01</span>
-              <h3>Capture</h3>
+              <h3>Share your product</h3>
               <p>
-                Start with photos, phone video, scans, an existing model, or
-                send us the physical product.
+                Send your listing, intended destination, and a description of the assets you have. We confirm feasibility and a written scope before payment.
               </p>
             </article>
           </Reveal>
@@ -342,10 +251,9 @@ export default function HomePage() {
           <Reveal delay={0.08} amount={0.2}>
             <article>
               <span>02</span>
-              <h3>Create</h3>
+              <h3>We prepare the asset</h3>
               <p>
-                Turn your source into a reusable digital product and create new
-                product content from it.
+                After you accept the scope and pay, we create or prepare the model and review it against the agreed requirements.
               </p>
             </article>
           </Reveal>
@@ -355,10 +263,9 @@ export default function HomePage() {
           <Reveal delay={0.16} amount={0.2}>
             <article>
               <span>03</span>
-              <h3>Sell</h3>
+              <h3>Review and handoff</h3>
               <p>
-                Use those outputs wherever customers discover and shop for your
-                products.
+                Review your deliverables and receive the agreed files and guidance. Store implementation is included only when explicitly scoped.
               </p>
             </article>
           </Reveal>
@@ -367,9 +274,9 @@ export default function HomePage() {
 
       <section className={styles.audienceSection}>
         <div>
-          <p className={styles.kicker}>Built for physical-product creators</p>
+          <p className={styles.kicker}>For merchants investing in product understanding</p>
           <h2>
-            If you sell something people can hold, we want to hear from you.
+            Already using 3D, or ready to try it?
           </h2>
         </div>
 
@@ -380,21 +287,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      <CommerceFaqs />
+
       <section className={styles.earlyAccess} id="early-access">
         <Reveal>
           <div className={styles.earlyCopy}>
-            <p className={styles.kicker}>Help us build TopoStitch</p>
+            <p className={styles.kicker}>Start a product pilot</p>
             <h2>Bring us one product.</h2>
             <p>
-              We&apos;re working with a small number of makers and emerging
-              brands to learn what makes creating and reusing product content
-              genuinely easier.
+              Tell us about your Amazon listing or Shopify store, the product,
+              and what you want to improve. We will review your request and
+              reply with the next step.
             </p>
 
             <p>
-              No polished workflow required.
+              No payment or shipping required to inquire.
               <br />
-              No 3D expertise required.
+              Prefer email? <a href="mailto:hello@topostitch.dev">hello@topostitch.dev</a>
             </p>
           </div>
         </Reveal>
@@ -415,10 +324,13 @@ export default function HomePage() {
           />
         </Link>
 
-        <p>Capture once. Create anything. Sell everywhere.</p>
+        <p>Your product. Ready for 3D. Built to sell.</p>
 
         <a href="/about">About</a>
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:hello@topostitch.dev">Contact</a>
       </footer>
     </main>
   );
 }
+

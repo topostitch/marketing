@@ -5,37 +5,38 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.topostitch.dev'),
 
   title: {
-    default: 'TopoStitch — One product. More ways to sell it.',
+    default: 'TopoStitch | Product 3D for Amazon & Shopify',
     template: '%s | TopoStitch',
   },
 
   description:
-    'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+    'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
 
   applicationName: 'TopoStitch',
+  robots: { index: true, follow: true },
 
   openGraph: {
     type: 'website',
     siteName: 'TopoStitch',
-    title: 'TopoStitch — One product. More ways to sell it.',
+    title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Turn one physical product into reusable content for ecommerce, 3D, AR, social, ads, and more.',
+      'Product 3D preparation and paid pilots for Amazon and Shopify merchants.',
     url: 'https://www.topostitch.dev',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TopoStitch — One product. More ways to sell it.',
+        alt: 'TopoStitch | Product 3D for Amazon & Shopify',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'TopoStitch — One product. More ways to sell it.',
+    title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+      'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
     images: ['/og-image.png'],
   },
 
@@ -75,3 +76,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   )
 }
+
