@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node scripts/check-inquiries.cjs"
+    "test": "node scripts/check-inquiries.cjs && node scripts/check-payments.cjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

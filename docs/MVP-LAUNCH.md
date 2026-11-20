@@ -28,7 +28,7 @@ Never commit environment values. Production credential scope must be authorized.
 
 ## Payment launch gate
 
-Stripe account creation/connection, business verification, and payment testing remain unfinished. No checkout or payment collection is represented as active. First confirm eligibility and written deliverables; then request payment through the connected account. Create Orders and associate payment status only when implementing that verified payment workflow. Do not mark a payment as received from a browser redirect alone.
+Stripe account creation/connection, business verification, and payment testing remain unfinished. Checkout support is implemented but payment collection remains inactive until configured and tested. Confirm fixed package eligibility and written deliverables before publishing a Payment Link. Signed payment events can create Orders through the implementation below. Do not mark a payment as received from a browser redirect alone.
 
 ## Validation
 
@@ -37,3 +37,20 @@ Run `npm test` for mocked inquiry path checks and `npm run build` for full TypeS
 ## Later
 
 Organic LinkedIn inbound path and a small paid-search experiment are candidates. Research actual merchant terminology, search intent and unit economics before spending; do not enable ads or tracking pixels as part of this MVP.
+
+## Stripe integration
+
+Hosted Stripe Payment Links are supported at `/checkout/basic` and `/checkout/ecommerce`. They remain unavailable until configured. No amount, account, or payment link is invented. Current “from” pricing remains an inquiry offer until a genuinely fixed package is defined.
+
+Configuration (matching test or live mode throughout):
+- STRIPE_SECRET_KEY: server-only API key for retrieving Checkout Sessions.
+- STRIPE_WEBHOOK_SECRET: signing secret for `/api/stripe/webhook`.
+- STRIPE_PAYMENT_LINK_BASIC / STRIPE_PAYMENT_LINK_ECOMMERCE: optional HTTPS buy.stripe.com links.
+- STRIPE_PAYMENT_LINK_BASIC_ID / STRIPE_PAYMENT_LINK_ECOMMERCE_ID: the matching plink_ IDs allowed for payment reconciliation.
+- AIRTABLE_ORDERS_TABLE_ID: Commercial Operations Orders table.
+
+In Stripe, define the fixed deliverable, eligibility, revision boundary, timing, refund/cancellation terms, and USD price before activating a link. Set up business verification and payout details in the account. Do not paste secrets into chat or commit them. No additional subscription is needed by this code; Stripe payment-processing fees apply.
+
+Subscribe the webhook to checkout.session.completed and checkout.session.async_payment_succeeded. Verify signed raw request bodies with a five-minute tolerance; retrieve the session from Stripe, require paid status and an allowlisted Payment Link, then upsert Orders by Checkout Session ID. Browser redirects never mark an order paid. Return an error on persistence failure so Stripe can retry. Existing orders are left intact on retries. Payment states after refunds/disputes require manual reconciliation in this MVP; do not interpret this as automated accounting or fulfillment.
+
+Before exposing checkout publicly: complete Stripe sandbox checkout and webhook delivery, duplicate-event, unpaid-event, invalid-signature, and Airtable-outage checks; inspect the paid order; test a refund and reconcile it manually. Public checkout buttons are intentionally not substituted for inquiry links before this setup and fixed scope exist. HubSpot remains unconnected; Vercel analytics is the implemented website measurement path.
