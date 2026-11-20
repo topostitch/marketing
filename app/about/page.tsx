@@ -1,11 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
 import styles from "../commerce-validation.module.css";
 
+export const metadata: Metadata = { title: "About TopoStitch", description: "Meet the founder behind TopoStitch and its product 3D services for Amazon and Shopify merchants.", alternates: { canonical: "/about" } };
+
 export default function AboutPage() {
   return (
-    <main className={styles.page}>
+    <main id="main-content" className={styles.page}>
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="TopoStitch home">
           <Image
@@ -22,7 +25,7 @@ export default function AboutPage() {
           <a href="/#studio">Studio</a>
           <a href="/about">About</a>
           <Link className={styles.navCta} href="/#early-access">
-            Join early access
+            Start a product pilot
           </Link>
         </nav>
 
@@ -38,7 +41,7 @@ export default function AboutPage() {
             <a href="/#studio">Studio</a>
             <a href="/about">About</a>
             <a className={styles.mobileNavCta} href="/#early-access">
-              Join early access
+              Start a product pilot
             </a>
           </div>
         </details>
@@ -61,7 +64,7 @@ export default function AboutPage() {
 
         <Reveal delay={0.14}>
           <p className={styles.heroCopy}>
-            TopoStitch is exploring a simpler way for makers and product brands
+            TopoStitch is exploring a simpler way for Amazon and Shopify merchants
             to turn one physical product into reusable digital content for
             ecommerce, marketing, 3D, AR, and more.
           </p>
@@ -141,8 +144,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                That&apos;s why we&apos;re now focused on helping small brands
-                and independent makers turn physical products into reusable
+                That&apos;s why we&apos;re now focused on helping Amazon and Shopify merchants turn physical products into reusable
                 digital assets and content.
               </p>
             </article>
@@ -177,7 +179,7 @@ export default function AboutPage() {
               <span>02</span>
               <h3>Test</h3>
               <p>
-                We&apos;re working with makers and small brands to understand
+                We&apos;re working with Amazon and Shopify merchants to understand
                 which outcomes are actually worth paying for.
               </p>
             </article>
@@ -288,12 +290,12 @@ export default function AboutPage() {
             <h3>Help shape what TopoStitch becomes.</h3>
 
             <p>
-              We&apos;re looking for a small number of makers and product brands
+              We&apos;re looking for a small number of Amazon and Shopify merchants
               who are willing to test the workflow with real products and real
               business needs.
             </p>
 
-            <Link href="/#early-access">Join early access →</Link>
+            <Link href="/#early-access">Start a product pilot</Link>
           </div>
         </Reveal>
       </section>
@@ -316,3 +318,4 @@ export default function AboutPage() {
     </main>
   );
 }
+
