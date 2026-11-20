@@ -41,18 +41,7 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: [
-      {
-        url: '/brand/topostitch-mark-dark.svg',
-        media: '(prefers-color-scheme: light)',
-        type: 'image/svg+xml',
-      },
-      {
-        url: '/brand/topostitch-mark-light.svg',
-        media: '(prefers-color-scheme: dark)',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: { url: '/favicon.svg?v=2', type: 'image/svg+xml', sizes: 'any' },
     apple: '/apple-icon.png',
   },
 }
