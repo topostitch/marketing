@@ -17,7 +17,7 @@ function record(event: string, interest: string) {
   try { track(event, { offer: interest, price_version: "commerce-pilot-2026-11-20" }); } catch { /* Analytics must never block an inquiry. */ }
 }
 
-export default function MvpLeadForm() {
+export default function MvpLeadForm({ defaultPlatform = "" }: { defaultPlatform?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [interest, setInterest] = useState("ecommerce");
@@ -88,7 +88,7 @@ export default function MvpLeadForm() {
       <label htmlFor="lead-organization">Brand or company<input id="lead-organization" name="organization" type="text" autoComplete="organization" maxLength={200} /></label>
       <label htmlFor="lead-interest">I need help with *<select id="lead-interest" name="interest" value={interest} onChange={e => setInterest(e.target.value)} required>{offers.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       <label htmlFor="lead-store">Store or product listing URL<input id="lead-store" name="storeUrl" type="url" placeholder="https://" autoComplete="url" maxLength={1000} /></label>
-      <label htmlFor="lead-platform">Intended destination *<select id="lead-platform" name="platform" defaultValue="" required><option value="" disabled>Select a destination</option><option>Amazon</option><option>Shopify</option><option>Amazon and Shopify</option><option>Other / not sure yet</option></select></label>
+      <label htmlFor="lead-platform">Intended destination *<select id="lead-platform" name="platform" defaultValue={defaultPlatform} required><option value="" disabled>Select a destination</option><option>Amazon</option><option>Shopify</option><option>Amazon and Shopify</option><option>Other / not sure yet</option></select></label>
       <label htmlFor="lead-product">Product type and approximate quantity *<input id="lead-product" name="product" placeholder="For example, 3 wooden chairs" maxLength={500} required /></label>
       <label htmlFor="lead-assets">What do you already have? *<select id="lead-assets" name="assets" defaultValue="" required><option value="" disabled>Select your starting point</option><option>Existing 3D models</option><option>Product photos</option><option>A physical product needing capture</option><option>Not sure / discussing a partnership</option></select></label>
       <label htmlFor="lead-message">What would you like to achieve? *<textarea id="lead-message" name="message" rows={4} maxLength={5000} placeholder="Tell us your goal, timeline, and any known requirements." required /></label>

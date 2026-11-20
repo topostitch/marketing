@@ -1887,3 +1887,13 @@
 @media (prefers-reduced-motion: reduce) { .page *, .page *::before, .page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
 .page .pricingGrid .price { font-size: 28px; }
+
+.servicePage { max-width: 1200px; margin-inline: auto; padding: clamp(20px, 4vw, 64px); overflow-wrap: anywhere; }
+.servicePage h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; max-width: 24ch; margin-block: 1rem; }
+.servicePage h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; margin-block: 1rem; }
+.servicePage p { max-width: 72ch; line-height: 1.7; margin-block: 1rem; }
+.servicePage li { margin-block: .75rem; }
+.servicePage a { text-decoration: underline; text-underline-offset: .2em; }
+.servicePage .formButton { display: inline-block; padding: .8rem 1rem; }
+.serviceFaq { padding-block: 1rem; border-bottom: 1px solid #77776f; }
+.serviceFaq summary { cursor: pointer; font-weight: 600; min-height: 44px; }

@@ -8,6 +8,8 @@ import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "./commerce-validation.module.css";
 
 export const metadata: Metadata = {
+  title: { absolute: "3D Product Modeling for Amazon & Shopify | TopoStitch" },
+  description: "Independent 3D product modeling services for Amazon and Shopify merchants. Create or optimize product models with a reviewed scope and pilot pricing.",
   alternates: { canonical: "/" },
 };
 
@@ -45,6 +47,7 @@ export default function HomePage() {
           <a href="/#how-it-works">How it works</a>
           <a href="/#studio">Pilot pricing</a>
           <a href="/#why-3d">Why 3D</a>
+          <a href="/#services">3D services</a>
           <a href="/about">About</a>
           <Link className={styles.navCta} href="/#early-access">
             Start a product pilot
@@ -62,6 +65,7 @@ export default function HomePage() {
             <a href="/#how-it-works">How it works</a>
             <a href="/#studio">Pilot pricing</a>
           <a href="/#why-3d">Why 3D</a>
+          <a href="/#services">3D services</a>
             <a href="/about">About</a>
             <a className={styles.mobileNavCta} href="/#early-access">
               Start a product pilot
@@ -142,6 +146,15 @@ export default function HomePage() {
         <p className={styles.evidenceNote}>Independent service. Platform names identify intended destinations, not endorsements.</p>
       </section>
 
+      <section id="services" className={styles.commerceSection}>
+        <h2>3D product modeling services for your store</h2>
+        <p>Choose your destination for relevant requirements, project options, and next steps.</p>
+        <ul>
+          <li><Link href="/services/amazon-3d-modeling">3D product modeling for Amazon sellers</Link></li>
+          <li><Link href="/services/shopify-3d-models">Shopify 3D model creation and preparation</Link></li>
+          <li><Link href="/services/3d-product-modeling">Ecommerce 3D modeling, optimization, and consulting</Link></li>
+        </ul>
+      </section>
       <CommerceProof />
 
       <section className={styles.outputsSection}>
