@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Footer from '@/components/footer'
 import LearnHero from '@/components/learn/learn-hero'
 import LearnIntro from '@/components/learn/learn-intro'
 import GuidesAndArticles from '@/components/learn/guides-and-articles'
@@ -34,7 +33,6 @@ export default function LearnPage() {
         <HowWeBuild />
         <LearnFAQ />
         <LearnEarlyAccess />
-        <Footer />
       </main>
     </>
   )

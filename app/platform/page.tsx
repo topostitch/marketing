@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import PlatformProof from '@/components/platform/platform-proof'
-import Footer from '@/components/footer'
 import PlatformHero from '@/components/platform/platform-hero'
 import PlatformCapabilities from '@/components/platform/platform-capabilities'
 import PlatformArchitecture from '@/components/platform/platform-architecture'
@@ -32,7 +31,6 @@ export default function PlatformPage() {
         <PlatformIntegrations />
         <PlatformSecurity />
         <PlatformCTA />
-        <Footer />
       </main>
     </>
   )

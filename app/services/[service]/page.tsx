@@ -33,6 +33,5 @@ export default async function ServicePage({ params }: Props) {
     <section className={styles.commerceSection}><h2>Platform guidance and evidence</h2><ul>{data.sources.map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}</ul><p>Platform requirements can change. We review applicable requirements when scoping your project.</p></section>
     <section id="early-access" className={styles.commerceSection}><h2>Tell us about your {data.platform ? `${data.platform} product` : 'product'}</h2><p>Share your starting point and intended outcome. We will review suitability and reply with a next step.</p><Link href={`/request${data.platform ? `?platform=${encodeURIComponent(data.platform)}` : ""}`}>Request a product review</Link></section>
     <nav aria-label="Related services" className={styles.commerceSection}><h2>Explore 3D services</h2><ul>{Object.entries(servicePages).filter(([slug]) => slug !== service).map(([slug, page]) => <li key={slug}><Link href={`/services/${slug}`}>{page.title}</Link></li>)}</ul></nav>
-    <footer className={styles.commerceSection}><Link href="/about">About TopoStitch</Link> · <Link href="/privacy">Privacy</Link> · <a href="mailto:hello@topostitch.dev">hello@topostitch.dev</a></footer>
   </main>;
 }

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Footer from '@/components/footer'
 import StoriesHero from '@/components/stories/stories-hero'
 import StoriesIntro from '@/components/stories/stories-intro'
 import FeaturedStory from '@/components/stories/featured-story'
@@ -26,7 +25,6 @@ export default function StoriesPage() {
         <FeaturedStory />
         <StoriesGrid />
         <StoriesEarlyAccess />
-        <Footer />
       </main>
     </>
   )

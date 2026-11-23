@@ -1,8 +1,8 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
 export const paymentOffers = {
-  basic: { name: 'Existing-model preparation', setting: 'STRIPE_PAYMENT_LINK_BASIC' },
-  ecommerce: { name: 'Product model creation', setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE' },
+  basic: { name: 'Existing-model preparation', price: '$149', setting: 'STRIPE_PAYMENT_LINK_BASIC' },
+  ecommerce: { name: 'Product model creation', price: '$299', setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE' },
 } as const;
 export type PaymentOffer = keyof typeof paymentOffers;
 export function paymentLink(offer: PaymentOffer) {
@@ -13,6 +13,9 @@ export function paymentLink(offer: PaymentOffer) {
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com' || url.username || url.password || url.port) return null;
+    const sandboxLink = url.pathname.startsWith('/test_');
+    if (process.env.VERCEL_ENV === 'preview' && (!sandboxLink || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY))) return null;
+    if (process.env.VERCEL_ENV === 'production' && sandboxLink) return null;
     return url.href;
   } catch { return null; }
 }

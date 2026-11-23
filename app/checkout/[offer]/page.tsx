@@ -1,19 +1,44 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { commerceOffers } from '@/lib/commerce-offers';
 import { paymentLink, paymentOffers, type PaymentOffer } from '@/lib/payments';
-import styles from '../../commerce-validation.module.css';
+import styles from '../../marketing-layout.module.css';
+
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Secure payment', robots: { index: false, follow: false } };
+
 export default async function CheckoutPage({ params }: { params: Promise<{ offer: string }> }) {
   const { offer } = await params;
   if (!Object.hasOwn(paymentOffers, offer)) notFound();
   const selected = offer as PaymentOffer;
+  const [basic, ecommerce] = commerceOffers;
+  const packageDetails = selected === 'basic' ? basic : ecommerce;
   const link = paymentLink(selected);
-  return <main id="main-content" className={`${styles.page} ${styles.servicePage}`}>
-    <Link href="/">TopoStitch home</Link>
-    <h1>{paymentOffers[selected].name}</h1>
-    {link ? <><p>Continue to Stripe to review the exact package description, price, and payment details before purchasing. Any eligibility conditions, deliverables, revisions, and timing must match the package you are purchasing.</p><a className={styles.formButton} href={link}>Continue to secure checkout</a><p>Physical shipping, travel, and custom work are included only when explicitly stated in your purchased scope. A payment does not guarantee platform approval or publication.</p></> : <><p>We review your product and confirm the scope before taking payment. For an approved order, use the Stripe link included with your quote.</p><Link href={`/request?offer=${selected}`}>Request a product review</Link></>}
-    <p><Link href="/privacy">Privacy notice</Link> · <a href="mailto:hello@topostitch.dev">Questions about an order?</a></p>
-  </main>;
+
+  return (
+    <main id="main-content" className={styles.page}>
+      <div className={styles.editorial}>
+        <header className={styles.editorialHeader}>
+          <Link href="/services#compare">Back to all services</Link>
+          <h1>{packageDetails.name}</h1>
+          <p>{packageDetails.summary}</p>
+        </header>
+        <div className={styles.card}>
+          {link ? <>
+            <p><strong>{paymentOffers[selected].price} for one product</strong></p>
+            <p>{selected === 'basic'
+              ? 'For a single existing 3D model that needs optimization or conversion for one storefront.'
+              : 'For one product with suitable reference photos and dimensions. Physical capture and shipping are quoted separately.'}</p>
+            <p>Enter your email and pay on Stripe. We’ll use that email to request your files and project details after payment.</p>
+            <a className={styles.button} href={link}>Continue to Stripe</a>
+            <Link href={`/request?offer=${selected}`}>Check whether your project fits</Link>
+          </> : <>
+            <p>Tell us about your product so we can confirm fit and send you a payment link.</p>
+            <Link className={styles.button} href={`/request?offer=${selected}`}>Request a product review</Link>
+          </>}
+        </div>
+      </div>
+    </main>
+  );
 }

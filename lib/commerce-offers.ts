@@ -2,7 +2,7 @@ export const commerceOffers = [
   {
     id: 'basic',
     name: 'Basic',
-    service: 'Done for You',
+    service: 'Model creation and optimization',
     price: 'From $149 per product',
     title: 'Put the 3D model you already have to work',
     summary: 'Optimize an existing 3D model for your storefront.',
@@ -14,7 +14,7 @@ export const commerceOffers = [
   {
     id: 'ecommerce',
     name: 'E-commerce Ready',
-    service: 'Done for You',
+    service: 'Model creation and optimization',
     price: 'From $299 per product',
     title: 'Give shoppers a product they can explore',
     summary: 'Create a new 3D model for one product and storefront.',
@@ -26,7 +26,7 @@ export const commerceOffers = [
   {
     id: 'custom',
     name: '3D Workflow Consulting',
-    service: 'Done with You',
+    service: '3D consulting and integration',
     price: 'Custom quote',
     title: 'Give your team a clear plan for product 3D',
     summary: 'Get help planning capture, preparing files, or handing off 3D to your team.',
@@ -38,7 +38,7 @@ export const commerceOffers = [
   {
     id: 'partnership',
     name: 'Agency & Integration Support',
-    service: 'Done with You',
+    service: '3D consulting and integration',
     price: 'Custom quote',
     title: 'Make 3D handoffs easier for client teams',
     summary: 'Discuss delivery standards, storefront integration, or a catalog rollout.',

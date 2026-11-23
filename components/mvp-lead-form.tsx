@@ -63,7 +63,7 @@ export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }:
 
   if (!selected) return <div className={styles.offerPicker}>
     <h2 ref={heading} tabIndex={-1}>Choose a service</h2>
-    <h3>Done for You</h3>
+    <h3>Model creation and optimization</h3>
     {commerceOffers.map((offer, index) => (
       <div className={styles.offerChoice} key={offer.id}>
         {index > 0 && commerceOffers[index - 1].service !== offer.service && <h3>{offer.service}</h3>}

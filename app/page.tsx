@@ -15,7 +15,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "Organization", "@id": "https://www.topostitch.dev/#organization", name: "TopoStitch", url: "https://www.topostitch.dev", email: "hello@topostitch.dev" },
-    { "@type": "Service", name: "Product 3D preparation and creation", provider: { "@id": "https://www.topostitch.dev/#organization" }, serviceType: "3D product asset preparation and done-for-you production for ecommerce merchants", url: "https://www.topostitch.dev/services", description: "Product eligibility and scope are reviewed before payment. Existing-model preparation, product model creation, and custom workflow assistance." },
+    { "@type": "Service", name: "Product 3D preparation and creation", provider: { "@id": "https://www.topostitch.dev/#organization" }, serviceType: "3D product asset preparation and done-for-you production for ecommerce merchants", url: "https://www.topostitch.dev/services", description: "Existing-model preparation, product model creation, and custom workflow assistance." },
   ],
 };
 
@@ -41,7 +41,7 @@ export default function HomePage() {
           <h1>3D product models for ecommerce.</h1>
           <p>Get a model made, fix an existing 3D file, or get expert help publishing 3D on your storefront.</p>
           <Link className={styles.button} href="/services">Explore 3D services</Link>
-          <p className={styles.note}>Start with one product. We review it before you pay.</p>
+          <p className={styles.note}>Start with one product or get help planning a wider rollout.</p>
         </div>
         <figure className={styles.figure}>
           <Image className={styles.heroImage} src="/hero_graphic.webp"
@@ -64,12 +64,12 @@ export default function HomePage() {
         </div>
         <div className={`${styles.grid} ${styles.two}`}>
           <article className={styles.card}>
-            <h3>Done for You</h3>
+            <h3>Get a model made or optimized</h3>
             <p>We create a new product model or prepare the one you already have for your storefront.</p>
             <Link href="/services#done-for-you">Explore 3D production</Link>
           </article>
           <article className={styles.card}>
-            <h3>Done with You</h3>
+            <h3>Get help with your 3D workflow</h3>
             <p>We work with your team or agency on capture, asset standards, integration, and handoff.</p>
             <Link href="/services#done-with-you">Explore consulting and support</Link>
           </article>
@@ -108,8 +108,8 @@ export default function HomePage() {
       <section className={styles.section} id="how-it-works">
         <div className={styles.sectionIntro}><h2>How it works</h2></div>
         <ol className={`${styles.grid} ${styles.stepList}`}>
-          <li><h3>Share one product</h3><p>Tell us what you have and where you want to use it. We confirm the scope and price before payment.</p></li>
-          <li><h3>We do the agreed work</h3><p>After approval and payment, we collect the agreed files or send shipping instructions, then create or optimize the model, or work with your team on the agreed plan.</p></li>
+          <li><h3>Share one product</h3><p>Choose a service based on what you have and where you want to use it.</p></li>
+          <li><h3>We do the agreed work</h3><p>Once your project starts, we collect the agreed files or send shipping instructions, then create or optimize the model, or work with your team on the agreed plan.</p></li>
           <li><h3>Review and handoff</h3><p>Review what we’ve prepared and receive the agreed files, recommendations, or handoff guidance.</p></li>
         </ol>
       </section>
@@ -126,40 +126,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.sectionIntro}><h2>Requirements for your storefront</h2><p>Find requirements and options for your destination.</p></div>
-        <ul className={styles.grid}>
-          <li className={styles.card}><Link href="/services/amazon-3d-modeling">3D product modeling for Amazon sellers</Link></li>
-          <li className={styles.card}><Link href="/services/shopify-3d-models">Shopify 3D model creation and preparation</Link></li>
-          <li className={styles.card}><Link href="/services/3d-product-modeling">Ecommerce 3D modeling, optimization, and consulting</Link></li>
-        </ul>
-      </section>
-
       <CommerceProof />
       <CommerceFaqs />
 
-      <section className={`${styles.section} ${styles.action}`} id="early-access">
-        <h2>Bring us one product</h2>
-        <p>Share what you’re working with and where it needs to appear. We’ll recommend a next step.</p>
-        <Link href="/services" className={styles.button}>Explore 3D services</Link>
-        <p>Prefer to follow along? <Link href="/updates">Get service updates</Link>.</p>
-      </section>
-
-      <footer className={styles.footer}>
-        <Link href="/" aria-label="TopoStitch home">
-          <Image
-            src="/brand/topostitch-mark-dark.svg"
-            alt="TopoStitch"
-            width={200}
-            height={64}
-          />
-        </Link>
-
-
-        <a href="/about">About</a>
-        <a href="/privacy">Privacy</a>
-        <a href="mailto:hello@topostitch.dev">Contact</a>
-      </footer>
+      <div className={styles.closingLinks} id="early-access">
+        <Link href="/services#compare" className={styles.button}>Compare 3D services</Link>
+        <Link href="/request?offer=custom">Ask about your project</Link>
+      </div>
     </main>
   );
 }

@@ -49,7 +49,7 @@ export const servicePages = {
     questions: [
       ['What affects the price?', 'The starting asset, product complexity, materials, missing references, number of variants, destination, and integration work determine the quote. Company size alone does not define the amount of production work.'],
       ['Can I ship a product for capture?', 'Physical capture can be discussed during scope review. Do not ship anything until capture suitability, handling, shipping, and return arrangements have been agreed.'],
-      ['Can you work with our existing team?', 'Yes. Done with You covers asset review, capture planning, storefront requirements, and handoff. We agree on the deliverables before work begins.'],
+      ['Can you work with our existing team?', 'Yes. Our consulting and integration services cover asset review, capture planning, storefront requirements, and handoff. We agree on the deliverables before work begins.'],
     ],
     sources: [['Shopify: commissioning product models', 'https://help.shopify.com/en/manual/products/product-media/expert-3d-model'], ['Amazon: product 3D experiences', 'https://sell.amazon.com/tools/3d-ar']],
   },

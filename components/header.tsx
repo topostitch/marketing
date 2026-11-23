@@ -9,7 +9,6 @@ const links = [
   ['Services', '/services'],
   ['How it works', '/#how-it-works'],
   ['About', '/about'],
-  ['Service updates', '/updates'],
   ['Request a review', '/request'],
 ]
 

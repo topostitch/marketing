@@ -41,7 +41,7 @@
 }
 .button:hover { background: #393a34; color: var(--white); }
 
-.hero, .section, .footer, .headerInner { width: var(--measure); margin-inline: auto; }
+.hero, .section, .footerInner, .headerInner { width: var(--measure); margin-inline: auto; }
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -99,19 +99,6 @@
 .stepList p { margin-top: .4rem; color: var(--muted); }
 .action { display: grid; justify-items: start; gap: .8rem; }
 .action p { max-width: 60ch; color: var(--muted); }
-.footer {
-  padding-block: 1.1rem;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: .25rem 1.3rem;
-  align-items: center;
-  font-size: .9rem;
-}
-.footer a { min-height: 44px; display: inline-flex; align-items: center; }
-.footer a:first-child { margin-inline-end: auto; }
-.footer img { width: 7.75rem; height: auto; }
-
 .editorial { width: min(68ch, var(--measure)); margin-inline: auto; padding-block: clamp(2.25rem, 5vw, 4.25rem); }
 .editorialHeader { display: grid; gap: .85rem; padding-bottom: 1.5rem; }
 .editorialHeader > p { color: var(--muted); }
@@ -221,3 +208,36 @@
 }
 
 .editorial .requestCompare { margin-top: 1rem; }
+
+.siteFooter {
+  --ink: #171714;
+  --muted: #575950;
+  --white: #fffefa;
+  --line: #d9d7cd;
+  --measure: min(73.75rem, calc(100% - clamp(2.25rem, 8vw, 6rem)));
+  color: var(--ink);
+  background: #ebe8dd;
+  border-top: 1px solid var(--line);
+}
+.footerSignup {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  padding-block: clamp(1.5rem, 4vw, 2.25rem);
+}
+.footerSignup h2 { font-size: 1.3rem; font-weight: 650; line-height: 1.3; margin-bottom: .4rem; }
+.footerSignup p { color: var(--muted); }
+.footerForm.form { background: transparent; border: 0; padding: 0; gap: .55rem; }
+.signupFields { display: flex; align-items: stretch; gap: .5rem; }
+.signupFields label { flex: 1; min-width: 0; }
+.footerBar, .footerBar nav, .closingLinks { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; }
+.footerBar { justify-content: space-between; border-top: 1px solid var(--line); padding-block: .8rem; font-size: .9rem; }
+.footerBar a { display: inline-flex; align-items: center; min-height: 44px; }
+.footerBar img { width: 8rem; height: auto; }
+.siteFooter a:not(:has(img)) { text-decoration: underline; text-underline-offset: .22em; }
+.closingLinks { width: var(--measure); margin-inline: auto; padding-block: clamp(1.35rem, 4vw, 2.25rem); }
+.closingLinks a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width: 650px) {
+  .footerSignup { grid-template-columns: 1fr; }
+}
