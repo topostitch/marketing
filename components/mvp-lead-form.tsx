@@ -67,7 +67,7 @@ export default function MvpLeadForm({ defaultPlatform = "" }: { defaultPlatform?
       setStatus("error");
       setError(err instanceof Error ? err.message : "Please try again or email hello@topostitch.dev.");
       record("inquiry_error", interest);
-      statusRef.current?.focus();
+
     }
   }
 
