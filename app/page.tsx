@@ -9,7 +9,7 @@ import styles from "./commerce-validation.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: "3D Product Modeling for Amazon & Shopify | TopoStitch" },
-  description: "Independent 3D product modeling services for Amazon and Shopify merchants. Create or optimize product models with a reviewed scope and pilot pricing.",
+  description: "Independent 3D product modeling services for Amazon and Shopify merchants. Prepare an existing model or apply for a founder-led Ship-to-3D pilot.",
   alternates: { canonical: "/" },
 };
 
@@ -93,9 +93,7 @@ export default function HomePage() {
 
           <Reveal delay={0.14}>
             <p className={styles.heroCopy}>
-              Create or prepare product models with a clear scope, quality review,
-              and files for your intended destination. Bring an existing model
-              or start with one product and suitable imagery.
+              Bring an existing 3D model or apply to ship us one product for capture. We review what you need and agree on the deliverables before you pay.
             </p>
           </Reveal>
 
@@ -225,7 +223,7 @@ export default function HomePage() {
           <article className={`${styles.pathCard} ${styles.studioCard}`}>
             <span className={styles.pathTag}>Done for you</span><h3>E-commerce Ready</h3>
             <p className={styles.price}>From $299 <span>/ product</span></p>
-            <p>Create one eligible product model from suitable imagery.</p>
+            <p>We create and check one 3D model for an eligible product. Apply to ship your item for capture or tell us what imagery you already have.</p>
             <ul><li>Image coverage and feasibility review</li><li>Model creation, QA, and optimization</li><li>Files for one agreed commerce destination</li></ul>
             <a href="?offer=ecommerce#early-access" data-offer="ecommerce">Request E-commerce Ready</a>
           </article>
@@ -266,7 +264,7 @@ export default function HomePage() {
               <span>02</span>
               <h3>We prepare the asset</h3>
               <p>
-                After you accept the scope and pay, we create or prepare the model and review it against the agreed requirements.
+                Once the scope is approved and payment is confirmed, we collect your agreed inputs or send shipping instructions. We then create or prepare the model and check it against the scope.
               </p>
             </article>
           </Reveal>
@@ -337,7 +335,7 @@ export default function HomePage() {
           />
         </Link>
 
-        <p>Your product. Ready for 3D. Built to sell.</p>
+        <p>3D product models for ecommerce.</p>
 
         <a href="/about">About</a>
         <a href="/privacy">Privacy</a>

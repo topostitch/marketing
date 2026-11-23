@@ -68,7 +68,7 @@ export default function PlatformHero() {
               </Link>
 
               <Link
-                href="/#contact"
+                href="/#early-access"
                 className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted/60"
               >
                 Discuss a pilot

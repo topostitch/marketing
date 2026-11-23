@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
+    'Founder-led 3D product pilots for ecommerce merchants. Bring an existing model or apply for a one-product Ship-to-3D pilot.',
 
   applicationName: 'TopoStitch',
   robots: { index: true, follow: true },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'TopoStitch',
     title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Product 3D preparation and paid pilots for Amazon and Shopify merchants.',
+      'Founder-led product 3D preparation and Ship-to-3D pilots for ecommerce merchants.',
     url: 'https://www.topostitch.dev',
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: { url: '/favicon.svg?v=2', type: 'image/svg+xml', sizes: 'any' },
+    icon: { url: '/favicon.svg?v=3', type: 'image/svg+xml', sizes: 'any' },
     apple: '/apple-icon.png',
   },
 }

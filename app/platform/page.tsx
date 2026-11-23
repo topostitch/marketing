@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import PlatformProof from '@/components/platform/platform-proof'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -20,6 +21,10 @@ export default function PlatformPage() {
       <Header />
       <main id="main-content" className="w-full pt-16">
         <PlatformHero />
+        <aside className="mx-auto max-w-5xl px-6 py-8" aria-label="TopoStitch today">
+          <p>Explore TopoStitch’s longer-term work on capture, provenance, and reusable 3D records. The current paid service is a founder-led product 3D pilot.</p>
+          <Link className="underline underline-offset-4" href="/#studio">See current pilot pricing</Link>
+        </aside>
         <PlatformCapabilities />
 	<PlatformProof />
 	<PlatformDiscovery />

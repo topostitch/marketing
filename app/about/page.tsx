@@ -64,9 +64,7 @@ export default function AboutPage() {
 
         <Reveal delay={0.14}>
           <p className={styles.heroCopy}>
-            TopoStitch is exploring a simpler way for Amazon and Shopify merchants
-            to turn one physical product into reusable digital content for
-            ecommerce, marketing, 3D, AR, and more.
+            TopoStitch is building a simpler way to turn physical products into reusable digital assets. We’re starting with founder-led pilots that create or prepare one 3D product model for an agreed ecommerce destination.
           </p>
         </Reveal>
       </section>
@@ -295,7 +293,7 @@ export default function AboutPage() {
               business needs.
             </p>
 
-            <Link href="/#early-access">Start a product pilot</Link>
+            <Link href="/#early-access">Request a product pilot</Link>
           </div>
         </Reveal>
       </section>

@@ -42,7 +42,7 @@ const proofs = [
     eyebrow: 'Publishing & delivery',
     title: 'Prepare records for publishing and reuse',
     description:
-      'Public record publishing is available today. Embeds, reusable delivery formats, and starter-code handoff are being developed and tested so future outputs can stay connected to the source record.',
+      'The platform prototype demonstrates public record publishing. Embeds, reusable delivery formats, and starter-code handoff are being developed and tested so future outputs can stay connected to the source record.',
     image: '/product/publish-embed-export.webp',
     imageAlt:
       'TopoStitch export and publishing interface showing options for GLB, USDZ, model-viewer, Three.js, embed code, and reusable delivery files.',

@@ -47,7 +47,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/#early-access" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </Link>
             <Link
@@ -82,7 +82,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/#contact" onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-sm text-foreground hover:bg-muted">
+              <Link href="/#early-access" onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-sm text-foreground hover:bg-muted">
                 Contact
               </Link>
             </div>

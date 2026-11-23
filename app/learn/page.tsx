@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import LearnHero from '@/components/learn/learn-hero'
@@ -21,6 +22,10 @@ export default function LearnPage() {
       <Header />
       <main id="main-content" className="w-full pt-16">
         <LearnHero />
+        <aside className="mx-auto max-w-5xl px-6 py-8" aria-label="TopoStitch today">
+          <p>This is our learning roadmap for capture and preservation. Planned guides are marked below. If you’re preparing a product for ecommerce today, start with the pilot requirements.</p>
+          <Link className="underline underline-offset-4" href="/services/3d-product-modeling">Explore ecommerce 3D services</Link>
+        </aside>
         <LearnIntro />
         <GuidesAndArticles />
         <CorePrinciples />

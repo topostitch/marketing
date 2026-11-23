@@ -17,7 +17,7 @@ export default function PrivacyPage() {
       <h2>Project inquiries</h2>
       <p>TopoStitch LLC uses the name, email address, company, store link, project details, and preferences you submit to respond to your request, assess your project, and prepare a proposal. Please do not submit payment information, sensitive personal information, or confidential files.</p>
       <h2>How information is handled</h2>
-      <p>The website is hosted by Vercel. Inquiry details are saved in TopoStitch’s Airtable customer and inquiry records. Email notifications are handled through Resend. Campaign labels included in the page URL may be attached to your inquiry to help us understand how you found us. We do not include your name, email, store URL, or message in our custom analytics events.</p>
+      <p>The website is hosted by Vercel. Inquiry details are saved in TopoStitch’s Airtable customer and inquiry records. Email notifications are handled through Resend. Approved pilot payments are collected through Stripe-hosted checkout. Stripe processes card details, and TopoStitch uses the resulting payment status and order reference to reconcile the approved order. Campaign labels included in the page URL may be attached to your inquiry to help us understand how you found us. We do not include your name, email, store URL, or message in our custom analytics events.</p>
       <h2>Analytics and updates</h2>
       <p>We use Vercel Web Analytics to understand website visits and interactions with the inquiry form. Requesting project help does not subscribe you to marketing. Selecting future platform updates asks us to contact you about that launch; you can ask us to stop at any time.</p>
       <h2>Your choices</h2>
