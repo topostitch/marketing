@@ -4,7 +4,6 @@ import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
 import CommerceProof from "@/components/commerce-proof";
 import CommerceFaqs from "@/components/commerce-faqs";
-import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "./commerce-validation.module.css";
 
 export const metadata: Metadata = {
@@ -32,47 +31,6 @@ export default function HomePage() {
   return (
     <main id="main-content" className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
-      <header className={styles.header}>
-        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
-          <Image
-            src="/brand/topostitch-mark-dark.svg"
-            alt="TopoStitch"
-            width={200}
-            height={64}
-            className={styles.brandMark}
-          />
-        </Link>
-
-        <nav className={styles.nav} aria-label="Main navigation">
-          <a href="/#how-it-works">How it works</a>
-          <a href="/#studio">Pilot pricing</a>
-          <a href="/#why-3d">Why 3D</a>
-          <a href="/#services">3D services</a>
-          <a href="/about">About</a>
-          <Link className={styles.navCta} href="/#early-access">
-            Start a product pilot
-          </Link>
-        </nav>
-
-        <details className={styles.mobileNav}>
-          <summary className={styles.mobileNavTrigger} aria-label="Open navigation">
-            <span />
-            <span />
-            <span />
-          </summary>
-
-          <div className={styles.mobileNavPanel}>
-            <a href="/#how-it-works">How it works</a>
-            <a href="/#studio">Pilot pricing</a>
-          <a href="/#why-3d">Why 3D</a>
-          <a href="/#services">3D services</a>
-            <a href="/about">About</a>
-            <a className={styles.mobileNavCta} href="/#early-access">
-              Start a product pilot
-            </a>
-          </div>
-        </details>
-      </header>
 
       <section className={styles.hero}>
         <div className={styles.heroCopyColumn}>
@@ -99,7 +57,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className={styles.heroActions}>
-              <a className={styles.primaryButton} href="#early-access">
+              <a className={styles.primaryButton} href="/request">
                 Start a product pilot
               </a>
 
@@ -218,21 +176,21 @@ export default function HomePage() {
             <p className={styles.price}>From $149 <span>/ product</span></p>
             <p>Prepare one suitable existing 3D model for its next use.</p>
             <ul><li>Source model review</li><li>Optimization and agreed file conversion</li><li>Delivery with a handoff checklist</li></ul>
-            <a href="?offer=basic#early-access" data-offer="basic">Request Basic</a>
+            <a href="/request?offer=basic">Request Basic</a>
           </article>
           <article className={`${styles.pathCard} ${styles.studioCard}`}>
             <span className={styles.pathTag}>Done for you</span><h3>E-commerce Ready</h3>
             <p className={styles.price}>From $299 <span>/ product</span></p>
             <p>We create and check one 3D model for an eligible product. Apply to ship your item for capture or tell us what imagery you already have.</p>
             <ul><li>Image coverage and feasibility review</li><li>Model creation, QA, and optimization</li><li>Files for one agreed commerce destination</li></ul>
-            <a href="?offer=ecommerce#early-access" data-offer="ecommerce">Request E-commerce Ready</a>
+            <a href="/request?offer=ecommerce">Request E-commerce Ready</a>
           </article>
           <article className={styles.pathCard}>
             <span className={styles.pathTag}>Work with your team</span><h3>Guided or custom</h3>
             <p className={styles.price}>Let&apos;s scope it</p>
             <p>Help for projects that need more than one standard asset.</p>
             <ul><li>Guided capture and workflow consulting</li><li>Catalogs, variants, or implementation</li><li>Agency and integration partnerships</li></ul>
-            <a href="?offer=custom#early-access" data-offer="custom">Discuss your project</a>
+            <a href="/request?offer=custom">Discuss your project</a>
           </article>
         </div>
         <p className={styles.evidenceNote}>Starting prices apply to eligible products and suitable source material. Final scope, revisions, turnaround, and price are confirmed before payment. Capture, shipping, complex modeling, variants, and store implementation are quoted separately. No payment is taken through this inquiry form.</p>
@@ -320,7 +278,8 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <MvpLeadForm />
+          <Link className={styles.primaryButton} href="/request">Request a product review</Link>
+          <Link href="/updates">Get launch updates</Link>
         </Reveal>
       </section>
 

@@ -1,3 +1,4 @@
+import Header from '@/components/header'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     'Founder-led 3D product pilots for ecommerce merchants. Bring an existing model or apply for a one-product Ship-to-3D pilot.',
 
   applicationName: 'TopoStitch',
-  robots: { index: true, follow: true },
+  robots: { index: !process.env.VERCEL || process.env.VERCEL_ENV === 'production', follow: true },
 
   openGraph: {
     type: 'website',
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to main content
         </a>
         <noscript><style>{`.scroll-reveal { opacity: 1 !important; transform: none !important; }`}</style></noscript>
+        <Header />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

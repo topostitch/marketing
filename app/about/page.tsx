@@ -9,43 +9,6 @@ export const metadata: Metadata = { title: "About TopoStitch", description: "Mee
 export default function AboutPage() {
   return (
     <main id="main-content" className={styles.page}>
-      <header className={styles.header}>
-        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
-          <Image
-            src="/brand/topostitch-mark-dark.svg"
-            alt="TopoStitch"
-            width={200}
-            height={64}
-            className={styles.brandMark}
-          />
-        </Link>
-
-        <nav className={styles.nav} aria-label="Main navigation">
-          <a href="/#how-it-works">How it works</a>
-          <a href="/#studio">Studio</a>
-          <a href="/about">About</a>
-          <Link className={styles.navCta} href="/#early-access">
-            Start a product pilot
-          </Link>
-        </nav>
-
-        <details className={styles.mobileNav}>
-          <summary className={styles.mobileNavTrigger} aria-label="Open navigation">
-            <span />
-            <span />
-            <span />
-          </summary>
-
-          <div className={styles.mobileNavPanel}>
-            <a href="/#how-it-works">How it works</a>
-            <a href="/#studio">Studio</a>
-            <a href="/about">About</a>
-            <a className={styles.mobileNavCta} href="/#early-access">
-              Start a product pilot
-            </a>
-          </div>
-        </details>
-      </header>
 
       <section className={styles.aboutHero}>
         <Reveal>
@@ -293,7 +256,7 @@ export default function AboutPage() {
               business needs.
             </p>
 
-            <Link href="/#early-access">Request a product pilot</Link>
+            <Link href="/request">Request a product pilot</Link>
           </div>
         </Reveal>
       </section>

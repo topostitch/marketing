@@ -19,10 +19,11 @@ export async function POST(request: Request) {
     try { body = JSON.parse(raw); } catch { return NextResponse.json({ error: "Invalid request." }, { status: 400 }); }
     if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
-    const name = String(body.name ?? "").trim();
+    const updates = body.interest === "early-access" && body.optIn === "yes";
     const email = String(body.email ?? "").trim();
+    const name = updates ? email.split("@")[0].slice(0, 120) : String(body.name ?? "").trim();
     const organization = String(body.organization ?? "").trim();
-    let message = String(body.message ?? "").trim();
+    let message = updates ? `Email updates opt-in recorded on ${new Date().toISOString()}. Topics: pilot openings, product 3D examples, and platform news.` : String(body.message ?? "").trim();
     const website = String(body.website ?? "").trim();
 
     if (website) {
@@ -44,7 +45,8 @@ export async function POST(request: Request) {
     }
 
     if (name.length > 120 || email.length > 254 || organization.length > 200 || message.length > 5000) return NextResponse.json({ error: "Please shorten your name, company, or message." }, { status: 400 });
-    if (body.interest !== undefined) {
+    if (body.interest === "early-access" && !updates) return NextResponse.json({ error: "Please opt in to receive updates." }, { status: 400 });
+    if (body.interest !== undefined && !updates) {
       const interests: Record<string, string> = { basic: "Basic · from $149 / product", ecommerce: "E-commerce Ready · from $299 / product", custom: "Guided / consulting / custom", partnership: "Agency / integration partnership", "early-access": "Future platform updates" };
       const interest = interests[String(body.interest)];
       const product = String(body.product ?? "").trim();
@@ -69,6 +71,8 @@ export async function POST(request: Request) {
       console.error("Unable to save inquiry.");
       return NextResponse.json({ error: "We could not save your request. Please try again or email hello@topostitch.dev." }, { status: 503 });
     }
+
+    if (updates) return NextResponse.json({ success: true, inquiryId });
 
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL;
