@@ -25,7 +25,12 @@ const outputs = [
   { title: "Product context with AR", description: "Prepare suitable products for supported augmented reality experiences.", image: "/AR.webp", alt: "Illustration of a product placed in a room using augmented reality." },
 ];
 
-const audiences = ["Marketplace sellers", "Direct-to-consumer brands", "Manufacturers and product teams", "Teams with existing 3D assets"];
+const audiences = [
+  { title: "Create your first product model", description: "Sellers, brands, and manufacturers can start with one product and an agreed storefront or marketplace." },
+  { title: "Make existing 3D files usable", description: "Designers, OEMs, and teams that inherited a 3D library can bring CAD, vendor files, or existing models for a review of format, scale, materials, and file size." },
+  { title: "Integrate and support 3D", description: "Developers, agencies, and integration teams can discuss file requirements, storefront compatibility, and a handoff they can maintain." },
+  { title: "Scope a rollout", description: "Ecommerce leads, product owners, and other decision-makers can start with one SKU and agree on deliverables, acceptance criteria, and the work needed for a wider rollout." },
+];
 
 export default function HomePage() {
   return (
@@ -241,15 +246,18 @@ export default function HomePage() {
 
       <section className={styles.audienceSection}>
         <div>
-          <p className={styles.kicker}>For merchants investing in product understanding</p>
+          <p className={styles.kicker}>Who we work with</p>
           <h2>
-            Already using 3D, or ready to try it?
+            Create, improve, or put product 3D to work.
           </h2>
         </div>
 
         <div className={styles.audienceGrid}>
           {audiences.map((audience) => (
-            <span key={audience}>{audience}</span>
+            <article key={audience.title} className={styles.pathCard}>
+              <h3>{audience.title}</h3>
+              <p>{audience.description}</p>
+            </article>
           ))}
         </div>
       </section>
