@@ -39,21 +39,15 @@ export default function HomePage() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopyColumn}>
-          <Reveal delay={0}>
-            <div className={styles.eyebrow}>
-              For ecommerce brands, manufacturers, and their 3D teams
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.06}>
+<Reveal delay={0.06}>
             <h1>
-              Get your product 3D model ready to publish.
+              3D product models for ecommerce.
             </h1>
           </Reveal>
 
           <Reveal delay={0.14}>
             <p className={styles.heroCopy}>
-              Start with one physical product, an existing model, or CAD. TopoStitch creates or prepares the 3D asset for Shopify, Amazon, or your agreed destination.
+              Bring a product or an existing 3D file. We create or optimize your model for Shopify, Amazon, or your storefront.
             </p>
           </Reveal>
 
@@ -65,7 +59,7 @@ export default function HomePage() {
 
           <Reveal delay={0.26}>
             <p className={styles.microcopy}>
-              Work directly with founder Jacob Galito. You’ll get a recommended approach before you approve a scope or pay.
+              We review your product before you pay.
             </p>
           </Reveal>
         </div>
