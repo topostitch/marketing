@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { track } from "@vercel/analytics";
 import styles from "@/app/marketing-layout.module.css";
-
 import { commerceOffers } from "@/lib/commerce-offers";
 
 function record(event: string, offer: string) {
@@ -15,15 +14,14 @@ export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }:
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
-  const interacted = useRef(false);
   const submitting = useRef(false);
   const inquiryId = useRef<string | null>(null);
 
   const complete = status === "success";
 
   useEffect(() => {
-    if (interacted.current) heading.current?.focus();
-  }, [selected, complete]);
+    if (complete) heading.current?.focus();
+  }, [complete]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +42,6 @@ export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }:
       });
       const body = await response.json().catch(() => null);
       if (!response.ok) throw new Error(body?.error || "We couldn’t send your request. Please try again.");
-      interacted.current = true;
       setStatus("success");
       record("inquiry_received", selected.id);
     } catch (err) {
@@ -56,55 +53,51 @@ export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }:
     }
   }
 
-  if (complete) return <div className={styles.card}>
+  if (complete) return <div className={`${styles.card} ${styles.requestSuccess}`}>
     <h2 ref={heading} tabIndex={-1}>Request received</h2>
     <p>We’ll email you to confirm fit, scope, and pricing. Once you approve the scope, we’ll send a secure payment link or invoice.</p>
   </div>;
 
-  if (!selected) return <div className={styles.offerPicker}>
-    <h2 ref={heading} tabIndex={-1}>Choose a service</h2>
-    <h3>Model creation and optimization</h3>
-    {commerceOffers.map((offer, index) => (
-      <div className={styles.offerChoice} key={offer.id}>
-        {index > 0 && commerceOffers[index - 1].service !== offer.service && <h3>{offer.service}</h3>}
-        <button type="button" className={styles.card} onClick={() => {
-          interacted.current = true;
-          setSelected(offer);
-          record("inquiry_started", offer.id);
-        }}>
-          <strong>{offer.name}</strong>
-          <span className={styles.note}>{offer.price}</span>
-          <span>{offer.summary}</span>
-        </button>
-      </div>
-    ))}
-  </div>;
-
   return (
-    <form className={styles.form} onSubmit={submit} aria-busy={status === "submitting"}>
-      <div className={styles.selection}>
-        <h2 ref={heading} tabIndex={-1}>{selected.name}</h2>
-        <button type="button" disabled={status === "submitting"} onClick={() => {
-          interacted.current = true;
-          inquiryId.current = null;
-          setStatus("idle");
-          setSelected(undefined);
-        }}>Change service</button>
-      </div>
-      <p>{selected.price}. No payment is due now.</p>
-      <div hidden><label>Leave blank<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      <label>Your name<input name="name" autoComplete="name" maxLength={120} required /></label>
-      <label>Email<input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
-      <label>{selected.id === "basic" || selected.id === "ecommerce" ? "What product or model should we review?" : "What would you like help with?"}
-        <textarea name="message" rows={3} maxLength={5000} required />
-      </label>
-      <label className={styles.consent}><input name="consent" type="checkbox" value="yes" required />
-        <span>TopoStitch may email me about this request. <a href="/privacy">Privacy notice</a></span>
-      </label>
-      <button className={styles.button} disabled={status === "submitting"} type="submit">
-        {status === "submitting" ? "Sending…" : "Request a review"}
-      </button>
+    <form className={`${styles.form} ${styles.requestForm}`} onSubmit={submit} aria-busy={status === "submitting"}>
+      <fieldset disabled={status === "submitting"}>
+        <div>
+          <label>
+            Service
+            <select value={selected?.id ?? ""} required onChange={event => {
+              const offer = commerceOffers.find(item => item.id === event.target.value);
+              setSelected(offer);
+              inquiryId.current = null;
+              setError("");
+              setStatus("idle");
+              if (offer) record("inquiry_started", offer.id);
+            }} aria-describedby={selected ? "request-price" : undefined}>
+              <option value="" disabled>Select a service</option>
+              {commerceOffers.map(offer => <option key={offer.id} value={offer.id}>{offer.name}</option>)}
+            </select>
+          </label>
+          {selected && <p className={styles.note} id="request-price">{selected.price}</p>}
+        </div>
+        <div className={styles.requestContact}>
+          <label>Your name<input name="name" autoComplete="name" maxLength={120} required /></label>
+          <label>Email address<input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
+        </div>
+        <label>Project details
+          <textarea name="message" rows={3} maxLength={5000}
+            placeholder="What are you working on, and what would you like help with?" required />
+        </label>
+        <div hidden><label>Leave blank<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+        <label className={styles.consent}><input name="consent" type="checkbox" value="yes" required />
+          <span>TopoStitch may email me about this request. <a href="/privacy">Privacy notice</a></span>
+        </label>
+      </fieldset>
       {status === "error" && <p role="alert">{error}</p>}
+      <div className={styles.requestActions}>
+        <button className={styles.button} disabled={status === "submitting"} type="submit">
+          {status === "submitting" ? "Sending…" : "Send request"}
+        </button>
+        <p className={styles.note}>No payment due now.</p>
+      </div>
     </form>
   );
 }

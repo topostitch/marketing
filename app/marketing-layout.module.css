@@ -149,12 +149,6 @@
 .form :is(input, textarea, select, button):focus-visible { outline: 3px solid #174a83; outline-offset: 3px; }
 .form button:disabled { opacity: .68; cursor: wait; }
 .form p[role=alert] { color: #9d2424; }
-.offerPicker { display: grid; gap: .6rem; }
-.offerPicker button { width: 100%; min-height: 44px; text-align: start; cursor: pointer; }
-.offerPicker button:hover { border-color: #79796f; }
-.selection { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; align-items: center; }
-.selection button { min-height: 44px; text-decoration: underline; text-underline-offset: .2em; }
-
 .heroImage, .aboutImage {
   display: block;
   width: 100%;
@@ -164,10 +158,6 @@
   object-position: center 55%;
   border-radius: .8rem;
 }
-.offerChoice { display: grid; gap: .55rem; }
-.offerPicker .offerChoice:has(h3) { margin-top: .65rem; }
-.form h2, .offerPicker h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); }
-
 .salesIntro {
   width: var(--measure);
   margin-inline: auto;
@@ -207,8 +197,6 @@
   .salesOffer, .compareGrid { grid-template-columns: 1fr; }
 }
 
-.editorial .requestCompare { margin-top: 1rem; }
-
 .siteFooter {
   --ink: #171714;
   --muted: #575950;
@@ -240,4 +228,33 @@
 .closingLinks a { min-height: 44px; display: inline-flex; align-items: center; }
 @media (max-width: 650px) {
   .footerSignup { grid-template-columns: 1fr; }
+}
+
+
+.page.requestPage { min-height: auto; }
+.requestLayout {
+  width: min(63rem, var(--measure));
+  margin-inline: auto;
+  padding-block: clamp(1.75rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(1.25rem, 5vw, 4rem);
+  align-items: start;
+}
+.requestIntro { display: grid; justify-items: start; gap: .75rem; }
+.requestIntro h1 { font-size: clamp(2rem, 3.5vw, 3.15rem); line-height: 1.08; }
+.requestIntro p { max-width: 34ch; color: var(--muted); }
+.requestIntro a { min-height: 44px; display: inline-flex; align-items: center; }
+.requestForm fieldset { display: grid; gap: .9rem; min-inline-size: 0; }
+.requestForm select { appearance: auto; }
+.requestForm [id="request-price"] { margin-top: .3rem; }
+.requestContact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.requestActions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; }
+.requestSuccess h2 { font-size: 1.5rem; }
+
+@media (max-width: 740px) {
+  .requestLayout { max-width: 35rem; grid-template-columns: 1fr; }
+}
+@media (max-width: 450px) {
+  .requestContact { grid-template-columns: 1fr; gap: .9rem; }
 }
