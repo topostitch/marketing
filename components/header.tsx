@@ -9,7 +9,7 @@ const links = [
   ['Services', '/services'],
   ['How it works', '/#how-it-works'],
   ['About', '/about'],
-  ['Request a review', '/request'],
+  ['Packages', '/checkout'],
 ]
 
 export default function Header() {

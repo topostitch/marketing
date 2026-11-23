@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { commerceOffers } from '@/lib/commerce-offers';
-import { paymentLink, paymentOffers } from '@/lib/payments';
+import { paymentLink, paymentOffers, sandboxCheckoutLink } from '@/lib/payments';
 import styles from '../marketing-layout.module.css';
 
 export const metadata: Metadata = {
@@ -21,6 +21,9 @@ const illustrations = {
 export default function ServicesPage() {
   const offerings = commerceOffers.map(offer => {
     const standard = offer.id === 'basic' || offer.id === 'ecommerce';
+    if (standard && sandboxCheckoutLink(offer.id)) {
+      return { ...offer, href: `/checkout/${offer.id}`, cta: `Test checkout · ${offer.name}`, price: `${paymentOffers[offer.id].price} per product`, direct: false };
+    }
     if (standard && paymentLink(offer.id)) {
       return { ...offer, href: `/checkout/${offer.id}`, cta: `Buy ${offer.name}`, price: `${paymentOffers[offer.id].price} per product`, direct: true };
     }
@@ -36,7 +39,8 @@ export default function ServicesPage() {
         <nav aria-label="Explore services" className={styles.salesNav}>
           <a href="#done-for-you">Get a model made or optimized</a>
           <a href="#done-with-you">Get help with your workflow</a>
-          <a href="#compare" className={styles.button}>Compare offerings</a>
+          <Link href="/checkout" className={styles.button}>Shop packages</Link>
+          <a href="#compare">Compare offerings</a>
         </nav>
       </header>
 

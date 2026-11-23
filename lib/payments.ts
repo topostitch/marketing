@@ -10,15 +10,31 @@ export function paymentLink(offer: PaymentOffer) {
   const value = process.env[paymentOffers[offer].setting];
   const id = process.env[`${paymentOffers[offer].setting}_ID`];
   if (!value || !id?.startsWith('plink_') || !process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET || !process.env.AIRTABLE_TOKEN || !process.env.AIRTABLE_BASE_ID || !process.env.AIRTABLE_CUSTOMERS_TABLE_ID || !process.env.AIRTABLE_ORDERS_TABLE_ID) return null;
+  const url = stripePaymentUrl(value);
+  if (!url) return null;
+  const sandboxLink = url.pathname.startsWith('/test_');
+  if (process.env.VERCEL_ENV === 'preview' && (!sandboxLink || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY))) return null;
+  if (process.env.VERCEL_ENV === 'production' && sandboxLink) return null;
+  return url.href;
+}
+
+function stripePaymentUrl(value: string | undefined) {
+  if (!value) return null;
   try {
     const url = new URL(value);
-    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com' || url.username || url.password || url.port) return null;
-    const sandboxLink = url.pathname.startsWith('/test_');
-    if (process.env.VERCEL_ENV === 'preview' && (!sandboxLink || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY))) return null;
-    if (process.env.VERCEL_ENV === 'production' && sandboxLink) return null;
-    return url.href;
-  } catch { return null; }
+    return url.protocol === 'https:' && url.hostname === 'buy.stripe.com' && !url.username && !url.password && !url.port ? url : null;
+  } catch {
+    return null;
+  }
 }
+
+export function sandboxCheckoutLink(offer: PaymentOffer) {
+  if (process.env.VERCEL_ENV !== 'preview') return null;
+  const url = stripePaymentUrl(process.env[paymentOffers[offer].setting]);
+  // A storefront walkthrough reaches Stripe without submitting a preapproved order reference.
+  return url && /^\/test_[a-zA-Z0-9]+$/.test(url.pathname) ? url.origin + url.pathname : null;
+}
+
 export function verifyStripeSignature(raw: string, header: string, secret: string, now = Date.now()) {
   const parts = header.split(',').map(part => part.trim().split('='));
   const timestamp = parts.find(([key]) => key === 't')?.[1];
