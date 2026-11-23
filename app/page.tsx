@@ -41,38 +41,31 @@ export default function HomePage() {
         <div className={styles.heroCopyColumn}>
           <Reveal delay={0}>
             <div className={styles.eyebrow}>
-              For sellers, brands, and manufacturers
+              For ecommerce brands, manufacturers, and their 3D teams
             </div>
           </Reveal>
 
           <Reveal delay={0.06}>
             <h1>
-              Product 3D for ecommerce.<br />
-              <span>Create a model or improve the one you have.</span>
+              Get your product 3D model ready to publish.
             </h1>
           </Reveal>
 
           <Reveal delay={0.14}>
             <p className={styles.heroCopy}>
-              Need your first 3D model? Start with one physical product. Already have a model or CAD file? Tell us what’s slowing down cleanup, optimization, or publishing. We confirm a scope before payment.
+              Start with one physical product, an existing model, or CAD. TopoStitch creates or prepares the 3D asset for Shopify, Amazon, or your agreed destination.
             </p>
           </Reveal>
 
           <Reveal delay={0.2}>
             <div className={styles.heroActions}>
-              <a className={styles.primaryButton} href="/request">
-                Start a product pilot
-              </a>
-
-              <a className={styles.secondaryButton} href="#studio">
-                See pilot pricing
-              </a>
+              <Link className={styles.primaryButton} href="/request">Request a product review</Link>
             </div>
           </Reveal>
 
           <Reveal delay={0.26}>
             <p className={styles.microcopy}>
-              Founder-led paid pilots. Product eligibility and final price confirmed before payment.
+              Work directly with founder Jacob Galito. You’ll get a recommended approach before you approve a scope or pay.
             </p>
           </Reveal>
         </div>
@@ -85,14 +78,15 @@ export default function HomePage() {
         >
           <div className={styles.heroGraphic}>
             <Image
-              src="/hero_graphic.webp"
-              alt="A physical product transformed into ecommerce imagery, lifestyle photography, interactive 3D, AR, and social content."
+              src="/product/giant-roller-skate-object-record.webp"
+              alt="TopoStitch prototype showing a giant roller skate as a 3D object alongside its published record."
               width={1600}
-              height={1200}
+              height={1000}
               priority
               className={styles.heroGraphicImage}
             />
           </div>
+          <p className={styles.evidenceNote}>TopoStitch prototype showing a captured object in an interactive 3D record. <Link href="/platform">See the workflow</Link>.</p>
         </Reveal>
       </section>
 
@@ -175,7 +169,7 @@ export default function HomePage() {
           <li><strong>Custom 3D quote:</strong> For clear glass, polished metals, gemstones, flexible products, or incomplete references, we can assess whether CAD, manual modeling, or a different capture approach fits your goals. We’ll confirm feasibility and quote the work before you pay.</li>
           <li><strong>Consulting or a different deliverable:</strong> If interactive 3D won’t show what shoppers need, work directly with Jacob on an asset review, a guided capture plan, or a recommendation for product photography, turntable video, or detail images. We’ll discuss which work we can scope and what your team or another specialist would handle.</li>
         </ul>
-        <Link href="/request?offer=custom">Request a product review or custom quote</Link>
+        <Link href="/request?offer=custom">Request a product review</Link>
       </section>
 
       <section className={styles.pathsSection} id="studio">

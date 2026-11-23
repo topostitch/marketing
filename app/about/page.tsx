@@ -4,279 +4,57 @@ import Link from "next/link";
 import Reveal from "@/components/motion/reveal";
 import styles from "../commerce-validation.module.css";
 
-export const metadata: Metadata = { title: "About TopoStitch", description: "Meet the founder behind TopoStitch and its product 3D services for Amazon and Shopify merchants.", alternates: { canonical: "/about" } };
+export const metadata: Metadata = { title: "About TopoStitch", description: "Meet Jacob Galito and learn why TopoStitch helps ecommerce teams turn physical products and existing 3D files into assets they can publish and reuse.", alternates: { canonical: "/about" } };
 
 export default function AboutPage() {
   return (
     <main id="main-content" className={styles.page}>
-
       <section className={styles.aboutHero}>
         <Reveal>
-          <p className={styles.eyebrow}>About TopoStitch</p>
-        </Reveal>
-
-        <Reveal delay={0.06}>
-          <h1>
-            Built for people
-            <br />
-            who make
-            <br />
-            <span>real things.</span>
-          </h1>
-        </Reveal>
-
-        <Reveal delay={0.14}>
-          <p className={styles.heroCopy}>
-            TopoStitch is building a simpler way to turn physical products into reusable digital assets. We’re starting with founder-led pilots that create or prepare one 3D product model for an agreed ecommerce destination.
-          </p>
+          <p className={styles.eyebrow}>Meet the founder</p>
+          <h1>I’m Jacob Galito. I help teams put product 3D to work.</h1>
+          <p className={styles.heroCopy}>If you have a product worth showing from every angle, or a 3D file nobody can get onto the storefront, I can help you decide what it takes to get it there.</p>
         </Reveal>
       </section>
 
-      <section className={styles.outputsSection}>
+      <section className={styles.commerceSection}>
         <Reveal>
-          <div className={styles.sectionIntro}>
-            <div>
-              <p className={styles.kicker}>Why we&apos;re building it</p>
-              <h2>
-                Creating product content shouldn&apos;t mean starting over every
-                time.
-              </h2>
-            </div>
-
-            <p>
-              A new product photo, campaign, marketplace, background, or format
-              often means another round of production work. TopoStitch is being
-              built around a different idea: create one reusable digital version
-              of a product, then keep creating from it.
-            </p>
-          </div>
+          <h2>Having a 3D file is only the beginning.</h2>
+          <p>You might have a CAD file from manufacturing or a model from a vendor. Then someone has to check the scale, materials, file size, and whether it works where shoppers will see it. Sometimes the first challenge is simply figuring out what to ask your team or agency to deliver.</p>
+          <p>I came to this work through product design and augmented reality. Before TopoStitch, I co-founded Ario, where I helped build AR products and co-invented its patented platform. I started TopoStitch by exploring how to capture, process, and publish 3D. That led me to a more practical question: what does a team need to do with the asset once it exists?</p>
         </Reveal>
       </section>
 
       <section className={styles.pathsSection}>
-        <Reveal>
-          <div className={styles.sectionHeading}>
-            <p className={styles.kicker}>The founder</p>
-            <h2>Built from years of product, 3D, and immersive work.</h2>
-          </div>
-        </Reveal>
-
+        <div className={styles.sectionHeading}>
+          <h2>Start with one product and a place to use it.</h2>
+          <p>Tell me what shoppers need to understand, what files you have, and where the asset needs to work. I’ll help you choose a standard pilot, a custom project, or a consulting engagement to plan the work. We agree on the deliverables and price before you pay.</p>
+        </div>
         <div className={styles.pathGrid}>
-          <Reveal amount={0.2}>
-            <article className={styles.pathCard}>
-              <span className={styles.pathTag}>Jacob Galito</span>
-
-              <h3>Designer. Builder. Founder.</h3>
-
-              <p>
-                Jacob&apos;s background spans product design, 3D, immersive
-                technology, digital experiences, and software development.
-              </p>
-
-              <p>
-                Before TopoStitch, he co-founded Ario, an augmented reality
-                company where he served as Creative Director and helped build
-                products for enterprise and government customers.
-              </p>
-
-              <p>
-                He was also a co-inventor on Ario&apos;s patented platform and
-                has worked across interactive product experiences, spatial
-                computing, ecommerce, and emerging technology.
-              </p>
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.08} amount={0.2}>
-            <article className={`${styles.pathCard} ${styles.studioCard}`}>
-              <span className={styles.pathTag}>What changed</span>
-
-              <h3>From building 3D tools to solving a product problem.</h3>
-
-              <p>
-                TopoStitch started from the technology side: making physical
-                capture, 3D processing, and publishing easier.
-              </p>
-
-              <p>
-                The bigger opportunity became clearer over time. The model
-                itself isn&apos;t the end product. It&apos;s the foundation for
-                everything a brand can create from a physical product.
-              </p>
-
-              <p>
-                That&apos;s why we&apos;re now focused on helping Amazon and Shopify merchants turn physical products into reusable
-                digital assets and content.
-              </p>
-            </article>
-          </Reveal>
+          <article className={styles.pathCard}>
+            <h3>See how we’re building the workflow</h3>
+            <Image src="/product/giant-roller-skate-object-record.webp" alt="TopoStitch prototype showing the 3D record of a giant roller skate" width={1600} height={1000} className="h-auto w-full" />
+            <p>This prototype example shows a captured object alongside its published record. <Link href="/platform">Explore the prototype</Link>.</p>
+          </article>
+          <article className={styles.pathCard}>
+            <h3>Who you’ll work with</h3>
+            <p>I spent 12 years in the U.S. Navy and worked in visual storytelling before building digital products. TopoStitch is independent, veteran-owned, minority-owned, and LGBTQ+ owned. Startup Virginia’s Idea Factory helped me sharpen the business through customer discovery.</p>
+            <p>You’ll work directly with me during the pilot, from the first review through handoff.</p>
+          </article>
         </div>
       </section>
 
-      <section className={styles.howSection}>
-        <Reveal>
-          <div className={styles.sectionHeading}>
-            <p className={styles.kicker}>Where we are now</p>
-            <h2>Early by design.</h2>
-          </div>
-        </Reveal>
-
-        <div className={styles.steps}>
-          <Reveal amount={0.2}>
-            <article>
-              <span>01</span>
-              <h3>Build</h3>
-              <p>
-                We&apos;re building the core workflow for turning physical
-                products into reusable digital product assets.
-              </p>
-            </article>
-          </Reveal>
-
-          <div className={styles.stepArrow}>→</div>
-
-          <Reveal delay={0.08} amount={0.2}>
-            <article>
-              <span>02</span>
-              <h3>Test</h3>
-              <p>
-                We&apos;re working with Amazon and Shopify merchants to understand
-                which outcomes are actually worth paying for.
-              </p>
-            </article>
-          </Reveal>
-
-          <div className={styles.stepArrow}>→</div>
-
-          <Reveal delay={0.16} amount={0.2}>
-            <article>
-              <span>03</span>
-              <h3>Learn</h3>
-              <p>
-                The goal is not to pretend the product is finished. It&apos;s to
-                build the right thing with real customers.
-              </p>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className={styles.identitySection}>
-        <Reveal>
-          <div className={styles.sectionHeading}>
-            <p className={styles.kicker}>Who we are</p>
-            <h2>Independent by design.</h2>
-          </div>
-        </Reveal>
-
-        <div className={styles.identityGrid}>
-          <Reveal amount={0.2}>
-            <div className={styles.identityCard}>
-              <span className={styles.identityLabel}>Veteran-owned</span>
-              <p>
-                TopoStitch is founded and led by a U.S. Navy veteran with a
-                background spanning design, media, technology, and immersive
-                product development.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.05} amount={0.2}>
-            <div className={styles.identityCard}>
-              <span className={styles.identityLabel}>Minority-owned</span>
-              <p>
-                TopoStitch is a minority-owned independent company shaped by
-                multidisciplinary experience across design, technology, and
-                entrepreneurship.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1} amount={0.2}>
-            <div className={styles.identityCard}>
-              <span className={styles.identityLabel}>LGBTQ+ owned</span>
-              <p>
-                TopoStitch is LGBTQ+ owned and founder-led, with a commitment
-                to building a company that reflects a broader range of people,
-                perspectives, and creative communities.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15} amount={0.2}>
-            <div className={styles.identityCard}>
-              <span className={styles.identityLabel}>Founder-led</span>
-              <p>
-                Product decisions, customer discovery, and early pilots are
-                being shaped directly by the founder and the people testing
-                TopoStitch with real products.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2} amount={0.2}>
-            <div className={styles.identityCard}>
-              <span className={styles.identityLabel}>
-                Startup Virginia Idea Factory
-              </span>
-              <p>
-                TopoStitch participated in Startup Virginia&apos;s Idea Factory,
-                helping sharpen the venture through customer discovery,
-                positioning, and early-stage business validation.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className={styles.earlyAccess}>
-        <Reveal>
-          <div className={styles.earlyCopy}>
-            <p className={styles.kicker}>Work with us</p>
-
-            <h2>Have a product worth testing?</h2>
-
-            <p>
-              If you make or sell physical products and want better ways to
-              create product imagery, 3D experiences, AR, or reusable marketing
-              content, we&apos;d like to hear from you.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.08}>
-          <div className={styles.pathCard}>
-            <span className={styles.pathTag}>Early access</span>
-
-            <h3>Help shape what TopoStitch becomes.</h3>
-
-            <p>
-              We&apos;re looking for a small number of Amazon and Shopify merchants
-              who are willing to test the workflow with real products and real
-              business needs.
-            </p>
-
-            <Link href="/request">Request a product pilot</Link>
-          </div>
-        </Reveal>
+      <section className={styles.commerceSection}>
+        <h2>Show me what you’re working with.</h2>
+        <p>Share one product, listing, or existing 3D asset. I’ll review what you need and reply with the next step.</p>
+        <Link href="/request" className={styles.primaryButton}>Request a product review</Link>
       </section>
 
       <footer className={styles.footer}>
-        <Link href="/" className={styles.brand} aria-label="TopoStitch home">
-          <Image
-            src="/brand/topostitch-mark-dark.svg"
-            alt="TopoStitch"
-            width={200}
-            height={64}
-            className={styles.brandMark}
-          />
-        </Link>
-
-        <p>Capture once. Create anything. Sell everywhere.</p>
-
-        <Link href="/">Home</Link>
+        <Link href="/">TopoStitch home</Link>
+        <Link href="/privacy">Privacy</Link>
+        <a href="mailto:hello@topostitch.dev">Contact</a>
       </footer>
     </main>
   );
 }
-
