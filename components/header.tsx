@@ -6,7 +6,7 @@ import { useRef, useState } from 'react'
 import styles from '@/app/marketing-layout.module.css'
 
 const links = [
-  ['Services', '/#services'],
+  ['Services', '/services'],
   ['How it works', '/#how-it-works'],
   ['About', '/about'],
   ['Service updates', '/updates'],

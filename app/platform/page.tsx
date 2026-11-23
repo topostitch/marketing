@@ -23,7 +23,7 @@ export default function PlatformPage() {
         <PlatformHero />
         <aside className="mx-auto max-w-5xl px-6 py-8" aria-label="TopoStitch today">
           <p>Explore TopoStitch’s longer-term work on capture, provenance, and reusable 3D records. The current paid service is a founder-led product 3D pilot.</p>
-          <Link className="underline underline-offset-4" href="/#studio">See current pilot pricing</Link>
+          <Link className="underline underline-offset-4" href="/services#compare">See current pilot pricing</Link>
         </aside>
         <PlatformCapabilities />
 	<PlatformProof />

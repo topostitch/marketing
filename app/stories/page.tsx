@@ -20,7 +20,7 @@ export default function StoriesPage() {
         <StoriesHero />
         <aside className="mx-auto max-w-5xl px-6 py-8" aria-label="TopoStitch today">
           <p>These field notes and experiments trace the broader TopoStitch mission. For the current paid product 3D service, see the pilot options.</p>
-          <Link className="underline underline-offset-4" href="/#studio">See current pilot options</Link>
+          <Link className="underline underline-offset-4" href="/services#compare">See current pilot options</Link>
         </aside>
         <StoriesIntro />
         <FeaturedStory />

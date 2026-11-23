@@ -15,7 +15,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "Organization", "@id": "https://www.topostitch.dev/#organization", name: "TopoStitch", url: "https://www.topostitch.dev", email: "hello@topostitch.dev" },
-    { "@type": "Service", name: "Product 3D preparation and creation", provider: { "@id": "https://www.topostitch.dev/#organization" }, serviceType: "3D product asset preparation and done-for-you production for ecommerce merchants", url: "https://www.topostitch.dev/#studio", description: "Product eligibility and scope are reviewed before payment. Existing-model preparation, product model creation, and custom workflow assistance." },
+    { "@type": "Service", name: "Product 3D preparation and creation", provider: { "@id": "https://www.topostitch.dev/#organization" }, serviceType: "3D product asset preparation and done-for-you production for ecommerce merchants", url: "https://www.topostitch.dev/services", description: "Product eligibility and scope are reviewed before payment. Existing-model preparation, product model creation, and custom workflow assistance." },
   ],
 };
 
@@ -40,7 +40,7 @@ export default function HomePage() {
         <div className={styles.heroCopy}>
           <h1>3D product models for ecommerce.</h1>
           <p>Get a model made, fix an existing 3D file, or get expert help publishing 3D on your storefront.</p>
-          <Link className={styles.button} href="#services">Explore 3D services</Link>
+          <Link className={styles.button} href="/services">Explore 3D services</Link>
           <p className={styles.note}>Start with one product. We review it before you pay.</p>
         </div>
         <figure className={styles.figure}>
@@ -60,33 +60,21 @@ export default function HomePage() {
 
       <section className={styles.section} id="services">
         <div className={styles.sectionIntro} id="studio">
-          <h2>Done for You and Done with You</h2>
-          <p>Choose a production package or get hands-on guidance for your team. We review your project before payment. Prices are in USD.</p>
+          <h2>Two ways to work with TopoStitch</h2>
         </div>
-        <div className={styles.grid}>
-          <article className={`${styles.card} ${styles.offer}`}>
-            <h3>Basic</h3>
-            <p className={styles.price}>From $149 <span>/ product</span></p>
-            <p>Bring an existing model that’s hard to reuse, too heavy for the web, or in the wrong format. We review it for one agreed destination.</p>
-            <ul><li>Source model review</li><li>Optimization and agreed file conversion</li><li>Delivery with a handoff checklist</li></ul>
-            <a href="/request?offer=basic">Request Basic</a>
+        <div className={`${styles.grid} ${styles.two}`}>
+          <article className={styles.card}>
+            <h3>Done for You</h3>
+            <p>We create a new product model or prepare the one you already have for your storefront.</p>
+            <Link href="/services#done-for-you">Explore 3D production</Link>
           </article>
-          <article className={`${styles.card} ${styles.offer} ${styles.featured}`}>
-            <h3>E-commerce Ready</h3>
-            <p className={styles.price}>From $299 <span>/ product</span></p>
-            <p>We create and check one 3D model for an eligible product. Apply to ship your item for capture or tell us what imagery you already have.</p>
-            <ul><li>Image coverage and feasibility review</li><li>Model creation, QA, and optimization</li><li>Files for one agreed commerce destination</li></ul>
-            <a href="/request?offer=ecommerce">Request E-commerce Ready</a>
-          </article>
-          <article className={`${styles.card} ${styles.offer}`}>
+          <article className={styles.card}>
             <h3>Done with You</h3>
-            <p className={styles.price}>Custom quote</p>
-            <p>Get a review of your assets, product fit, and storefront requirements, with a written recommendation for what to do next.</p>
-            <ul><li>Guided capture and workflow consulting</li><li>One-SKU pilot plans, team handoffs, and catalog rollout planning</li><li>Agency and integration partnerships</li></ul>
-            <a href="/request?offer=custom">Discuss your project</a>
+            <p>We work with your team or agency on capture, asset standards, integration, and handoff.</p>
+            <Link href="/services#done-with-you">Explore consulting and support</Link>
           </article>
         </div>
-        <p className={styles.note}>Starting prices apply to eligible products and suitable source material. Final scope, revisions, turnaround, and price are confirmed before payment. Capture, shipping, complex modeling, variants, and store implementation are quoted separately. No payment is taken through this inquiry form.</p>
+        <p className={styles.note}><Link href="/services#compare">Compare offerings and pricing</Link></p>
       </section>
 
       <section className={styles.section}>
@@ -153,7 +141,7 @@ export default function HomePage() {
       <section className={`${styles.section} ${styles.action}`} id="early-access">
         <h2>Bring us one product</h2>
         <p>Share what you’re working with and where it needs to appear. We’ll recommend a next step.</p>
-        <Link href="/request" className={styles.button}>Request a product review</Link>
+        <Link href="/services" className={styles.button}>Explore 3D services</Link>
         <p>Prefer to follow along? <Link href="/updates">Get service updates</Link>.</p>
       </section>
 

@@ -29,7 +29,7 @@ export default function AboutPage() {
           <p>A model has to work where people will see it. TopoStitch brings capture, asset preparation, and handoff into one scoped project so teams know what they’re getting and how to use it.</p>
         </div>
         <div className={`${styles.grid} ${styles.two}`}>
-          <article className={styles.card}><h3>Done for You</h3><p>We create or optimize your model and deliver files for one agreed destination. Start with a physical product, suitable imagery, CAD, or an existing model.</p><Link href="/#studio">Compare packages</Link></article>
+          <article className={styles.card}><h3>Done for You</h3><p>We create or optimize your model and deliver files for one agreed destination. Start with a physical product, suitable imagery, CAD, or an existing model.</p><Link href="/services#compare">Compare packages</Link></article>
           <article className={styles.card}><h3>Done with You</h3><p>We work with your team on capture planning, asset review, storefront requirements, and handoff. You get a clear plan for the work you want to handle in-house.</p><Link href="/request?offer=custom">Discuss your workflow</Link></article>
         </div>
       </section>

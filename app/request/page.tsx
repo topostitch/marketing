@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import MvpLeadForm from "@/components/mvp-lead-form";
 import styles from "../marketing-layout.module.css";
 
@@ -10,9 +11,10 @@ export default async function RequestPage({ searchParams }: { searchParams: Prom
     <div className={styles.editorial}>
       <header className={styles.editorialHeader}>
         <h1>Request a product review</h1>
-        <p>Tell us what you’re working with. We’ll confirm the scope and price before sending a payment link.</p>
+        <p>Tell us what you’re working with. We’ll confirm the scope and price before sending a payment link or invoice.</p>
       </header>
       <MvpLeadForm defaultOffer={offer} defaultPlatform={platform === "Amazon" || platform === "Shopify" ? platform : ""} />
+      <p className={styles.requestCompare}><Link href="/services#compare">Compare all offerings</Link></p>
     </div>
   </main>;
 }
