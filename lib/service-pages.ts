@@ -43,13 +43,13 @@ export const servicePages = {
     sections: [
       ['Create a product model', 'Start with suitable photos, dimensions, or a discussion about physical product capture. We review the product’s shape, materials, detail, and intended use before accepting the work. Reflective, transparent, or complex products may require additional references or a different production approach.'],
       ['Prepare a model you already have', 'An existing model may need geometry cleanup, material adjustments, texture work, or format conversion before it is useful on a product page. Share the source file details and destination so the quote covers the work you actually need.'],
-      ['Choose hands-on help or guided support', 'Done-for-you work covers an agreed deliverable. Work directly with founder Jacob Galito to review product fit, existing assets, capture options, and publishing requirements. We can scope a written recommendation and a one-product rollout plan without a production engagement. Agencies and integrators can request a partnership scope. Catalogs, custom interactions, and integration projects are quoted separately.'],
+      ['Choose hands-on help or guided support', 'Done-for-you work covers an agreed deliverable. Work with TopoStitch to review product fit, existing assets, capture options, and publishing requirements. We can scope a written recommendation and a one-product rollout plan without a production engagement. Agencies and integrators can request a partnership scope. Catalogs, custom interactions, and integration projects are quoted separately.'],
       ['Make the pilot useful', 'Choose the customer question you want the model to answer, the product and destination, and the signals you can measure. Review the model against product references before handoff. A pilot tests production fit and shopper response before a larger commitment.'],
     ],
     questions: [
       ['What affects the price?', 'The starting asset, product complexity, materials, missing references, number of variants, destination, and integration work determine the quote. Company size alone does not define the amount of production work.'],
       ['Can I ship a product for capture?', 'Physical capture can be discussed during scope review. Do not ship anything until capture suitability, handling, shipping, and return arrangements have been agreed.'],
-      ['Is this a self-service platform?', 'The current offer is a reviewed service pilot. Future platform interest can be registered separately; automated model generation and instant publication are not included promises.'],
+      ['Can you work with our existing team?', 'Yes. Done with You covers asset review, capture planning, storefront requirements, and handoff. We agree on the deliverables before work begins.'],
     ],
     sources: [['Shopify: commissioning product models', 'https://help.shopify.com/en/manual/products/product-media/expert-3d-model'], ['Amazon: product 3D experiences', 'https://sell.amazon.com/tools/3d-ar']],
   },

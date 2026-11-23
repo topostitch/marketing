@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Founder-led 3D product pilots for ecommerce merchants. Bring an existing model or apply for a one-product Ship-to-3D pilot.',
+    'Done-for-you 3D modeling and optimization, plus hands-on consulting for ecommerce teams and their partners.',
 
   applicationName: 'TopoStitch',
   robots: { index: !process.env.VERCEL || process.env.VERCEL_ENV === 'production', follow: true },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'TopoStitch',
     title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Founder-led product 3D preparation and Ship-to-3D pilots for ecommerce merchants.',
+      'Get a 3D product model made, prepare an existing asset, or work with TopoStitch on your team’s 3D workflow.',
     url: 'https://www.topostitch.dev',
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
+      'Explore done-for-you 3D modeling and guided support for your storefront, agency, or product team.',
     images: ['/og-image.png'],
   },
 
