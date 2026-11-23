@@ -29,7 +29,7 @@ const audiences = [
   { title: "Create your first product model", description: "Sellers, brands, and manufacturers can start with one product and an agreed storefront or marketplace." },
   { title: "Make existing 3D files usable", description: "Designers, OEMs, and teams that inherited a 3D library can bring CAD, vendor files, or existing models for a review of format, scale, materials, and file size." },
   { title: "Integrate and support 3D", description: "Developers, agencies, and integration teams can discuss file requirements, storefront compatibility, and a handoff they can maintain." },
-  { title: "Scope a rollout", description: "Ecommerce leads, product owners, and other decision-makers can start with one SKU and agree on deliverables, acceptance criteria, and the work needed for a wider rollout." },
+  { title: "Scope a rollout", description: "Ecommerce leads, product owners, and other decision-makers can work directly with founder Jacob Galito to assess one SKU, agree on acceptance criteria, and plan the work needed for a wider rollout." },
 ];
 
 export default function HomePage() {
@@ -167,6 +167,17 @@ export default function HomePage() {
         </p>
       </section>
 
+      <section className={styles.commerceSection} id="product-fit">
+        <h2>Is your product a good fit for 3D?</h2>
+        <p>Start with one product where shoppers need to understand shape, details, or scale. An existing model, dimensioned CAD, or clear photos from several angles helps us assess the right path.</p>
+        <ul>
+          <li><strong>Good starting point:</strong> A rigid product with visible detail and reliable dimensions. Tell us if you can ship it or already have source files.</li>
+          <li><strong>Needs a closer look:</strong> Clear glass, polished metal, gemstones, deformable products, or incomplete reference photos. We may recommend a CAD-based or manual modeling approach and quote it separately.</li>
+          <li><strong>When interactive 3D is a poor fit:</strong> We can scope a guided capture plan, an existing-asset review, or advise on product photography, a turntable video, or detail images for the listing.</li>
+        </ul>
+        <Link href="/request?offer=custom">Ask Jacob to review your product</Link>
+      </section>
+
       <section className={styles.pathsSection} id="studio">
         <div className={styles.sectionHeading}>
           <p className={styles.kicker}>Pilot pricing · USD</p>
@@ -189,10 +200,10 @@ export default function HomePage() {
             <a href="/request?offer=ecommerce">Request E-commerce Ready</a>
           </article>
           <article className={styles.pathCard}>
-            <span className={styles.pathTag}>Work with your team</span><h3>Guided or custom</h3>
+            <span className={styles.pathTag}>Work with your team</span><h3>Consulting and custom projects</h3>
             <p className={styles.price}>Let&apos;s scope it</p>
-            <p>Help for projects that need more than one standard asset.</p>
-            <ul><li>Guided capture and workflow consulting</li><li>Catalogs, variants, or implementation</li><li>Agency and integration partnerships</li></ul>
+            <p>Work directly with founder Jacob Galito. Get a review of your assets, product fit, and storefront requirements, with a written recommendation for what to do next.</p>
+            <ul><li>Guided capture and workflow consulting</li><li>One-SKU pilot plans, team handoffs, and catalog rollout planning</li><li>Agency and integration partnerships</li></ul>
             <a href="/request?offer=custom">Discuss your project</a>
           </article>
         </div>
