@@ -8,7 +8,7 @@ import styles from "./commerce-validation.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: "3D Product Modeling for Amazon & Shopify | TopoStitch" },
-  description: "Independent 3D product modeling services for Amazon and Shopify merchants. Prepare an existing model or apply for a founder-led Ship-to-3D pilot.",
+  description: "3D product modeling and asset optimization for sellers, brands, and manufacturers. Create your first model or fix an existing asset for Shopify, Amazon, or another destination.",
   alternates: { canonical: "/" },
 };
 
@@ -25,7 +25,7 @@ const outputs = [
   { title: "Product context with AR", description: "Prepare suitable products for supported augmented reality experiences.", image: "/AR.webp", alt: "Illustration of a product placed in a room using augmented reality." },
 ];
 
-const audiences = ["Amazon merchants", "Shopify merchants", "Brands already using 3D", "Brands planning their first 3D launch"];
+const audiences = ["Marketplace sellers", "Direct-to-consumer brands", "Manufacturers and product teams", "Teams with existing 3D assets"];
 
 export default function HomePage() {
   return (
@@ -36,22 +36,20 @@ export default function HomePage() {
         <div className={styles.heroCopyColumn}>
           <Reveal delay={0}>
             <div className={styles.eyebrow}>
-              For Amazon and Shopify merchants
+              For sellers, brands, and manufacturers
             </div>
           </Reveal>
 
           <Reveal delay={0.06}>
             <h1>
-              Product 3D.
-              <br />
-              <span>For Amazon
-              <br />and Shopify.</span>
+              Product 3D for ecommerce.<br />
+              <span>Create a model or improve the one you have.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.14}>
             <p className={styles.heroCopy}>
-              Bring an existing 3D model or apply to ship us one product for capture. We review what you need and agree on the deliverables before you pay.
+              Need your first 3D model? Start with one physical product. Already have a model or CAD file? Tell us what’s slowing down cleanup, optimization, or publishing. We confirm a scope before payment.
             </p>
           </Reveal>
 
@@ -94,7 +92,7 @@ export default function HomePage() {
       </section>
 
       <section className={styles.destinationStrip} aria-label="Initial merchant audience">
-        <p className={styles.destinationEyebrow}>Starting with Amazon and Shopify merchants</p>
+        <p className={styles.destinationEyebrow}>Common destinations for pilot deliverables</p>
         <div className={styles.destinationList}>
           <Image src="/brands/amazon.svg" alt="Amazon" width={100} height={40} />
           <Image src="/brands/shopify.svg" alt="Shopify" width={96} height={40} />
@@ -174,7 +172,7 @@ export default function HomePage() {
           <article className={styles.pathCard}>
             <span className={styles.pathTag}>Existing asset</span><h3>Basic</h3>
             <p className={styles.price}>From $149 <span>/ product</span></p>
-            <p>Prepare one suitable existing 3D model for its next use.</p>
+            <p>Bring an existing model that’s hard to reuse, too heavy for the web, or in the wrong format. We review it for one agreed destination.</p>
             <ul><li>Source model review</li><li>Optimization and agreed file conversion</li><li>Delivery with a handoff checklist</li></ul>
             <a href="/request?offer=basic">Request Basic</a>
           </article>
@@ -264,8 +262,8 @@ export default function HomePage() {
             <p className={styles.kicker}>Start a product pilot</p>
             <h2>Bring us one product.</h2>
             <p>
-              Tell us about your Amazon listing or Shopify store, the product,
-              and what you want to improve. We will review your request and
+              Tell us about your product, existing files, and intended destination.
+              Share what you want to improve. We will review your request and
               reply with the next step.
             </p>
 
@@ -279,7 +277,8 @@ export default function HomePage() {
 
         <Reveal delay={0.08}>
           <Link className={styles.primaryButton} href="/request">Request a product review</Link>
-          <Link href="/updates">Get launch updates</Link>
+          <p>Get email updates on pilot openings, examples of product 3D in use, and the TopoStitch platform launch.</p>
+          <Link href="/updates">Get email updates</Link>
         </Reveal>
       </section>
 
