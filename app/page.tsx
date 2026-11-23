@@ -168,14 +168,14 @@ export default function HomePage() {
       </section>
 
       <section className={styles.commerceSection} id="product-fit">
-        <h2>Is your product a good fit for 3D?</h2>
-        <p>Start with one product where shoppers need to understand shape, details, or scale. An existing model, dimensioned CAD, or clear photos from several angles helps us assess the right path.</p>
+        <h2>Find the right way to show your product</h2>
+        <p>Tell us what shoppers need to understand about your product. We’ll review one item and recommend a deliverable based on its materials, your source files, and where it needs to appear.</p>
         <ul>
-          <li><strong>Good starting point:</strong> A rigid product with visible detail and reliable dimensions. Tell us if you can ship it or already have source files.</li>
-          <li><strong>Needs a closer look:</strong> Clear glass, polished metal, gemstones, deformable products, or incomplete reference photos. We may recommend a CAD-based or manual modeling approach and quote it separately.</li>
-          <li><strong>When interactive 3D is a poor fit:</strong> We can scope a guided capture plan, an existing-asset review, or advise on product photography, a turntable video, or detail images for the listing.</li>
+          <li><strong>Standard 3D pilot:</strong> A rigid product with visible detail and reliable dimensions. Tell us if you can ship it or already have source files.</li>
+          <li><strong>Custom 3D quote:</strong> For clear glass, polished metals, gemstones, flexible products, or incomplete references, we can assess whether CAD, manual modeling, or a different capture approach fits your goals. We’ll confirm feasibility and quote the work before you pay.</li>
+          <li><strong>Consulting or a different deliverable:</strong> If interactive 3D won’t show what shoppers need, work directly with Jacob on an asset review, a guided capture plan, or a recommendation for product photography, turntable video, or detail images. We’ll discuss which work we can scope and what your team or another specialist would handle.</li>
         </ul>
-        <Link href="/request?offer=custom">Ask Jacob to review your product</Link>
+        <Link href="/request?offer=custom">Request a product review or custom quote</Link>
       </section>
 
       <section className={styles.pathsSection} id="studio">
