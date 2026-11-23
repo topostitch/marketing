@@ -19,10 +19,11 @@ export async function POST(request: Request) {
     try { body = JSON.parse(raw); } catch { return NextResponse.json({ error: "Invalid request." }, { status: 400 }); }
     if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
-    const name = String(body.name ?? "").trim();
+    const updates = body.interest === "early-access" && body.optIn === "yes";
     const email = String(body.email ?? "").trim();
+    const name = updates ? email.split("@")[0].slice(0, 120) : String(body.name ?? "").trim();
     const organization = String(body.organization ?? "").trim();
-    let message = String(body.message ?? "").trim();
+    let message = updates ? `Email updates opt-in recorded on ${new Date().toISOString()}. Topics: pilot openings, product 3D examples, and service news.` : String(body.message ?? "").trim();
     const website = String(body.website ?? "").trim();
 
     if (website) {
@@ -44,21 +45,24 @@ export async function POST(request: Request) {
     }
 
     if (name.length > 120 || email.length > 254 || organization.length > 200 || message.length > 5000) return NextResponse.json({ error: "Please shorten your name, company, or message." }, { status: 400 });
-    if (body.interest !== undefined) {
-      const interests: Record<string, string> = { basic: "Basic · from $149 / product", ecommerce: "E-commerce Ready · from $299 / product", custom: "Guided / consulting / custom", partnership: "Agency / integration partnership", "early-access": "Future platform updates" };
-      const interest = interests[String(body.interest)];
+    if (body.interest === "early-access" && !updates) return NextResponse.json({ error: "Please opt in to receive updates." }, { status: 400 });
+    if (body.interest !== undefined && !updates) {
+      const interests: Record<string, string> = { basic: "Basic · from $149 / product", ecommerce: "E-commerce Ready · from $299 / product", custom: "Guided / consulting / custom", partnership: "Agency / integration partnership" };
+      const offer = String(body.interest);
+      const interest = Object.hasOwn(interests, offer) ? interests[offer] : undefined;
+      const shortIntake = body.intake === "short";
       const product = String(body.product ?? "").trim();
       const platform = String(body.platform ?? "").trim();
       const assets = String(body.assets ?? "").trim();
       const storeUrl = String(body.storeUrl ?? "").trim();
-      if (!interest || !product || !platform || !assets || body.consent !== "yes") return NextResponse.json({ error: "Please complete the required project details and consent checkbox." }, { status: 400 });
+      if (!interest || (!shortIntake && (!product || !platform || !assets)) || body.consent !== "yes") return NextResponse.json({ error: "Please complete the required project details and consent checkbox." }, { status: 400 });
       if (product.length > 500 || platform.length > 100 || assets.length > 150 || storeUrl.length > 1000) return NextResponse.json({ error: "One of your project details is too long." }, { status: 400 });
       if (storeUrl) {
         try { const url = new URL(storeUrl); if (!["https:", "http:"].includes(url.protocol)) throw new Error(); }
         catch { return NextResponse.json({ error: "Please enter a valid http or https store URL." }, { status: 400 }); }
       }
       const attribution = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].map(key => `${key}: ${String(body.attribution?.[key] ?? "").slice(0, 200).replace(/[\r\n]/g, " ")}`).join("\n");
-      message = [`Offer: ${interest}`, "Price version: commerce-pilot-2026-11-20; starting price only, subject to eligibility and agreed scope.", `Destination: ${platform}`, `Store: ${storeUrl || "Not provided"}`, `Products: ${product}`, `Existing assets: ${assets}`, "Consent: respond to this request", `Platform updates requested: ${body.interest === "early-access" ? "Yes" : "No"}`, attribution, "", message].join("\n");
+      message = [`Offer: ${interest}`, "Price version: commerce-pilot-2026-11-20; starting price only, subject to eligibility and agreed scope.", `Destination: ${platform || "To be discussed"}`, `Store: ${storeUrl || "Not provided"}`, `Products: ${product || "See request details"}`, `Existing assets: ${assets || "To be discussed"}`, "Consent: respond to this request", attribution, "", message].join("\n");
     }
 
     const inquiryId = String(body.inquiryId ?? crypto.randomUUID());
@@ -69,6 +73,8 @@ export async function POST(request: Request) {
       console.error("Unable to save inquiry.");
       return NextResponse.json({ error: "We could not save your request. Please try again or email hello@topostitch.dev." }, { status: 503 });
     }
+
+    if (updates) return NextResponse.json({ success: true, inquiryId });
 
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL;

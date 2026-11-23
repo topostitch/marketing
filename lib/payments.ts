@@ -1,17 +1,21 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
 export const paymentOffers = {
-  basic: { name: 'Existing-model preparation', setting: 'STRIPE_PAYMENT_LINK_BASIC' },
-  ecommerce: { name: 'Product model creation', setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE' },
+  basic: { name: 'Existing-model preparation', price: '$149', setting: 'STRIPE_PAYMENT_LINK_BASIC' },
+  ecommerce: { name: 'Product model creation', price: '$299', setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE' },
 } as const;
 export type PaymentOffer = keyof typeof paymentOffers;
 export function paymentLink(offer: PaymentOffer) {
+  if (process.env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT === 'true') return null;
   const value = process.env[paymentOffers[offer].setting];
   const id = process.env[`${paymentOffers[offer].setting}_ID`];
   if (!value || !id?.startsWith('plink_') || !process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET || !process.env.AIRTABLE_TOKEN || !process.env.AIRTABLE_BASE_ID || !process.env.AIRTABLE_CUSTOMERS_TABLE_ID || !process.env.AIRTABLE_ORDERS_TABLE_ID) return null;
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com' || url.username || url.password || url.port) return null;
+    const sandboxLink = url.pathname.startsWith('/test_');
+    if (process.env.VERCEL_ENV === 'preview' && (!sandboxLink || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY))) return null;
+    if (process.env.VERCEL_ENV === 'production' && sandboxLink) return null;
     return url.href;
   } catch { return null; }
 }
@@ -29,6 +33,7 @@ export function verifyStripeSignature(raw: string, header: string, secret: strin
 type PaidSession = {
   id: string; payment_status: string; currency: string; amount_total: number;
   payment_link: string | null; invoice: string | null;
+  client_reference_id?: string | null;
   customer_details: { email?: string; name?: string } | null;
 };
 export async function recordStripePayment(sessionId: string) {
@@ -62,6 +67,41 @@ export async function recordStripePayment(sessionId: string) {
     if (!result.ok) throw new Error('Payment record lookup failed');
     return (await result.json()).records?.[0];
   }
+  if (process.env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT === 'true') {
+    // Only paid sessions for an approved Ship-to-3D order may advance fulfillment.
+    const orderId = session.client_reference_id;
+    if (!orderId || !/^[A-Za-z0-9_-]{1,200}$/.test(orderId)) throw new Error('Paid checkout is missing a valid order reference');
+    const order = await lookup(orders, 'Order ID', orderId);
+    if (!order?.id) throw new Error('Referenced order does not exist');
+    if (order.fields?.['Stripe Checkout Session ID'] === session.id) return;
+    if (order.fields?.Status !== 'Approved / Awaiting Payment' || order.fields?.['Stripe Checkout Session ID'] || ['Paid', 'Refunded', 'Partially Refunded'].includes(order.fields?.['Payment Status'])) {
+      throw new Error('Referenced order is not awaiting payment');
+    }
+    const quotedTotal = order.fields?.['Final Quoted Total'];
+    if (typeof quotedTotal !== 'number' || Math.round(quotedTotal * 100) !== session.amount_total) throw new Error('Checkout amount does not match approved order');
+    const customerId = order.fields?.Customer?.[0];
+    if (typeof customerId !== 'string' || !/^rec[A-Za-z0-9]+$/.test(customerId)) throw new Error('Approved order is missing a linked customer');
+    const customerResult = await fetch(`${endpoint(customers)}/${encodeURIComponent(customerId)}`, { headers, cache: 'no-store', signal: AbortSignal.timeout(12000) });
+    if (!customerResult.ok) throw new Error('Linked customer lookup failed');
+    const customerRecord = await customerResult.json();
+    if (customerRecord.fields?.Email?.trim().toLowerCase() !== email) throw new Error('Checkout email does not match approved order');
+    const saved = await fetch(`${endpoint(orders)}/${encodeURIComponent(order.id)}`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({ fields: {
+        'Stripe Checkout Session ID': session.id,
+        'Payment Status': 'Paid',
+        Status: 'Paid / Awaiting Shipment',
+        'Waiting on': 'TopoStitch',
+        'Next action': 'Send shipping instructions',
+        ...(session.invoice ? { 'Stripe Invoice ID': session.invoice } : {}),
+      } }),
+      signal: AbortSignal.timeout(12000),
+    });
+    if (!saved.ok) throw new Error('Approved order payment persistence failed');
+    return;
+  }
+
   // Do not reset fulfillment or refund information on duplicate deliveries.
   if (await lookup(orders, 'Order ID', session.id)) return;
   let customer = await lookup(customers, 'Email', email);

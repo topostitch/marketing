@@ -1,3 +1,5 @@
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
@@ -10,17 +12,17 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
+    'Done-for-you 3D modeling and optimization, plus hands-on consulting for ecommerce teams and their partners.',
 
   applicationName: 'TopoStitch',
-  robots: { index: true, follow: true },
+  robots: { index: !process.env.VERCEL || process.env.VERCEL_ENV === 'production', follow: true },
 
   openGraph: {
     type: 'website',
     siteName: 'TopoStitch',
     title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Product 3D preparation and paid pilots for Amazon and Shopify merchants.',
+      'Get a 3D product model made, prepare an existing asset, or work with TopoStitch on your team’s 3D workflow.',
     url: 'https://www.topostitch.dev',
     images: [
       {
@@ -36,12 +38,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Product 3D preparation and done-for-you pilots for Amazon and Shopify merchants. Explore pilot pricing and evidence for 3D commerce.',
+      'Explore done-for-you 3D modeling and guided support for your storefront, agency, or product team.',
     images: ['/og-image.png'],
   },
 
   icons: {
-    icon: { url: '/favicon.svg?v=2', type: 'image/svg+xml', sizes: 'any' },
+    icon: { url: '/favicon.svg?v=3', type: 'image/svg+xml', sizes: 'any' },
     apple: '/apple-icon.png',
   },
 }
@@ -59,7 +61,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to main content
         </a>
         <noscript><style>{`.scroll-reveal { opacity: 1 !important; transform: none !important; }`}</style></noscript>
+        <Header />
         {children}
+        <Footer />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

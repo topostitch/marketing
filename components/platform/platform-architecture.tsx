@@ -6,7 +6,7 @@ export default function PlatformArchitecture() {
     { step: '02', title: 'Process', description: 'Create or ingest digital representations while retaining the source material and processing context.' },
     { step: '03', title: 'Organize', description: 'Connect identity, place, metadata, contributors, provenance, versions, and relationships.' },
     { step: '04', title: 'Review', description: 'Understand what is complete, what changed, and what is ready to become a trusted published representation.' },
-    { step: '05', title: 'Publish & reuse', description: 'Publish public records today. Future embeds and additional reusable experiences are part of the developing workflow.' },
+    { step: '05', title: 'Publish & reuse', description: 'Explore public records in the platform prototype. Future embeds and additional reusable experiences are part of the developing workflow.' },
   ]
 
   return (

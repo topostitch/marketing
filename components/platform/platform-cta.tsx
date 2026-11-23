@@ -20,7 +20,7 @@ export default function PlatformCTA() {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/#contact"
+                href="/#early-access"
                 className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-7 py-3 text-base font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90"
               >
                 Discuss a pilot

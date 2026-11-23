@@ -33,8 +33,14 @@ async function run(input) { calls = []; return POST({ text: async () => typeof i
   assert.equal((await run({ ...body, website: 'spam' })).status, 200); assert.equal(calls.length, 0);
   let result = await run(body); assert.equal(result.status, 200); assert.equal(calls.at(-1).email, true); assert.equal(calls.at(-2).options.method, 'PATCH');
   const saved = JSON.parse(calls.at(-2).options.body); assert.equal(saved.records[0].fields['Inquiry ID'], body.inquiryId); assert(saved.records[0].fields['Project Description'].includes('utm_source: google'));
+  const shortRequest = { inquiryId: body.inquiryId, name: body.name, email: body.email, message: body.message, interest: 'custom', consent: 'yes', intake: 'short' };
+  assert.equal((await run(shortRequest)).status, 200);
+  assert(JSON.parse(calls.at(-2).options.body).records[0].fields['Project Description'].includes('Destination: To be discussed'));
+  assert.equal((await run({ ...shortRequest, intake: undefined })).status, 400);
+  assert.equal((await run({ ...shortRequest, consent: '' })).status, 400);
+  assert.equal((await run({ ...shortRequest, interest: 'unknown' })).status, 400);
   existingCustomer = true; await run(body); assert(!calls.some(c => c.options?.method === 'POST'));
   storageFails = true; assert.equal((await run(body)).status, 503); assert(!calls.some(c => c.email)); storageFails = false;
   emailFails = true; assert.equal((await run(body)).status, 200); assert(calls.some(c => c.options?.method === 'PATCH'));
-  console.log('8 inquiry checks passed: validation, spam, persistence order, attribution, customer reuse, storage failure, notification failure. No external calls.');
+  console.log('Inquiry checks passed: short intake, legacy intake, validation, spam, persistence order, attribution, customer reuse, storage failure, notification failure. No external calls.');
 })().catch(e => { console.error(e); process.exit(1); });

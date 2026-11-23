@@ -42,5 +42,43 @@ const response = (body, ok = true) => ({ ok, json: async () => body });
   assert.equal(saved.records[0].fields['Order ID'], paid.id);
   calls = []; const normal = behavior; behavior = (url, options) => options.method === 'PATCH' ? response({}, false) : normal(url, options);
   await assert.rejects(recordStripePayment(paid.id), /persistence failed/);
+  env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT = 'true';
+  assert.equal(paymentLink('basic'), null);
+  const approved = { id: 'rec_order', fields: { Status: 'Approved / Awaiting Payment', 'Final Quoted Total': 149, Customer: ['recCustomer'] } };
+  const referenced = { ...paid, client_reference_id: 'test_order' };
+  calls = [];
+  behavior = (url, options) => {
+    if (url.includes('stripe.com')) return response(referenced);
+    if (url.endsWith('/recCustomer')) return response({ fields: { Email: 'Buyer@example.com' } });
+    if (options.method === 'PATCH') return response({});
+    return response({ records: [approved] });
+  };
+  await recordStripePayment(paid.id);
+  const patched = calls.find(c => c.method === 'PATCH');
+  assert.ok(patched.url.endsWith('/rec_order'));
+  assert.equal(JSON.parse(patched.body).fields['Stripe Checkout Session ID'], paid.id);
+  approved.fields['Stripe Checkout Session ID'] = paid.id;
+  calls = [];
+  await recordStripePayment(paid.id);
+  assert.equal(calls.some(c => c.method === 'PATCH'), false);
+  delete approved.fields['Stripe Checkout Session ID'];
+  approved.fields['Final Quoted Total'] = 299;
+  await assert.rejects(recordStripePayment(paid.id), /does not match approved order/);
+  approved.fields['Final Quoted Total'] = 149;
+  const approvedBehavior = behavior;
+  for (const [override, error] of [
+    [url => url.includes('stripe.com') && response({ ...referenced, client_reference_id: null }), /order reference/],
+    [url => url.endsWith('/recCustomer') && response({ fields: { Email: 'another@example.com' } }), /email does not match/],
+  ]) {
+    calls = [];
+    behavior = (url, options) => override(url) || approvedBehavior(url, options);
+    await assert.rejects(recordStripePayment(paid.id), error);
+    assert.equal(calls.some(c => c.method === 'PATCH'), false);
+  }
+  calls = [];
+  approved.fields.Status = 'Canceled';
+  behavior = approvedBehavior;
+  await assert.rejects(recordStripePayment(paid.id), /not awaiting payment/);
+  assert.equal(calls.some(c => c.method === 'PATCH'), false);
   console.log('Payment checks passed: configuration gate, URL allowlist, signature/tampering/expiry, unpaid/unrelated sessions, duplicate delivery, paid order mapping, storage failure. No external requests or charges.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
