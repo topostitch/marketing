@@ -1,3 +1,5 @@
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
@@ -5,53 +7,43 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.topostitch.dev'),
 
   title: {
-    default: 'TopoStitch — One product. More ways to sell it.',
+    default: 'TopoStitch | Product 3D for Amazon & Shopify',
     template: '%s | TopoStitch',
   },
 
   description:
-    'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+    'Done-for-you 3D modeling and optimization, plus hands-on consulting for ecommerce teams and their partners.',
 
   applicationName: 'TopoStitch',
+  robots: { index: !process.env.VERCEL || process.env.VERCEL_ENV === 'production', follow: true },
 
   openGraph: {
     type: 'website',
     siteName: 'TopoStitch',
-    title: 'TopoStitch — One product. More ways to sell it.',
+    title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Turn one physical product into reusable content for ecommerce, 3D, AR, social, ads, and more.',
+      'Get a 3D product model made, prepare an existing asset, or work with TopoStitch on your team’s 3D workflow.',
     url: 'https://www.topostitch.dev',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TopoStitch — One product. More ways to sell it.',
+        alt: 'TopoStitch | Product 3D for Amazon & Shopify',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'TopoStitch — One product. More ways to sell it.',
+    title: 'TopoStitch | Product 3D for Amazon & Shopify',
     description:
-      'Create product imagery, 3D, AR, social content, ads, and more from a single physical product.',
+      'Explore done-for-you 3D modeling and guided support for your storefront, agency, or product team.',
     images: ['/og-image.png'],
   },
 
   icons: {
-    icon: [
-      {
-        url: '/brand/topostitch-mark-dark.svg',
-        media: '(prefers-color-scheme: light)',
-        type: 'image/svg+xml',
-      },
-      {
-        url: '/brand/topostitch-mark-light.svg',
-        media: '(prefers-color-scheme: dark)',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: { url: '/favicon.svg?v=3', type: 'image/svg+xml', sizes: 'any' },
     apple: '/apple-icon.png',
   },
 }
@@ -69,9 +61,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to main content
         </a>
         <noscript><style>{`.scroll-reveal { opacity: 1 !important; transform: none !important; }`}</style></noscript>
+        <Header />
         {children}
+        <Footer />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+

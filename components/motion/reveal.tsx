@@ -30,7 +30,7 @@ export default function Reveal({
     <motion.div
       className={`scroll-reveal${className ? ` ${className}` : ''}`}
       // The server and first client render agree, avoiding a visible-to-hidden flash.
-      initial={hidden}
+      initial={false}
       animate={reduceMotion ? visible : undefined}
       whileInView={visible}
       viewport={{ once: true, amount, margin: '0px 0px -6% 0px' }}
@@ -44,3 +44,4 @@ export default function Reveal({
     </motion.div>
   )
 }
+
