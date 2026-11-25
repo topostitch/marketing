@@ -20,6 +20,8 @@ export default function Footer() {
           </Link>
           <nav aria-label="Footer">
             <Link href="/services">Services</Link>
+            <Link href="/compare">Compare</Link>
+            <Link href="/checkout">Packages</Link>
             <Link href="/about">About</Link>
             <Link href="/privacy">Privacy</Link>
             <a href="mailto:hello@topostitch.dev">Contact</a>

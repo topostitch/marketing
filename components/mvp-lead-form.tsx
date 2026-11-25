@@ -9,7 +9,7 @@ function record(event: string, offer: string) {
   try { track(event, { offer, price_version: "commerce-pilot-2026-11-20" }); } catch { /* Analytics must never block an inquiry. */ }
 }
 
-export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }: { defaultPlatform?: string; defaultOffer?: string }) {
+export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "", defaultQuantity }: { defaultPlatform?: string; defaultOffer?: string; defaultQuantity?: number }) {
   const [selected, setSelected] = useState(() => commerceOffers.find(offer => offer.id === defaultOffer));
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -84,6 +84,7 @@ export default function MvpLeadForm({ defaultPlatform = "", defaultOffer = "" }:
         </div>
         <label>Project details
           <textarea name="message" rows={3} maxLength={5000}
+            defaultValue={defaultQuantity ? `Number of products: ${defaultQuantity}\n\n` : ""}
             placeholder="What are you working on, and what would you like help with?" required />
         </label>
         <div hidden><label>Leave blank<input name="website" tabIndex={-1} autoComplete="off" /></label></div>

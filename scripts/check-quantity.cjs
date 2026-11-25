@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const ts = require('typescript');
+const path = require('node:path');
+const exportsObject = {};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync(path.join(__dirname, '../lib/package-quantity.ts'), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, { exports: exportsObject, Intl });
+const { parseQuantity, packageAmounts, formatUSD } = exportsObject;
+for (const invalid of ['', '0', '-1', '1.5', '1e2', '100', ' 2', '02', undefined, ['2'], 2]) assert.equal(parseQuantity(invalid), null);
+for (const valid of ['1', '2', '99']) assert.equal(parseQuantity(valid), Number(valid));
+assert.equal(formatUSD(packageAmounts.basic * parseQuantity('3')), '$447');
+assert.equal(formatUSD(packageAmounts.ecommerce * parseQuantity('2')), '$598');
+console.log('Quantity checks passed: boundaries, malformed input, and approved package totals.');

@@ -74,7 +74,7 @@ export default function HomePage() {
             <Link href="/services#done-with-you">Explore consulting and support</Link>
           </article>
         </div>
-        <p className={styles.note}><Link href="/services#compare">Compare offerings and pricing</Link></p>
+        <p className={styles.note}><Link href="/compare">Compare offerings and pricing</Link></p>
       </section>
 
       <section className={styles.section}>
@@ -130,7 +130,7 @@ export default function HomePage() {
       <CommerceFaqs />
 
       <div className={styles.closingLinks} id="early-access">
-        <Link href="/services#compare" className={styles.button}>Compare 3D services</Link>
+        <Link href="/compare" className={styles.button}>Compare 3D services</Link>
         <Link href="/request?offer=custom">Ask about your project</Link>
       </div>
     </main>

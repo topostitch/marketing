@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { servicePages } from '@/lib/service-pages';
 import { commerceOffers } from '@/lib/commerce-offers';
-import { paymentLink, paymentOffers, sandboxCheckoutLink } from '@/lib/payments';
 import styles from '../marketing-layout.module.css';
 
 export const metadata: Metadata = {
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services' },
 };
 
-export const dynamic = 'force-dynamic';
 
 const illustrations = {
   basic: { src: '/chair.webp', alt: 'Illustration of a chair shoppers could rotate to inspect the frame and upholstery' },
@@ -21,15 +20,8 @@ const illustrations = {
 export default function ServicesPage() {
   const offerings = commerceOffers.map(offer => {
     const standard = offer.id === 'basic' || offer.id === 'ecommerce';
-    if (standard && sandboxCheckoutLink(offer.id)) {
-      return { ...offer, href: `/checkout/${offer.id}`, cta: `Test checkout · ${offer.name}`, price: `${paymentOffers[offer.id].price} per product`, direct: false };
-    }
-    if (standard && paymentLink(offer.id)) {
-      return { ...offer, href: `/checkout/${offer.id}`, cta: `Buy ${offer.name}`, price: `${paymentOffers[offer.id].price} per product`, direct: true };
-    }
-    return { ...offer, href: `/request?offer=${offer.id}`, direct: false };
+    return { ...offer, href: standard ? `/checkout/${offer.id}` : `/request?offer=${offer.id}`, cta: standard ? `Choose ${offer.name}` : offer.cta, direct: false };
   });
-  const hasDirectCheckout = offerings.some(offer => offer.direct);
 
   return (
     <main id="main-content" className={styles.page}>
@@ -40,7 +32,7 @@ export default function ServicesPage() {
           <a href="#done-for-you">Get a model made or optimized</a>
           <a href="#done-with-you">Get help with your workflow</a>
           <Link href="/checkout" className={styles.button}>Shop packages</Link>
-          <a href="#compare">Compare offerings</a>
+          <Link href="/compare">Compare offerings</Link>
         </nav>
       </header>
 
@@ -97,12 +89,17 @@ export default function ServicesPage() {
       <section className={styles.section} id="purchase-process">
         <div className={styles.sectionIntro}><h2>How to get started</h2></div>
         <ol className={`${styles.grid} ${styles.stepList}`}>
-          <li><h3>Choose a service</h3><p>{hasDirectCheckout ? 'Buy an available standard package or request a quote for custom work.' : 'Tell us what product, files, or workflow you want help with.'}</p></li>
-          <li><h3>{hasDirectCheckout ? 'Pay or approve a quote' : 'Review the scope'}</h3><p>{hasDirectCheckout ? 'Standard packages use Stripe checkout. Custom work starts with a quote for you to approve.' : 'We confirm fit and send the deliverables, timing, and final price for your approval.'}</p></li>
-          <li><h3>{hasDirectCheckout ? 'Share your project details' : 'Pay and kick off'}</h3><p>{hasDirectCheckout ? 'After payment, we’ll ask for the files and details needed to start.' : 'Once you approve the scope, we send a secure payment link or invoice and coordinate the inputs we need to start.'}</p></li>
+          <li><h3>Choose a service</h3><p>Tell us what product, files, or workflow you want help with.</p></li>
+          <li><h3>Review the scope</h3><p>We confirm fit and send the deliverables, timing, and final price for your approval.</p></li>
+          <li><h3>Pay and kick off</h3><p>Once you approve the scope, we send a secure payment link or invoice and coordinate the inputs we need to start.</p></li>
         </ol>
       </section>
 
+      <section className={styles.section}>
+        <div className={styles.sectionIntro}><h2>Explore by destination</h2></div>
+        <div className={styles.grid}>{Object.entries(servicePages).map(([slug, service]) =>
+          <Link className={styles.card} key={slug} href={`/services/${slug}`}>{service.title}</Link>)}</div>
+      </section>
     </main>
   );
 }

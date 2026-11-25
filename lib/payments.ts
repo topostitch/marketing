@@ -6,15 +6,16 @@ export const paymentOffers = {
 } as const;
 export type PaymentOffer = keyof typeof paymentOffers;
 export function paymentLink(offer: PaymentOffer) {
+  // Live collection remains disabled during sandbox storefront development.
+  if (process.env.VERCEL_ENV === 'production' || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY || '')) return null;
   if (process.env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT === 'true') return null;
   const value = process.env[paymentOffers[offer].setting];
   const id = process.env[`${paymentOffers[offer].setting}_ID`];
   if (!value || !id?.startsWith('plink_') || !process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET || !process.env.AIRTABLE_TOKEN || !process.env.AIRTABLE_BASE_ID || !process.env.AIRTABLE_CUSTOMERS_TABLE_ID || !process.env.AIRTABLE_ORDERS_TABLE_ID) return null;
   const url = stripePaymentUrl(value);
-  if (!url) return null;
+  if (!url || !/^\/test_[a-zA-Z0-9_]+$/.test(url.pathname)) return null;
   const sandboxLink = url.pathname.startsWith('/test_');
   if (process.env.VERCEL_ENV === 'preview' && (!sandboxLink || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY))) return null;
-  if (process.env.VERCEL_ENV === 'production' && sandboxLink) return null;
   return url.href;
 }
 
@@ -29,7 +30,9 @@ function stripePaymentUrl(value: string | undefined) {
 }
 
 export function sandboxCheckoutLink(offer: PaymentOffer) {
-  if (process.env.VERCEL_ENV !== 'preview') return null;
+  if (process.env.VERCEL_ENV !== 'preview' && process.env.NODE_ENV !== 'development') return null;
+  if (process.env.VERCEL_ENV === 'production') return null;
+  if (process.env.STRIPE_SECRET_KEY && !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY)) return null;
   const url = stripePaymentUrl(process.env[paymentOffers[offer].setting]);
   // A storefront walkthrough reaches Stripe without submitting a preapproved order reference.
   return url && /^\/test_[a-zA-Z0-9]+$/.test(url.pathname) ? url.origin + url.pathname : null;
