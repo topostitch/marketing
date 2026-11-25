@@ -4,7 +4,7 @@ import { commerceOffers } from '@/lib/commerce-offers';
 import styles from '../marketing-layout.module.css';
 
 export const metadata: Metadata = {
-  title: 'Compare 3D services', description: 'Compare Basic, E-commerce Ready, 3D Workflow Consulting, and Agency & Integration Support.',
+  title: 'Compare 3D services and pricing', description: 'Compare TopoStitch Basic and E-commerce Ready packages, plus workflow consulting and agency integration support.',
   alternates: { canonical: '/compare' },
 };
 export default function ComparePage() {
@@ -24,7 +24,7 @@ export default function ComparePage() {
           </Link>
         </article>)}
       </div>
-      <p className={styles.note}>Starting prices are in USD. Final scope is reviewed before payment. Capture, shipping, complex modeling, variants, and storefront implementation are quoted separately.</p>
+      <p className={styles.note}>Prices are in USD per product for the fixed-scope packages. Basic and E-commerce Ready can be purchased directly; non-standard products, capture, shipping, complex modeling, variants, and storefront implementation require a custom quote.</p>
     </section>
     <section className={styles.section}><div className={styles.action}>
       <h2>Not sure which service fits?</h2><p>Share what you have and where your product needs to work. We’ll review the starting point with you.</p>

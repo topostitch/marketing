@@ -1,0 +1,45 @@
+.explorer, .nextStep {
+  width: min(73.75rem, calc(100% - clamp(2.25rem, 8vw, 6rem)));
+  margin-inline: auto;
+  color: #171714;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.explorer { padding-block: clamp(2.5rem, 5vw, 4.75rem); border-top: 1px solid #d9d7cd; }
+.explorer.inset, .nextStep.inset { width: 100%; }
+.explorer .intro { max-width: 65ch; display: grid; gap: .8rem; margin-bottom: 1.7rem; }
+.explorer p, .nextStep p { margin: 0; max-width: none; }
+.explorer .eyebrow, .nextStep .eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .09em; font-weight: 650; }
+.explorer h2, .nextStep h2 { margin: 0; font-size: clamp(1.9rem, 3.5vw, 2.8rem); line-height: 1.12; letter-spacing: -.035em; font-weight: 650; text-wrap: balance; }
+.explorer h3, .nextStep h3 { margin: 0; font-size: 1.35rem; line-height: 1.2; letter-spacing: -.02em; font-weight: 650; }
+.explorer .intro > p:last-child, .destinationCard > p { color: #575950; }
+.destinations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.destinations:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.destinationCard { min-width: 0; display: flex; flex-direction: column; gap: .85rem; padding: clamp(1.25rem, 2.5vw, 2rem); background: #fffefa; border: 1px solid #d9d7cd; border-radius: .8rem; }
+.destinationCard .eyebrow { color: #171714; }
+.destinationCard .details { font-size: .85rem; padding-top: .4rem; margin-top: auto; }
+.destinationCard a { display: flex; justify-content: space-between; gap: .8rem; align-items: center; min-height: 44px; padding-top: .8rem; border-top: 1px solid #d9d7cd; font-weight: 650; }
+.explorer a, .nextStep a { color: inherit; text-decoration: none; }
+.explorer a:hover, .nextStep a:hover { text-decoration: underline; text-underline-offset: .22em; }
+.explorer a:focus-visible, .nextStep a:focus-visible { outline: 3px solid #174a83; outline-offset: 5px; }
+.explorer .help { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; padding-top: 1.25rem; font-size: .9rem; color: #575950; }
+.help a { min-height: 44px; display: inline-flex; align-items: center; gap: .3rem; color: #171714; text-decoration: underline; text-underline-offset: .22em; }
+.nextStep { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4.75rem); }
+.nextPanel { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: clamp(1.75rem, 5vw, 4rem); padding: clamp(1.4rem, 4vw, 3.25rem); border-radius: 1rem; background: #20231e; color: #fffefa; }
+.nextCopy { display: grid; gap: 1rem; }
+.nextCopy > p { color: #deded3; }
+.nextPanel h2 { color: #fffefa; }
+.nextPanel .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.25rem; }
+.actions a { min-height: 44px; display: inline-flex; align-items: center; gap: .75rem; }
+.actions .primary { padding: .7rem 1rem; border-radius: .5rem; background: #fffefa; color: #171714; font-weight: 650; line-height: 1.35; }
+.nextPanel a:focus-visible { outline-color: #d9e9ff; }
+.nextCopy .reassurance { font-size: .83rem; color: #c4c9bc; }
+.checklist { align-self: center; padding-left: clamp(1.25rem, 3vw, 2rem); border-left: 1px solid #54594e; }
+.checklist > p { margin-top: .65rem; color: #deded3; font-size: .95rem; }
+.checklist ul { margin: .85rem 0 0; padding: 0; list-style: none; }
+.checklist li { margin: 0; padding: .7rem 0 .7rem 1.4rem; position: relative; border-top: 1px solid #54594e; font-size: .95rem; }
+.checklist li::before { content: '↗'; position: absolute; left: 0; color: #c4c9bc; }
+@media (max-width: 800px) {
+  .destinations, .destinations:has(> :nth-child(2):last-child), .nextPanel { grid-template-columns: 1fr; }
+  .checklist { padding: 1.4rem 0 0; border-left: 0; border-top: 1px solid #54594e; }
+}

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
-const routes = ['/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/request', '/about'];
+const routes = ['/services/amazon-3d-modeling', '/services/shopify-3d-models', '/services/3d-product-modeling', '/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/checkout/success', '/request', '/about', '/privacy'];
 for (const width of [320, 390, 768, 1280]) {
   test(`responsive routes at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
@@ -20,7 +20,7 @@ for (const width of [320, 390, 768, 1280]) {
       }
     }
     if (width === 390 || width === 1280) {
-      for (const route of ['/services', '/compare', '/checkout/basic']) {
+      for (const route of ['/services', '/services/amazon-3d-modeling', '/']) {
         await page.goto(route);
         await page.screenshot({ path: testInfo.outputPath(route.replaceAll('/', '-') + '.png'), fullPage: true });
       }
@@ -31,17 +31,17 @@ for (const width of [320, 390, 768, 1280]) {
 test('quantity totals, boundaries, reload, and request handoff', async ({ page }) => {
   await page.goto('/checkout/basic');
   const input = page.getByLabel('Number of products');
-  await expect(page.getByRole('link', { name: 'Continue to Stripe test checkout' })).toHaveAttribute('href', 'https://buy.stripe.com/test_example123');
+  await expect(page.getByRole('button', { name: 'Continue to secure checkout · $149' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Decrease quantity' })).toBeDisabled();
   await page.getByRole('button', { name: 'Increase quantity' }).click();
   await expect(page.getByText('Estimated starting total: $298 USD')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Continue to Stripe test checkout' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Continue to secure checkout · $298' })).toBeVisible();
   await page.reload(); await expect(input).toHaveValue('2');
   await input.fill('99'); await expect(page.getByRole('button', { name: 'Increase quantity' })).toBeDisabled();
   await input.fill('0'); await expect(page.getByText('Enter a whole number from 1 to 99.', { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: /Request review for/ })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Continue to secure checkout/ })).toHaveCount(0);
   await input.fill('3');
-  await page.getByRole('link', { name: 'Request review for 3 products' }).click();
+  await page.getByRole('link', { name: 'Ask a question before buying' }).click();
   await expect(page.getByRole('combobox', { name: 'Service' })).toHaveValue('basic');
   await expect(page.getByLabel('Project details')).toHaveValue('Number of products: 3\n\n');
   await page.goto('/checkout/ecommerce?quantity=2');
