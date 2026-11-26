@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
-const routes = ['/services/amazon-3d-modeling', '/services/shopify-3d-models', '/services/3d-product-modeling', '/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/checkout/success', '/request', '/about', '/privacy'];
+const routes = ['/services/amazon-3d-modeling', '/services/shopify-3d-models', '/services/3d-product-modeling', '/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/checkout/success', '/request', '/about', '/privacy', '/insights', '/insights/3d-product-model-cost', '/insights/shopify-3d-product-models', '/insights/amazon-3d-product-models', '/insights/3d-commerce-sales', '/insights/agency-3d-production', '/partnerships'];
 for (const width of [320, 390, 768, 1280]) {
   test(`responsive routes at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
@@ -20,7 +20,7 @@ for (const width of [320, 390, 768, 1280]) {
       }
     }
     if (width === 390 || width === 1280) {
-      for (const route of ['/services', '/services/amazon-3d-modeling', '/']) {
+      for (const route of ['/services', '/services/amazon-3d-modeling', '/', '/insights', '/partnerships']) {
         await page.goto(route);
         await page.screenshot({ path: testInfo.outputPath(route.replaceAll('/', '-') + '.png'), fullPage: true });
       }
@@ -53,9 +53,25 @@ test('mobile navigation keyboard dismissal, routing, and resize', async ({ page 
   const toggle = page.getByRole('button', { name: 'Open navigation' });
   await toggle.click(); await page.keyboard.press('Escape'); await expect(toggle).toBeFocused();
   await expect(page.getByRole('navigation', { name: 'Mobile navigation' })).toBeHidden();
-  await toggle.click(); await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Compare' }).click();
-  await expect(page).toHaveURL(/compare$/); await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await toggle.click(); await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Insights' }).click();
+  await expect(page).toHaveURL(/insights$/); await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   await toggle.click(); await page.setViewportSize({ width: 1280, height: 900 });
   await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
   await page.setViewportSize({ width: 390, height: 844 }); await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+});
+test('insights sources and partnership inquiry interaction', async ({ page }) => {
+  await page.route('**/api/contact', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) }));
+  await page.goto('/insights');
+  await expect(page.getByRole('heading', { name: 'Practical answers for product 3D.' })).toBeVisible();
+  await page.getByRole('link', { name: /How to Add 3D Product Models to Shopify/ }).first().click();
+  await expect(page.getByRole('heading', { name: 'How to Add 3D Product Models to Shopify' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Product media types' })).toHaveAttribute('href', 'https://help.shopify.com/en/manual/products/product-media/product-media-types');
+  await page.goto('/partnerships');
+  await page.getByLabel('Your name').fill('Test Partner');
+  await page.getByLabel('Work email').fill('partner@example.com');
+  await page.getByLabel('Organization', { exact: true }).fill('Example Studio');
+  await page.getByLabel('What kind of support are you exploring?').fill('We need overflow product model production.');
+  await page.getByLabel(/TopoStitch may email me/).check();
+  await page.getByRole('button', { name: 'Send partnership inquiry' }).click();
+  await expect(page.getByRole('heading', { name: 'Inquiry received' })).toBeVisible();
 });

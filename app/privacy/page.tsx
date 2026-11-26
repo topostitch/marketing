@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <article className={styles.editorial}>
       <header className={styles.editorialHeader}>
         <h1>Privacy notice</h1>
-        <p>Updated <time dateTime="2026-11-25">November 25, 2026</time></p>
+        <p>Updated <time dateTime="2026-11-26">November 26, 2026</time></p>
         <nav aria-label="In this notice">
           <a href="#inquiries">Inquiries</a>
           <a href="#data-handling">Data handling</a>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
       </section>
       <section id="analytics">
         <h2>Analytics and updates</h2>
-        <p>We use Vercel Web Analytics to understand website visits and interactions with the inquiry form. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
+        <p>We use Vercel Web Analytics to understand website visits. If configured for this site, PostHog receives anonymous events about article views and reading, service-link clicks, and completed partnership inquiries. Those events contain the page path and content or partner category, not names, email addresses, project messages, store URLs, or form values. The event identifier is held in memory for the current page session; session recording and automatic interaction capture are disabled. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
       </section>
       <section id="choices">
         <h2>Your choices</h2>

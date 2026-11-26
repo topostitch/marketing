@@ -36,6 +36,13 @@ async function run(input) { calls = []; return POST({ text: async () => typeof i
   const shortRequest = { inquiryId: body.inquiryId, name: body.name, email: body.email, message: body.message, interest: 'custom', consent: 'yes', intake: 'short' };
   assert.equal((await run(shortRequest)).status, 200);
   assert(JSON.parse(calls.at(-2).options.body).records[0].fields['Project Description'].includes('Destination: To be discussed'));
+  const partnership = { ...shortRequest, interest: 'partnership', partnerType: 'agency', skuVolume: '6-25', timeline: 'quarter', organization: 'Partner Studio', storeUrl: 'https://partner.example' };
+  assert.equal((await run(partnership)).status, 200);
+  const partnerFields = JSON.parse(calls.at(-2).options.body).records[0].fields;
+  assert(partnerFields['Project Description'].includes('Partnership type: Agency or studio'));
+  assert(partnerFields['Project Description'].includes('Approximate product volume: 6–25 products'));
+  assert.equal(partnerFields.Source, 'Website · partnership inquiry');
+  assert.equal((await run({ ...partnership, partnerType: 'unapproved' })).status, 400);
   assert.equal((await run({ ...shortRequest, intake: undefined })).status, 400);
   assert.equal((await run({ ...shortRequest, consent: '' })).status, 400);
   assert.equal((await run({ ...shortRequest, interest: 'unknown' })).status, 400);

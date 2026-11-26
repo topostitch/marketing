@@ -56,7 +56,7 @@ export async function saveInquiry(inquiry: Inquiry) {
     Service: service,
     Status: 'New',
     'Project Description': inquiry.message,
-    Source: 'Website · commerce MVP',
+    Source: inquiry.interest === 'partnership' ? 'Website · partnership inquiry' : 'Website · commerce MVP',
     Customer: [customerId],
   });
 }

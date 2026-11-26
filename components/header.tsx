@@ -8,8 +8,8 @@ import styles from '@/app/marketing-layout.module.css'
 
 const links = [
   ['Services', '/services'],
-  ['Compare', '/compare'],
-  ['How it works', '/#how-it-works'],
+  ['Insights', '/insights'],
+  ['Partnerships', '/partnerships'],
   ['About', '/about'],
   ['Packages', '/checkout'],
 ]

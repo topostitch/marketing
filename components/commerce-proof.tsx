@@ -2,20 +2,18 @@ import styles from '@/app/marketing-layout.module.css'
 
 export const shopifyCaseStudy = 'https://www.shopify.com/case-studies/rebecca-minkoff'
 export const amazonGuide = 'https://m.media-amazon.com/images/G/01/imaging/3D/Getting_Started_With_3D_Content_on_Amazon_-_Spring_2024_WW.pdf'
-
 const evidence = [
-  { value: '44%', label: 'More likely to add to cart', detail: 'Rebecca Minkoff reported this difference between shoppers who interacted with a 3D model and those who did not.', source: 'Shopify · Rebecca Minkoff case study', href: shopifyCaseStudy },
-  { value: '27%', label: 'More likely to place an order', detail: 'Rebecca Minkoff reported this difference among shoppers who interacted with a product in 3D versus those who did not.', source: 'Shopify · Rebecca Minkoff case study', href: shopifyCaseStudy },
-  { value: '2×', label: 'Purchase conversion observed', detail: 'Amazon reported this average improvement in 2022 when shoppers clicked AR Virtual Try-On or View in 3D on enabled listings in US programs.', source: 'Amazon · 2024 selling partner guide, p. 2', href: amazonGuide },
-  { value: '9%', label: 'Average sales improvement', detail: 'Amazon reported this average when View in Your Room was enabled on a product listing, in a 2023 US study.', source: 'Amazon · 2024 selling partner guide, p. 2', href: amazonGuide },
+  { value: '10×', label: 'AR experience adoption', detail: 'Walmart said customer and member adoption increased tenfold across 10 AR experiences at Walmart U.S. and Sam’s Club. The announcement also reported lower returns and improved conversion, without publishing the size of either change.', source: 'Walmart · company announcement, October 2024', href: 'https://corporate.walmart.com/news/2024/10/09/walmart-reveals-plan-for-scaling-artificial-intelligence-generative-ai-augmented-reality-and-immersive-commerce-experiences' },
+  { value: '27%', label: 'Higher likelihood of ordering after 3D interaction', detail: 'Shopify’s Rebecca Minkoff case study says shoppers who interacted with a 3D model were 27% more likely to place an order than shoppers who did not. This is an observed association, not proof that 3D caused the difference.', source: 'Shopify · Rebecca Minkoff case study', href: shopifyCaseStudy },
+  { value: '8,000+', label: '3D models centralized for reuse', detail: 'VNTANA reports that Kohler centralized and activated more than 8,000 models, addressing manual preparation and distribution across digital channels. This is a technology-provider case study; the reported result has not been independently audited by TopoStitch.', source: 'VNTANA · Kohler case study', href: 'https://www.vntana.com/casestudies/the-3d-commerce-breakthrough-how-kohler-revolutionized-product-visualization/' },
 ]
 
 export default function CommerceProof() {
   return (
     <section id="why-3d" className={styles.section} aria-labelledby="proof-title">
       <div className={styles.sectionIntro}>
-        <h2 id="proof-title">Give shoppers more to go on.</h2>
-        <p>Interactive 3D lets people inspect details. AR can help them judge a product in their own space. Here is what established commerce businesses have reported.</p>
+        <h2 id="proof-title">Give customers more ways to explore your products.</h2>
+        <p>Interactive 3D helps shoppers inspect shape, detail and scale before purchasing. Major retailers and brands are already investing in these experiences.</p>
       </div>
       <div className={`${styles.grid} ${styles.two}`}>
         {evidence.map(item => (
@@ -27,7 +25,8 @@ export default function CommerceProof() {
           </article>
         ))}
       </div>
-      <p className={styles.note}>These are third-party reported results, not TopoStitch customer results or guaranteed improvements. Shoppers who choose to interact may already be more interested in buying. Results depend on the product, audience, traffic, and implementation. A pilot tests what happens in your store.</p>
+      <p className={styles.note}>These are third-party reported results, not TopoStitch customer outcomes or guaranteed improvements. Results may not transfer to other products, audiences, or implementations. No retailer affiliation or endorsement is implied.</p>
+      <p className={styles.note}>Read our <a href="/insights">3D commerce insights and source notes</a>.</p>
     </section>
   )
 }

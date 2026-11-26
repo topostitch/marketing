@@ -57,6 +57,16 @@ export async function POST(request: Request) {
       const storeUrl = String(body.storeUrl ?? "").trim();
       if (!interest || (!shortIntake && (!product || !platform || !assets)) || body.consent !== "yes") return NextResponse.json({ error: "Please complete the required project details and consent checkbox." }, { status: 400 });
       if (product.length > 500 || platform.length > 100 || assets.length > 150 || storeUrl.length > 1000) return NextResponse.json({ error: "One of your project details is too long." }, { status: 400 });
+      if (offer === "partnership") {
+        const partnerTypes: Record<string, string> = { agency: "Agency or studio", developer: "Developer or integrator", manufacturer: "Brand or manufacturer", provider: "3D production provider", other: "Other" };
+        const volumes: Record<string, string> = { "1-5": "1–5 products", "6-25": "6–25 products", "26-100": "26–100 products", "100+": "More than 100 products" };
+        const timelines: Record<string, string> = { soon: "Within 30 days", quarter: "Within 1–3 months", later: "More than 3 months" };
+        const partnerType = String(body.partnerType ?? "other");
+        const skuVolume = String(body.skuVolume ?? "");
+        const timeline = String(body.timeline ?? "");
+        if (!Object.hasOwn(partnerTypes, partnerType) || (skuVolume && !Object.hasOwn(volumes, skuVolume)) || (timeline && !Object.hasOwn(timelines, timeline))) return NextResponse.json({ error: "Please select a valid partnership type, volume, or timeline." }, { status: 400 });
+        message = [`Partnership type: ${partnerTypes[partnerType]}`, `Approximate product volume: ${volumes[skuVolume] ?? "Not specified"}`, `Possible timeline: ${timelines[timeline] ?? "To be discussed"}`, "Consent: respond to partnership inquiry", "", message].join("\n");
+      }
       if (storeUrl) {
         try { const url = new URL(storeUrl); if (!["https:", "http:"].includes(url.protocol)) throw new Error(); }
         catch { return NextResponse.json({ error: "Please enter a valid http or https store URL." }, { status: 400 }); }

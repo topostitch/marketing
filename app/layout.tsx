@@ -55,14 +55,10 @@ export const viewport: Viewport = {
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'TopoStitch',
-  legalName: 'TopoStitch LLC',
-  url: 'https://www.topostitch.dev',
-  logo: 'https://www.topostitch.dev/brand/topostitch-mark-dark.svg',
-  description: 'Independent 3D product model creation, optimization, and workflow support for ecommerce sellers and their partners.',
-  email: 'hello@topostitch.dev',
-  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@topostitch.dev' },
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://www.topostitch.dev/#organization', name: 'TopoStitch', legalName: 'TopoStitch LLC', url: 'https://www.topostitch.dev', logo: 'https://www.topostitch.dev/brand/topostitch-mark-dark.svg', description: 'Independent 3D product model creation, optimization, and workflow support for ecommerce sellers and their partners.', email: 'hello@topostitch.dev', contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@topostitch.dev' } },
+    { '@type': 'WebSite', '@id': 'https://www.topostitch.dev/#website', name: 'TopoStitch', url: 'https://www.topostitch.dev', publisher: { '@id': 'https://www.topostitch.dev/#organization' }, inLanguage: 'en-US' },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
