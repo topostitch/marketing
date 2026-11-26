@@ -31,7 +31,7 @@ export default function PrivacyPage() {
       </section>
       <section id="analytics">
         <h2>Analytics and updates</h2>
-        <p>We use Vercel Web Analytics to understand website visits. If configured for this site, PostHog receives anonymous events about article views and reading, service-link clicks, and completed partnership inquiries. Those events contain the page path and content or partner category, not names, email addresses, project messages, store URLs, or form values. The event identifier is held in memory for the current page session; session recording and automatic interaction capture are disabled. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
+        <p>We use Vercel Web Analytics to understand website visits. If configured for this site, PostHog receives anonymous events about article views and reading, service-link clicks, and completed partnership inquiries. Those events contain the page path and content or partner category, not names, email addresses, project messages, store URLs, or form values. PostHog processes them without creating person profiles. Event and session identifiers stay in memory for the current browser session; automatic interaction capture and session recording are not enabled. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
       </section>
       <section id="choices">
         <h2>Your choices</h2>

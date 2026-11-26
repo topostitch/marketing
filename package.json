@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node scripts/check-inquiries.cjs && node scripts/check-payments.cjs && node scripts/check-quantity.cjs && node scripts/check-checkout-route.cjs",
+    "test": "node scripts/check-inquiries.cjs && node scripts/check-payments.cjs && node scripts/check-quantity.cjs && node scripts/check-checkout-route.cjs && node scripts/check-posthog.cjs",
     "test:responsive": "playwright test"
   },
   "dependencies": {
