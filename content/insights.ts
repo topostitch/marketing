@@ -48,7 +48,7 @@ export const insightArticles: InsightArticle[] = [
         { text: 'For Shopify, platform guidance describes GLB and USDZ support and a 500 MB upload ceiling, while Shopify’s partner guidance asks for a compact GLB and specifies a 15 MB maximum for the model it describes. Those numbers apply to different contexts; confirm the current requirements for your theme and workflow instead of treating the platform ceiling as a performance target. [2][3]', sources: [1, 2] },
       ] },
       { heading: 'TopoStitch starting prices', paragraphs: [
-        { text: 'TopoStitch Basic starts at $149 per product for a defined digitization or optimization scope. E-commerce Ready starts at $299 per product for a more complete ecommerce-ready deliverable. These are TopoStitch starting prices, not market averages or guaranteed prices for every product. Eligibility, source files, product complexity, and the agreed deliverables affect the final scope.' },
+        { text: 'TopoStitch Basic starts at $149 per product for preparation of an eligible existing 3D model. E-commerce Ready starts at $299 per product for creation and optimization of a new model from suitable references. These are TopoStitch starting prices, not market averages or guaranteed prices for every product. Eligibility, source files, product complexity, and the agreed deliverables affect the final scope.' },
         { text: 'Specialized production for products such as clear glass, polished metal, gemstones, flexible goods, or complex assemblies needs a review and quote. Multi-product catalogs, custom interactions, and storefront integration are scoped separately.' },
       ] },
       { heading: 'A practical way to start', paragraphs: [
