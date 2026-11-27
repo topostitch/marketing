@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import CommerceProof from "@/components/commerce-proof";
 import CommerceFaqs from "@/components/commerce-faqs";
+import TrackedLink from "@/components/insights/tracked-link";
 import styles from "./marketing-layout.module.css";
+import { insightArticles } from '@/content/insights'
 
 export const metadata: Metadata = {
   title: { absolute: "3D Product Modeling for Amazon & Shopify | TopoStitch" },
@@ -39,9 +41,10 @@ export default function HomePage() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <h1>3D product models for ecommerce.</h1>
+          <p className={styles.salesLabel}>FOR PRODUCTS WORTH A CLOSER LOOK.</p>
+          <h1>Your products deserve more than pictures.</h1>
           <p>Get a model made, fix an existing 3D file, or get expert help publishing 3D on your storefront.</p>
-          <Link className={styles.button} href="/services">Explore 3D services</Link>
+          <TrackedLink className={styles.button} href="/services" eventLabel="home:hero">Explore 3D services</TrackedLink>
           <p className={styles.note}>Start with one product or get help planning a wider rollout.</p>
         </div>
         <figure className={styles.figure}>
@@ -67,12 +70,12 @@ export default function HomePage() {
           <article className={styles.card}>
             <h3>Get a model made or optimized</h3>
             <p>We create a new product model or prepare the one you already have for your storefront.</p>
-            <Link href="/services#done-for-you">Explore 3D production</Link>
+              <TrackedLink href="/services#done-for-you" eventLabel="home:production-card">Explore 3D production</TrackedLink>
           </article>
           <article className={styles.card}>
             <h3>Get help with your 3D workflow</h3>
             <p>We work with your team or agency on capture, asset standards, integration, and handoff.</p>
-            <Link href="/services#done-with-you">Explore consulting and support</Link>
+              <TrackedLink href="/services#done-with-you" eventLabel="home:workflow-card">Explore consulting and support</TrackedLink>
           </article>
         </div>
         <p className={styles.note}><Link href="/compare">Compare offerings and pricing</Link></p>
@@ -128,6 +131,20 @@ export default function HomePage() {
       </section>
 
       <CommerceProof />
+      <section className={styles.section} aria-labelledby="insights-preview-title">
+        <div className={styles.sectionIntro}>
+          <h2 id="insights-preview-title">Learn what to check before you invest in 3D.</h2>
+          <p>Practical guides, source-linked examples, and clear notes about what the published evidence can and cannot show.</p>
+        </div>
+        <div className={styles.grid}>
+          {insightArticles.slice(0, 3).map(article => <article className={styles.card} key={article.slug}>
+            <p className={styles.articleCategory}>{article.category}</p>
+            <h3><Link href={`/insights/${article.slug}`}>{article.title}</Link></h3>
+            <p>{article.description}</p>
+          </article>)}
+        </div>
+        <p className={styles.note}><Link href="/insights">Browse all insights</Link></p>
+      </section>
       <CommerceFaqs />
 
       <ProjectNextStep />

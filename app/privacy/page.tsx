@@ -3,7 +3,7 @@ import styles from '../marketing-layout.module.css'
 
 export const metadata: Metadata = {
   title: 'Privacy notice',
-  description: 'How TopoStitch uses details submitted through its project inquiry form.',
+  description: 'How TopoStitch handles project inquiries, package checkout, payment records, and website analytics.',
   alternates: { canonical: '/privacy' },
 }
 
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <article className={styles.editorial}>
       <header className={styles.editorialHeader}>
         <h1>Privacy notice</h1>
-        <p>Updated <time dateTime="2026-11-20">November 20, 2026</time></p>
+        <p>Updated <time dateTime="2026-11-26">November 26, 2026</time></p>
         <nav aria-label="In this notice">
           <a href="#inquiries">Inquiries</a>
           <a href="#data-handling">Data handling</a>
@@ -23,19 +23,19 @@ export default function PrivacyPage() {
       </header>
       <section id="inquiries">
         <h2>Project inquiries</h2>
-        <p>TopoStitch LLC uses the name, email address, company, store link, project details, and preferences you submit to respond to your request, assess your project, and prepare a proposal. Please do not submit payment information, sensitive personal information, or confidential files.</p>
+        <p>TopoStitch LLC uses the name, email address, company, store link, project details, and preferences you submit to respond to your request, assess your project, and prepare a proposal. For a direct purchase, Stripe collects the information needed to take payment and send a receipt. Please do not submit sensitive personal information or confidential files through project forms.</p>
       </section>
       <section id="data-handling">
         <h2>How information is handled</h2>
-        <p>The website is hosted by Vercel. Inquiry details are saved in TopoStitch’s Airtable customer and inquiry records. Email notifications are handled through Resend. Approved pilot payments are collected through Stripe-hosted checkout. Stripe processes card details, and TopoStitch uses the resulting payment status and order reference to reconcile the approved order. Campaign labels included in the page URL may be attached to your inquiry to help us understand how you found us. We do not include your name, email, store URL, or message in our custom analytics events.</p>
+        <p>The website is hosted by Vercel. Inquiry details are saved in TopoStitch’s Airtable customer and inquiry records. Email notifications are handled through Resend. Fixed-scope package payments are collected through Stripe-hosted checkout. Stripe processes card details and may send a receipt; TopoStitch receives the contact, package, quantity, and payment status needed to record the order and follow up about project intake. Campaign labels included in the page URL may be attached to your inquiry to help us understand how you found us. We do not include your name, email, store URL, or message in our custom analytics events.</p>
       </section>
       <section id="analytics">
         <h2>Analytics and updates</h2>
-        <p>We use Vercel Web Analytics to understand website visits and interactions with the inquiry form. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
+        <p>We use Vercel Web Analytics to understand website visits. If configured for this site, PostHog receives anonymous events about article views and reading, service-link clicks, and completed partnership inquiries. Those events contain the page path and content or partner category, not names, email addresses, project messages, store URLs, or form values. PostHog processes them without creating person profiles. Event and session identifiers stay in memory for the current browser session; automatic interaction capture and session recording are not enabled. Requesting project help does not subscribe you to marketing. The separate updates form records your consent to receive pilot openings, product 3D examples, and service news. To stop receiving updates, email us at the address below.</p>
       </section>
       <section id="choices">
         <h2>Your choices</h2>
-        <p>To ask about the information you submitted, request a correction or deletion, or stop updates, email <a href="mailto:hello@topostitch.dev">hello@topostitch.dev</a>. We retain inquiry correspondence while handling your request and related business follow-up. Accepted projects and payment records may need to be retained separately.</p>
+        <p>To ask about the information you submitted, request a correction or deletion, or stop updates, email <a href="mailto:hello@topostitch.dev">hello@topostitch.dev</a>. We retain inquiry correspondence while handling your request and related business follow-up. Order and payment records may be retained for accounting and business operations.</p>
       </section>
       <section id="external-links">
         <h2>External links</h2>

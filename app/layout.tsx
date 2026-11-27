@@ -53,10 +53,19 @@ export const viewport: Viewport = {
   themeColor: [{ media: '(prefers-color-scheme: light)', color: '#fafaf8' }],
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://www.topostitch.dev/#organization', name: 'TopoStitch', legalName: 'TopoStitch LLC', url: 'https://www.topostitch.dev', logo: 'https://www.topostitch.dev/brand/topostitch-mark-dark.svg', description: 'Independent 3D product model creation, optimization, and workflow support for ecommerce sellers and their partners.', email: 'hello@topostitch.dev', contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@topostitch.dev' } },
+    { '@type': 'WebSite', '@id': 'https://www.topostitch.dev/#website', name: 'TopoStitch', url: 'https://www.topostitch.dev', publisher: { '@id': 'https://www.topostitch.dev/#organization' }, inLanguage: 'en-US' },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html data-scroll-behavior="smooth" lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, '\\u003c') }} />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg">
           Skip to main content
         </a>

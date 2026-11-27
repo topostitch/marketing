@@ -5,16 +5,36 @@ import { useState } from 'react';
 import { formatUSD, maximumQuantity, packageAmounts, parseQuantity } from '@/lib/package-quantity';
 import styles from '@/app/marketing-layout.module.css';
 
-export default function PackageOrder({ offer, initialQuantity, sandboxLink }: {
-  offer: keyof typeof packageAmounts; initialQuantity: number; sandboxLink: string | null;
+export default function PackageOrder({ offer, initialQuantity, checkoutReady }: {
+  offer: keyof typeof packageAmounts; initialQuantity: number; checkoutReady: boolean;
 }) {
   const [value, setValue] = useState(String(initialQuantity));
+  const [checkoutState, setCheckoutState] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [checkoutError, setCheckoutError] = useState('');
   const quantity = parseQuantity(value);
   function update(next: string) {
     setValue(next);
     const url = new URL(window.location.href);
     url.searchParams.set('quantity', next);
     window.history.replaceState(null, '', url);
+  }
+  async function beginCheckout() {
+    if (!quantity || checkoutState === 'loading') return;
+    setCheckoutState('loading');
+    setCheckoutError('');
+    try {
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ offer, quantity }),
+      });
+      const result = await response.json();
+      if (!response.ok || typeof result.url !== 'string') throw new Error(result.error || 'Secure checkout could not start.');
+      window.location.assign(result.url);
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : 'Secure checkout could not start.');
+      setCheckoutState('error');
+    }
   }
   return <div className={styles.order}>
     <p><strong>From {formatUSD(packageAmounts[offer])} per product</strong></p>
@@ -31,16 +51,12 @@ export default function PackageOrder({ offer, initialQuantity, sandboxLink }: {
     <p id="quantity-help" className={styles.note}>Choose 1–99 products. Larger catalogs need a custom quote.</p>
     {quantity === null ? <p role="alert">Enter a whole number from 1 to 99.</p> : <>
       <p className={styles.orderTotal} aria-live="polite">Estimated starting total: {formatUSD(packageAmounts[offer] * quantity)} USD</p>
-      <p className={styles.note}>Final scope and price are confirmed before payment. Capture, shipping, complex modeling, variants, and storefront implementation are quoted separately.</p>
-      <Link className={styles.button} href={`/request?offer=${offer}&quantity=${quantity}`}>Request review for {quantity} {quantity === 1 ? 'product' : 'products'}</Link>
-      {sandboxLink && <div className={styles.sandboxNotice}>
-        <h2>Try Stripe sandbox</h2>
-        <p>This single-product walkthrough uses a test card and creates no fulfillment order.</p>
-        {quantity === 1 ? <>
-          <p>Test card: 4242 4242 4242 4242 · any future expiry · any three-digit CVC.</p>
-          <a className={styles.button} href={sandboxLink}>Continue to Stripe test checkout</a>
-        </> : <p>Test checkout supports one product. Request a review for this quantity, or select one product to try the walkthrough.</p>}
-      </div>}
+      <p className={styles.note}>Starting price is per product. We’ll collect your project details after checkout. Capture, shipping, complex modeling, variants, and storefront implementation are quoted separately.</p>
+      {checkoutReady ? <button className={styles.button} type="button" onClick={beginCheckout} disabled={checkoutState === 'loading'} aria-busy={checkoutState === 'loading'}>
+        {checkoutState === 'loading' ? 'Opening secure checkout…' : `Continue to secure checkout · ${formatUSD(packageAmounts[offer] * quantity)}`}
+      </button> : <p className={styles.sandboxNotice} role="status">Secure sandbox checkout is not configured for this preview yet. You can still <Link href={`/request?offer=${offer}&quantity=${quantity}`}>request this package</Link>.</p>}
+      {checkoutState === 'error' && <p role="alert">{checkoutError}</p>}
+      <Link href={`/request?offer=${offer}&quantity=${quantity}`}>Ask a question before buying</Link>
     </>}
     <Link href="/checkout">Choose another package</Link>
   </div>;

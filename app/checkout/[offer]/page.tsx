@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PackageOrder from '@/components/package-order';
 import { commerceOffers } from '@/lib/commerce-offers';
-import { paymentOffers, sandboxCheckoutLink, type PaymentOffer } from '@/lib/payments';
+import { directCheckoutAvailable, paymentOffers, type PaymentOffer } from '@/lib/payments';
 import { parseQuantity } from '@/lib/package-quantity';
 import styles from '../../marketing-layout.module.css';
 
@@ -24,9 +24,9 @@ export default async function CheckoutPage({ params, searchParams }: {
         <h1>{details.name}</h1><p>{details.summary}</p>
       </header>
       <div className={styles.card}>
-        <h2>Included in your scope</h2>
+        <h2>Included in your package</h2>
         <ul>{details.deliverables.map(item => <li key={item}>{item}</li>)}</ul>
-        <PackageOrder offer={selected} initialQuantity={parseQuantity(query.quantity) ?? 1} sandboxLink={sandboxCheckoutLink(selected)} />
+        <PackageOrder offer={selected} initialQuantity={parseQuantity(query.quantity) ?? 1} checkoutReady={directCheckoutAvailable()} />
       </div>
     </div>
   </main>;

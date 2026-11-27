@@ -1,10 +1,23 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
 export const paymentOffers = {
-  basic: { name: 'Existing-model preparation', price: '$149', setting: 'STRIPE_PAYMENT_LINK_BASIC' },
-  ecommerce: { name: 'Product model creation', price: '$299', setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE' },
+  basic: { name: 'Basic', price: '$149', amount: 14900, setting: 'STRIPE_PAYMENT_LINK_BASIC', priceIdSetting: 'STRIPE_PRICE_BASIC_ID' },
+  ecommerce: { name: 'E-commerce Ready', price: '$299', amount: 29900, setting: 'STRIPE_PAYMENT_LINK_ECOMMERCE', priceIdSetting: 'STRIPE_PRICE_ECOMMERCE_ID' },
 } as const;
 export type PaymentOffer = keyof typeof paymentOffers;
+export function directCheckoutAvailable() {
+  const sandboxKey = /^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY || '');
+  const allowedEnvironment = process.env.VERCEL_ENV !== 'production' &&
+    (process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development');
+  const hasCheckoutOrigin = process.env.VERCEL_ENV === 'preview'
+    ? Boolean(process.env.VERCEL_URL)
+    : process.env.NODE_ENV === 'development';
+  return allowedEnvironment && hasCheckoutOrigin && sandboxKey && Boolean(
+    process.env.STRIPE_WEBHOOK_SECRET && process.env.AIRTABLE_TOKEN && process.env.AIRTABLE_BASE_ID &&
+    process.env.AIRTABLE_CUSTOMERS_TABLE_ID && process.env.AIRTABLE_ORDERS_TABLE_ID &&
+    process.env.STRIPE_PRICE_BASIC_ID?.startsWith('price_') && process.env.STRIPE_PRICE_ECOMMERCE_ID?.startsWith('price_')
+  );
+}
 export function paymentLink(offer: PaymentOffer) {
   // Live collection remains disabled during sandbox storefront development.
   if (process.env.VERCEL_ENV === 'production' || !/^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY || '')) return null;
@@ -52,6 +65,7 @@ export function verifyStripeSignature(raw: string, header: string, secret: strin
 type PaidSession = {
   id: string; payment_status: string; currency: string; amount_total: number;
   payment_link: string | null; invoice: string | null;
+  mode?: string; metadata?: Record<string, string>;
   client_reference_id?: string | null;
   customer_details: { email?: string; name?: string } | null;
 };
@@ -64,9 +78,25 @@ export async function recordStripePayment(sessionId: string) {
   if (!response.ok) throw new Error('Stripe session lookup failed');
   const session: PaidSession = await response.json();
   const allowed = [process.env.STRIPE_PAYMENT_LINK_BASIC_ID, process.env.STRIPE_PAYMENT_LINK_ECOMMERCE_ID].filter(Boolean);
-  if (!allowed.length) throw new Error('No payment links configured for reconciliation');
-  // Ignore unrelated payments made through the same Stripe account.
-  if (!session.payment_link || !allowed.includes(session.payment_link)) return;
+  const isDirectPurchase = session.metadata?.topostitch_checkout === 'direct';
+  if (isDirectPurchase) {
+    const offerValue = session.metadata?.offer;
+    const offer = typeof offerValue === 'string' && Object.hasOwn(paymentOffers, offerValue)
+      ? offerValue as PaymentOffer
+      : null;
+    const details = offer ? paymentOffers[offer] : undefined;
+    const quantityValue = session.metadata?.quantity || '';
+    const quantity = /^[1-9][0-9]?$/.test(quantityValue) ? Number(quantityValue) : null;
+    const expectedPriceId = details && process.env[details.priceIdSetting];
+    if (session.mode !== 'payment' || !details || quantity === null || quantity > 99 ||
+      session.metadata?.price_id !== expectedPriceId || session.amount_total !== details.amount * quantity) {
+      throw new Error('Direct checkout session does not match an enabled package');
+    }
+  } else {
+    if (!allowed.length) throw new Error('No payment links configured for reconciliation');
+    // Ignore unrelated payments made through the same Stripe account.
+    if (!session.payment_link || !allowed.includes(session.payment_link)) return;
+  }
   if (session.payment_status !== 'paid') return;
   if (session.currency !== 'usd' || !Number.isSafeInteger(session.amount_total) || session.amount_total <= 0) throw new Error('Unsupported payment amount or currency');
   const email = session.customer_details?.email?.trim().toLowerCase();
@@ -86,7 +116,7 @@ export async function recordStripePayment(sessionId: string) {
     if (!result.ok) throw new Error('Payment record lookup failed');
     return (await result.json()).records?.[0];
   }
-  if (process.env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT === 'true') {
+  if (process.env.TOPOSTITCH_APPROVED_ORDER_CHECKOUT === 'true' && !isDirectPurchase) {
     // Only paid sessions for an approved Ship-to-3D order may advance fulfillment.
     const orderId = session.client_reference_id;
     if (!orderId || !/^[A-Za-z0-9_-]{1,200}$/.test(orderId)) throw new Error('Paid checkout is missing a valid order reference');
@@ -134,9 +164,18 @@ export async function recordStripePayment(sessionId: string) {
   }
   if (!customer?.id) throw new Error('Payment customer is missing');
   const fields: Record<string, unknown> = {
-    'Order ID': session.id, 'Payment Status': 'Paid', Customer: [customer.id],
+    'Order ID': session.id, 'Status': isDirectPurchase ? 'Requested' : 'Paid / Awaiting Shipment',
+    'Payment Status': 'Paid', Customer: [customer.id],
+    'Service Subtotal': session.amount_total / 100,
     'Final Quoted Total': session.amount_total / 100,
-    'Fulfillment Notes': `Stripe-verified USD payment. Payment Link: ${session.payment_link}. Confirm purchased scope and arrange onboarding. Payment does not mean production or delivery is complete.`,
+    'Fulfillment Notes': isDirectPurchase
+      ? `Stripe-verified direct purchase. Package: ${paymentOffers[session.metadata?.offer as PaymentOffer].name}; quantity: ${session.metadata?.quantity}. Customer project details are pending intake.`
+      : `Stripe-verified USD payment. Payment Link: ${session.payment_link}. Confirm purchased scope and arrange onboarding. Payment does not mean production or delivery is complete.`,
+    ...(isDirectPurchase ? {
+      'Stripe Checkout Session ID': session.id,
+      'Waiting on': 'TopoStitch',
+      'Next action': 'Send project intake instructions',
+    } : {}),
   };
   if (session.invoice) fields['Stripe Invoice ID'] = session.invoice;
   const saved = await fetch(endpoint(orders), { method: 'PATCH', headers,
