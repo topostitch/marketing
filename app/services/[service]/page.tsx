@@ -1,3 +1,5 @@
+import { jsonLd } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import ServiceExplorer, {
   ProjectNextStep,
 } from "@/components/service-explorer";
@@ -21,21 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { service } = await params;
   const data = findService(service);
   if (!data) return {};
-  return {
+  return pageMetadata({
     title: data.title,
     description: data.description,
-    alternates: { canonical: `/services/${service}` },
-    openGraph: {
-      title: data.title,
-      description: data.description,
-      url: `/services/${service}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: data.title,
-      description: data.description,
-    },
-  };
+    path: `/services/${service}`,
+  });
 }
 export default async function ServicePage({ params }: Props) {
   const { service } = await params;
@@ -65,7 +57,13 @@ export default async function ServicePage({ params }: Props) {
             name: "Home",
             item: "https://www.topostitch.dev",
           },
-          { "@type": "ListItem", position: 2, name: data.title, item: url },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://www.topostitch.dev/services",
+          },
+          { "@type": "ListItem", position: 3, name: data.title, item: url },
         ],
       },
       {
@@ -83,11 +81,11 @@ export default async function ServicePage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+          __html: jsonLd(schema),
         }}
       />
       <nav aria-label="Breadcrumb">
-        <Link href="/">Home</Link> /{" "}
+        <Link href="/">Home</Link> / <Link href="/services">Services</Link> /{" "}
         <span aria-current="page">{data.title}</span>
       </nav>
       <section className={styles.commerceSection}>

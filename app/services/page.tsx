@@ -1,3 +1,6 @@
+import ServiceAnswers from "@/components/service-answers";
+import Breadcrumbs from "@/components/breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import CapturePathways from "@/components/capture-pathways";
 import Suitability, { FulfillmentTerms } from "@/components/suitability";
 import type { Metadata } from "next";
@@ -7,12 +10,12 @@ import ServiceExplorer from "@/components/service-explorer";
 import { commerceOffers } from "@/lib/commerce-offers";
 import styles from "../marketing-layout.module.css";
 
-export const metadata: Metadata = {
-  title: "3D Services for Ecommerce",
+export const metadata: Metadata = pageMetadata({
+  title: "3D Product Digitization & Ecommerce Services",
   description:
-    "Compare TopoStitch’s 3D product model optimization, model creation, workflow consulting, and agency integration support.",
-  alternates: { canonical: "/services" },
-};
+    "Explore physical-product digitization, ecommerce-ready 3D assets and specialized production. Compare capture methods, deliverables and pilot requirements.",
+  path: "/services",
+});
 
 const illustrations = {
   basic: {
@@ -39,6 +42,12 @@ export default function ServicesPage() {
 
   return (
     <main id="main-content" className={styles.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ]}
+      />
       <header className={styles.salesIntro}>
         <h1>3D services for ecommerce</h1>
         <p>
@@ -183,6 +192,7 @@ export default function ServicesPage() {
         </ol>
       </section>
 
+      <ServiceAnswers />
       <ServiceExplorer />
       <Suitability />
       <FulfillmentTerms />

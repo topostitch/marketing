@@ -1,3 +1,4 @@
+import { jsonLd } from "@/lib/seo";
 import Link from "next/link";
 import styles from "@/app/marketing-layout.module.css";
 import { amazonGuide, shopifyCaseStudy } from "./commerce-proof";
@@ -47,7 +48,7 @@ export default function CommerceFaqs() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+          __html: jsonLd(schema),
         }}
       />
       <div className={styles.sectionIntro}>

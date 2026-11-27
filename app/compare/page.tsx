@@ -1,3 +1,5 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import CapturePathways from "@/components/capture-pathways";
 import Suitability, { FulfillmentTerms } from "@/components/suitability";
 import type { Metadata } from "next";
@@ -5,15 +7,21 @@ import Link from "next/link";
 import { commerceOffers } from "@/lib/commerce-offers";
 import styles from "../marketing-layout.module.css";
 
-export const metadata: Metadata = {
-  title: "Compare 3D services and pricing",
+export const metadata: Metadata = pageMetadata({
+  title: "Compare 3D Production Services & Starting Prices",
   description:
-    "Compare TopoStitch Basic and E-commerce Ready packages, plus workflow consulting and agency integration support.",
-  alternates: { canonical: "/compare" },
-};
+    "Compare Basic digitization from $149 and E-commerce Ready from $299, plus specialized production and integration quotations. Review suitability and shipping terms.",
+  path: "/compare",
+});
 export default function ComparePage() {
   return (
     <main id="main-content" className={styles.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Compare", path: "/compare" },
+        ]}
+      />
       <header className={styles.salesIntro}>
         <h1>Find the right starting point</h1>
         <p>

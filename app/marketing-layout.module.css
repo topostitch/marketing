@@ -936,3 +936,28 @@
 .form button:disabled {
   cursor: not-allowed;
 }
+
+.pageBreadcrumbs {
+  width: var(--measure);
+  margin: 0 auto;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.pageBreadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pageBreadcrumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.pageBreadcrumbs li {
+  display: inline;
+  overflow-wrap: anywhere;
+}

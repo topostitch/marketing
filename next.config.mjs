@@ -1,17 +1,41 @@
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath } from "node:url";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: { root: fileURLToPath(new URL('.', import.meta.url)) },
+  turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   typescript: {
     ignoreBuildErrors: false,
   },
+  async headers() {
+    return process.env.VERCEL_ENV === "production"
+      ? [
+          "/api/:path*",
+          "/order/:path*",
+          "/cart",
+          "/checkout/:path*",
+          "/request",
+          "/updates",
+          "/unsubscribe",
+        ].map((source) => ({
+          source,
+          headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+        }))
+      : [
+          {
+            source: "/:path*",
+            headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+          },
+        ];
+  },
   async redirects() {
-    return ["/platform", "/stories"].map(source => ({ source, destination: "/", permanent: true }));
+    return [
+      { source: "/platform", destination: "/developers", permanent: true },
+      { source: "/stories", destination: "/insights", permanent: true },
+    ];
   },
   images: {
-    unoptimized: true,
+    formats: ["image/webp"],
+    qualities: [75],
   },
-}
+};
 
-export default nextConfig
-
+export default nextConfig;

@@ -6,6 +6,8 @@ test("WCAG A/AA automated checks on core commercial and learning pages", async (
   for (const route of [
     "/",
     "/services",
+    "/about",
+    "/learn",
     "/compare",
     "/order",
     "/cart",

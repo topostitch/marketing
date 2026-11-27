@@ -1,17 +1,25 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/content/learn";
 import Suitability from "@/components/suitability";
 import s from "../marketing-layout.module.css";
-export const metadata: Metadata = {
-  title: "Learn 3D production",
+export const metadata: Metadata = pageMetadata({
+  title: "Learn Photogrammetry & Product Capture",
   description:
-    "Free product suitability, preparation, shipping and capture guidance from TopoStitch.",
-  alternates: { canonical: "/learn" },
-};
+    "Free guides to product suitability, preparation, packaging, smartphone photography and capture coverage. Start a 3D production project with usable inputs.",
+  path: "/learn",
+});
 export default function Learn() {
   return (
     <main id="main-content" className={s.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Learn", path: "/learn" },
+        ]}
+      />
       <header className={s.salesIntro}>
         <p>LEARNING CENTER</p>
         <h1>A better capture starts here.</h1>

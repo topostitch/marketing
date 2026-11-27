@@ -1,3 +1,6 @@
+import { jsonLd } from "@/lib/seo";
+import { pageMetadata, canonical, organizationId } from "@/lib/seo";
+import Breadcrumbs from "@/components/breadcrumbs";
 import GuideEngagement from "@/components/guide-engagement";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -17,11 +20,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const g = guides.find((g) => g.slug === slug);
   return g
-    ? {
+    ? pageMetadata({
         title: g.title,
         description: g.description,
-        alternates: { canonical: `/learn/${slug}` },
-      }
+        path: `/learn/${slug}`,
+        article: { modified: "2026-11-27" },
+      })
     : {};
 }
 export default async function GuidePage({
@@ -37,18 +41,29 @@ export default async function GuidePage({
     "@type": "Article",
     headline: g.title,
     description: g.description,
-    author: { "@type": "Organization", name: "TopoStitch" },
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
+    url: canonical(`/learn/${slug}`),
+    inLanguage: "en-US",
+    citation: learningSources.map((source) => source.url),
     dateModified: "2026-11-27",
     mainEntityOfPage: `https://www.topostitch.dev/learn/${slug}`,
   };
   return (
     <main id="main-content" className={s.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Learn", path: "/learn" },
+          { name: g.title, path: `/learn/${slug}` },
+        ]}
+      />
       <GuideEngagement slug={slug} />
       <article className={s.editorial}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema).replace(/</g, "\u003c"),
+            __html: jsonLd(schema),
           }}
         />
         <header className={s.editorialHeader}>

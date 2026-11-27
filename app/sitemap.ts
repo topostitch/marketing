@@ -1,32 +1,31 @@
-import { guides } from "@/content/learn";
 import type { MetadataRoute } from "next";
+import { canonical } from "@/lib/seo";
+import { guides } from "@/content/learn";
 import { servicePages } from "@/lib/service-pages";
 import { insightArticles } from "@/content/insights";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const fixed = [
-    "",
-    "/services",
-    "/compare",
-    "/about",
-    "/privacy",
-    "/learn",
-    "/developers",
-    "/insights",
-    "/partnerships",
-  ];
-  const services = Object.keys(servicePages).map((slug) => `/services/${slug}`);
-  const articles = insightArticles.map(
-    (article) => `/insights/${article.slug}`,
-  );
   return [
-    ...fixed,
-    ...services,
-    ...articles,
-    ...guides.map((g) => `/learn/${g.slug}`),
-  ].map((path) => ({
-    url: `https://www.topostitch.dev${path}`,
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : path.startsWith("/insights/") ? 0.7 : 0.8,
-  }));
+    ...[
+      "/",
+      "/services",
+      "/compare",
+      "/about",
+      "/privacy",
+      "/learn",
+      "/developers",
+      "/insights",
+      "/partnerships",
+    ].map((path) => ({ url: canonical(path) })),
+    ...Object.keys(servicePages).map((slug) => ({
+      url: canonical(`/services/${slug}`),
+    })),
+    ...insightArticles.map((article) => ({
+      url: canonical(`/insights/${article.slug}`),
+      lastModified: article.dateModified,
+    })),
+    ...guides.map((guide) => ({
+      url: canonical(`/learn/${guide.slug}`),
+      lastModified: "2026-11-27",
+    })),
+  ];
 }

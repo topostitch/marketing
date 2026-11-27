@@ -1,16 +1,24 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import styles from "../marketing-layout.module.css";
 
-export const metadata: Metadata = {
-  title: "Privacy notice",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy & Data Choices",
   description:
-    "How TopoStitch handles project inquiries, package checkout, payment records, and website analytics.",
-  alternates: { canonical: "/privacy" },
-};
+    "Understand how TopoStitch handles inquiries, orders, product interests, marketing consent, unsubscribe choices and anonymous analytics.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
     <main id="main-content" className={styles.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Privacy", path: "/privacy" },
+        ]}
+      />
       <article className={styles.editorial}>
         <header className={styles.editorialHeader}>
           <h1>Privacy notice</h1>

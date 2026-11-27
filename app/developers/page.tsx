@@ -1,17 +1,25 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { capabilities } from "@/lib/capabilities";
 import InterestForm from "@/components/interest-form";
 import s from "../marketing-layout.module.css";
-export const metadata: Metadata = {
-  title: "Developers — future 3D production tools",
+export const metadata: Metadata = pageMetadata({
+  title: "Developers: Future 3D Production Tools",
   description:
-    "Follow TopoStitch’s local-first production tooling and automation direction. Future capabilities are not currently purchasable.",
-  alternates: { canonical: "/developers" },
-};
+    "Follow TopoStitch’s local-first tooling and automation direction. CLI development and planned capabilities are not currently purchasable software.",
+  path: "/developers",
+});
 export default function Developers() {
   return (
     <main id="main-content" className={s.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Developers", path: "/developers" },
+        ]}
+      />
       <header className={s.salesIntro}>
         <p>DEVELOPERS & STUDIOS</p>
         <h1>Build once. Process at scale.</h1>

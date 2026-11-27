@@ -45,7 +45,7 @@ export const insightArticles: InsightArticle[] = [
     category: "Ecommerce",
     audience: "Merchants and agencies comparing 3D production options",
     datePublished: reviewed,
-    dateModified: reviewed,
+    dateModified: "2026-11-27",
     readMinutes: 5,
     intro:
       "A 3D product model does not have one standard price. Cost depends on what you are starting with, how the product looks and behaves, and where the finished asset needs to work.",

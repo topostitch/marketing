@@ -70,6 +70,7 @@ for (const width of [320, 390, 768, 1280]) {
         "/order",
         "/learn",
         "/developers",
+        "/about",
       ]) {
         await page.goto(route);
         await page.screenshot({

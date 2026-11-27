@@ -1,3 +1,5 @@
+import { jsonLd } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import CapturePathways from "@/components/capture-pathways";
 import FutureDirection from "@/components/future-direction";
 import { ProjectNextStep } from "@/components/service-explorer";
@@ -10,34 +12,22 @@ import TrackedLink from "@/components/insights/tracked-link";
 import styles from "./marketing-layout.module.css";
 import { insightArticles } from "@/content/insights";
 
-export const metadata: Metadata = {
-  title: { absolute: "3D Product Modeling for Amazon & Shopify | TopoStitch" },
+export const metadata: Metadata = pageMetadata({
+  title: "3D Production for Ecommerce, AR & Interactive Experiences",
   description:
-    "Supported 3D production services for ecommerce, augmented reality and interactive experiences. Explore our future direction in local-first production automation.",
-  alternates: { canonical: "/" },
-};
+    "Create, optimize and deploy 3D product assets with TopoStitch. Explore supported production services, product suitability and capture guidance.",
+  path: "/",
+});
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.topostitch.dev/#organization",
-      name: "TopoStitch",
-      url: "https://www.topostitch.dev",
-      email: "hello@topostitch.dev",
-    },
-    {
-      "@type": "Service",
-      name: "Product 3D preparation and creation",
-      provider: { "@id": "https://www.topostitch.dev/#organization" },
-      serviceType:
-        "3D product asset preparation and supported production for ecommerce merchants",
-      url: "https://www.topostitch.dev/services",
-      description:
-        "Existing-model preparation, product model creation, and custom workflow assistance.",
-    },
-  ],
+  "@type": "Service",
+  "@id": "https://www.topostitch.dev/services#production",
+  name: "Supported 3D production",
+  url: "https://www.topostitch.dev/services",
+  provider: { "@id": "https://www.topostitch.dev/#organization" },
+  description:
+    "Physical product digitization, ecommerce asset preparation and specialized production. Customer-provided captures are inquiry-only; future software is not currently purchasable.",
 };
 
 const outputs = [
@@ -86,7 +76,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          __html: jsonLd(structuredData),
         }}
       />
 

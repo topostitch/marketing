@@ -1,19 +1,54 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/json-ld";
+import { canonical, organizationId, websiteId, founderId } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import FutureDirection from "@/components/future-direction";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../marketing-layout.module.css";
 
-export const metadata: Metadata = {
-  title: "About TopoStitch",
+export const metadata: Metadata = pageMetadata({
+  title: "About TopoStitch & Founder Jacob Galito",
   description:
-    "Meet founder Jacob Galito and the story behind TopoStitch, an independent, disabled veteran-, minority-, Asian American-, and LGBTQ+-owned 3D production company.",
-  alternates: { canonical: "/about" },
-};
+    "Meet Jacob Galito, the founder of TopoStitch, an independent, disabled veteran-, minority-, Asian American- and LGBTQ+-owned 3D production company.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
     <main id="main-content" className={styles.page}>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "AboutPage",
+              "@id": canonical("/about#page"),
+              url: canonical("/about"),
+              name: "About TopoStitch and founder Jacob Galito",
+              isPartOf: { "@id": websiteId },
+              about: [{ "@id": organizationId }, { "@id": founderId }],
+            },
+            {
+              "@type": "Person",
+              "@id": founderId,
+              name: "Jacob Galito",
+              url: canonical("/about"),
+              jobTitle: "Founder",
+              worksFor: { "@id": organizationId },
+              description:
+                "Founder of TopoStitch, U.S. Navy veteran, former Ario co-founder and Creative Director, with a background in product design and immersive technology.",
+            },
+          ],
+        }}
+      />
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p className={styles.salesLabel}>ABOUT TOPOSTITCH</p>
