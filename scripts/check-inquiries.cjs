@@ -30,7 +30,7 @@ async function run(input) { calls = []; return POST({ text: async () => typeof i
   assert.equal((await run('invalid')).status, 400); assert.equal(calls.length, 0);
   assert.equal((await run({ ...body, consent: '' })).status, 400); assert.equal(calls.length, 0);
   assert.equal((await run({ ...body, storeUrl: 'javascript:alert(1)' })).status, 400); assert.equal(calls.length, 0);
-  assert.equal((await run({ ...body, website: 'spam' })).status, 200); assert.equal(calls.length, 0);
+  assert.equal((await run({ ...body, website: 'spam' })).status, 400); assert.equal(calls.length, 0);
   let result = await run(body); assert.equal(result.status, 200); assert.equal(calls.at(-1).email, true); assert.equal(calls.at(-2).options.method, 'PATCH');
   const saved = JSON.parse(calls.at(-2).options.body); assert.equal(saved.records[0].fields['Inquiry ID'], body.inquiryId); assert(saved.records[0].fields['Project Description'].includes('utm_source: google'));
   const shortRequest = { inquiryId: body.inquiryId, name: body.name, email: body.email, message: body.message, interest: 'custom', consent: 'yes', intake: 'short' };

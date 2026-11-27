@@ -17,7 +17,7 @@ export default async function RequestPage({ searchParams }: { searchParams: Prom
           <Link href="/compare">Compare services</Link>
         </header>
         <MvpLeadForm key={`${offer ?? ""}:${platform ?? ""}`} defaultOffer={offer} defaultQuantity={parseQuantity(quantity) ?? undefined}
-          defaultPlatform={platform === "Amazon" || platform === "Shopify" ? platform : ""} />
+          defaultPlatform={platform === "Amazon" || platform === "Shopify" || platform === "customer-captures" ? platform : ""} />
       </div>
     </main>
   );

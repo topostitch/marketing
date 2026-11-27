@@ -6,7 +6,7 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   async redirects() {
-    return ["/platform", "/stories", "/learn"].map(source => ({ source, destination: "/", permanent: true }));
+    return ["/platform", "/stories"].map(source => ({ source, destination: "/", permanent: true }));
   },
   images: {
     unoptimized: true,
