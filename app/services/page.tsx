@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { servicePages } from '@/lib/service-pages';
+import ServiceExplorer from '@/components/service-explorer';
 import { commerceOffers } from '@/lib/commerce-offers';
 import styles from '../marketing-layout.module.css';
 
@@ -95,11 +95,7 @@ export default function ServicesPage() {
         </ol>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.sectionIntro}><h2>Explore by destination</h2></div>
-        <div className={styles.grid}>{Object.entries(servicePages).map(([slug, service]) =>
-          <Link className={styles.card} key={slug} href={`/services/${slug}`}>{service.title}</Link>)}</div>
-      </section>
+      <ServiceExplorer />
     </main>
   );
 }

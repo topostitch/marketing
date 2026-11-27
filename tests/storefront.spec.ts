@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
-const routes = ['/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/request', '/about'];
+const routes = ['/services/amazon-3d-modeling', '/services/shopify-3d-models', '/services/3d-product-modeling', '/', '/services', '/compare', '/checkout', '/checkout/basic', '/checkout/ecommerce', '/request', '/about'];
 for (const width of [320, 390, 768, 1280]) {
   test(`responsive routes at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
@@ -20,7 +20,7 @@ for (const width of [320, 390, 768, 1280]) {
       }
     }
     if (width === 390 || width === 1280) {
-      for (const route of ['/services', '/compare', '/checkout/basic']) {
+      for (const route of ['/services', '/services/amazon-3d-modeling', '/']) {
         await page.goto(route);
         await page.screenshot({ path: testInfo.outputPath(route.replaceAll('/', '-') + '.png'), fullPage: true });
       }

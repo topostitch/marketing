@@ -1,3 +1,4 @@
+import { ProjectNextStep } from '@/components/service-explorer';
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -129,10 +130,7 @@ export default function HomePage() {
       <CommerceProof />
       <CommerceFaqs />
 
-      <div className={styles.closingLinks} id="early-access">
-        <Link href="/compare" className={styles.button}>Compare 3D services</Link>
-        <Link href="/request?offer=custom">Ask about your project</Link>
-      </div>
+      <ProjectNextStep />
     </main>
   );
 }
