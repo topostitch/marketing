@@ -6,7 +6,9 @@ import Suitability, { FulfillmentTerms } from "@/components/suitability";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import ServiceExplorer from "@/components/service-explorer";
+import ServiceExplorer, {
+  ProjectNextStep,
+} from "@/components/service-explorer";
 import { commerceOffers } from "@/lib/commerce-offers";
 import styles from "../marketing-layout.module.css";
 
@@ -204,6 +206,7 @@ export default function ServicesPage() {
         </p>
         <Link href="/request?offer=custom">Discuss asset optimization</Link>
       </section>
+      <ProjectNextStep />
     </main>
   );
 }

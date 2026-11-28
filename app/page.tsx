@@ -1,3 +1,4 @@
+import ProductionCommitments from "@/components/production-commitments";
 import { jsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo";
 import CapturePathways from "@/components/capture-pathways";
@@ -284,7 +285,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FutureDirection />
+      <ProductionCommitments />
       <CommerceProof />
       <section
         className={styles.section}
@@ -314,6 +315,7 @@ export default function HomePage() {
           <Link href="/insights">Browse all insights</Link>
         </p>
       </section>
+      <FutureDirection />
       <CommerceFaqs />
 
       <ProjectNextStep />

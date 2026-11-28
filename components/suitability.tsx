@@ -54,7 +54,11 @@ export default function Suitability() {
 }
 export function FulfillmentTerms() {
   return (
-    <section className={s.section} aria-label="Pilot fulfillment terms">
+    <section
+      id="fulfillment-terms"
+      className={s.section}
+      aria-label="Pilot fulfillment terms"
+    >
       <div className={s.sectionIntro}>
         <h2>Before you order</h2>
         <p>
